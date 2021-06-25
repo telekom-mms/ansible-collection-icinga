@@ -4,37 +4,7 @@
     name: "{{ item }}"
     state: present
   loop:
-    - ""{{ icinga_package }}"
-
-- name: install icinga and nagios plugins for os family RedHat < 8
-  yum:
-    name:
-      - "nagios-plugins-all"
-    state: present
-  when:
-    - ansible_facts.os_family == "RedHat"
-    - ansible_facts.distribution_major_version|int is version('8', '<')
-
-# https://github.com/Icinga/icinga2/issues/7927
-- name: install icinga and nagios plugins for os family RedHat < 8 except nagios-plugins-mysql
-  yum:
-    name:
-      - "nagios-plugins-*"
-    exclude:
-      - nagios-plugins-all
-      - nagios-plugins-mysql
-      - nagios-plugins-2.3.3-3.el8.x86_64
-    state: present
-  when:
-    - ansible_facts.os_family == "RedHat"
-    - ansible_facts.distribution_major_version|int is version('8', '>=')
-
-- name: create /etc/icinga2/repository.d
-  file:
-    dest: "/etc/icinga2/repository.d"
-    owner: icinga
-    group: icinga
-    state: directory
+    - "{{ icinga_package }}"
 
 - name: copy icinga configuration files
   template:
@@ -42,23 +12,25 @@
     dest: "{{ item.dest_file }}"
     owner: icinga
     group: icinga
-    mode: "0640"
+    mode: 0640
   loop:
-    - { src_file: "zones.conf.j2", dest_file: "/etc/icinga2/zones.conf" }
-    - { src_file: "constants.conf.j2", dest_file: "/etc/icinga2/constants.conf" }
-    - { src_file: "api.conf.j2", dest_file: "/etc/icinga2/features-available/api.conf" }
-    - { src_file: "icinga2.conf.j2", dest_file: "/etc/icinga2/icinga2.conf" }
+    - { src_file: "{{ icinga_zone_config_file }}", dest_file: "/etc/icinga2/zones.conf" }
+    - { src_file: "{{ icinga_constants_config_file }}", dest_file: "/etc/icinga2/constants.conf" }
+    - { src_file: "{{ icinga_api_config_file }}", dest_file: "/etc/icinga2/features-available/api.conf" }
+    - { src_file: "{{ icinga_config_file }}", dest_file: "/etc/icinga2/icinga2.conf" }
   notify:
     - restart icinga2
 
-- name: create link for api.conf in features-enabled
+- name: activate icinga specified icinga features
   file:
     src: "../features-available/{{ item }}"
     dest: "/etc/icinga2/features-enabled/{{ item }}"
     state: link
   loop:
-    - "api.conf"
-    - "notification.conf"
+    - "{{ icinga_enable_features }}"
+  when:
+    - icinga_enable_features is defined
+    - icinga_enable_features | length > 0
 
 - name: generate ticket and save it as a variable
   shell: /usr/sbin/icinga2 pki ticket --cn {{ icinga_nodename }} --salt {{ salt }}

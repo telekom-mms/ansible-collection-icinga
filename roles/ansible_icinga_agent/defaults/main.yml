@@ -1,2 +1,12 @@
 ---
 icinga_package: icinga2
+icinga_agent_registration: false
+
+icinga_zone_config_file: "zones.conf.j2"
+icinga_constants_config_file: "constants.conf.j2"
+icinga_api_config_file: "api.conf.j2"
+icinga_config_file: "icinga2.conf.j2"
+
+icinga_enable_features:
+  - "api.conf"
+  - "notification.conf"
