@@ -1,0 +1,96 @@
+---
+- name: install specificed icinga version
+  yum:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - ""{{ icinga_package }}"
+
+- name: install icinga and nagios plugins for os family RedHat < 8
+  yum:
+    name:
+      - "nagios-plugins-all"
+    state: present
+  when:
+    - ansible_facts.os_family == "RedHat"
+    - ansible_facts.distribution_major_version|int is version('8', '<')
+
+# https://github.com/Icinga/icinga2/issues/7927
+- name: install icinga and nagios plugins except for the mysql-plugins on el8
+  yum:
+    name:
+      - "nagios-plugins-*"
+    exclude:
+      - nagios-plugins-all
+      - nagios-plugins-mysql
+      - nagios-plugins-2.3.3-3.el8.x86_64
+    state: present
+  when:
+    - ansible_facts.os_family == "RedHat"
+    - ansible_facts.distribution_major_version|int is version('8', '>=')
+
+- name: create /etc/icinga2/repository.d
+  file:
+    dest: "/etc/icinga2/repository.d"
+    owner: icinga
+    group: icinga
+    state: directory
+
+- name: copy icinga configuration files
+  template:
+    src: "{{ item.src_file }}"
+    dest: "{{ item.dest_file }}"
+    owner: icinga
+    group: icinga
+    mode: "0640"
+  loop:
+    - { src_file: "zones.conf.j2", dest_file: "/etc/icinga2/zones.conf" }
+    - { src_file: "constants.conf.j2", dest_file: "/etc/icinga2/constants.conf" }
+    - { src_file: "api.conf.j2", dest_file: "/etc/icinga2/features-available/api.conf" }
+    - { src_file: "icinga2.conf.j2", dest_file: "/etc/icinga2/icinga2.conf" }
+  notify:
+    - restart icinga2
+
+- name: create link for api.conf in features-enabled
+  file:
+    src: "../features-available/{{ item }}"
+    dest: "/etc/icinga2/features-enabled/{{ item }}"
+    state: link
+  loop:
+    - "api.conf"
+    - "notification.conf"
+
+- name: generate ticket and save it as a variable
+  shell: /usr/sbin/icinga2 pki ticket --cn {{ icinga_nodename }} --salt {{ salt }}
+  environment:
+    LD_LIBRARY_PATH: "/usr/lib64"
+  register: ticket
+
+- name: create certificate
+  command: "/usr/sbin/icinga2 pki new-cert --cn {{ icinga_nodename }} --key /var/lib/icinga2/certs/{{ icinga_nodename }}.key --cert /var/lib/icinga2/certs/{{ icinga_nodename }}.crt"
+  args:
+    creates: "/var/lib/icinga2/certs/{{ icinga_nodename }}.crt"
+
+- name: save the icinga master's certificate to the host
+  command: "/usr/sbin/icinga2 pki save-cert --key /var/lib/icinga2/certs/{{ icinga_nodename }}.key --cert /var/lib/icinga2/certs/{{ icinga_nodename }}.crt --trustedcert /var/lib/icinga2/certs/trusted-master.crt --host {{ icinga_ca_host }}"
+  args:
+    creates: "/var/lib/icinga2/certs/trusted-master.crt"
+
+- name: generate ticket and save it as a variable
+  command: "/usr/sbin/icinga2 pki ticket --cn {{ icinga_nodename }} --salt {{ salt }}"
+  register: ticket
+  args:
+    creates: "/var/lib/icinga2/certs/ca.crt"
+
+- name: send a pki request to the icinga master
+  command: "/usr/sbin/icinga2 pki request --host {{ icinga_ca_host }} --port 5665 --ticket {{ ticket.stdout }} --key /var/lib/icinga2/certs/{{ ansible_hostname }}.key --cert /var/lib/icinga2/certs/{{ icinga_nodename }}.crt --trustedcert /var/lib/icinga2/certs/trusted-master.crt --ca /var/lib/icinga2/certs/ca.crt"
+  args:
+    creates: "/var/lib/icinga2/certs/ca.crt"
+  notify:
+    - restart icinga2
+
+- name: enable autostart for icinga service
+  service:
+    name: icinga2
+    enabled: true
+    state: started
