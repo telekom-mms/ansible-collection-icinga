@@ -16,7 +16,7 @@
     - ansible_facts.distribution_major_version|int is version('8', '<')
 
 # https://github.com/Icinga/icinga2/issues/7927
-- name: install icinga and nagios plugins except for the mysql-plugins on el8
+- name: install icinga and nagios plugins for os family RedHat < 8 except nagios-plugins-mysql
   yum:
     name:
       - "nagios-plugins-*"
