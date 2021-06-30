@@ -8,28 +8,40 @@
 
 - name: copy icinga configuration files
   ansible.builtin.template:
-    src: "{{ item.src_file }}"
-    dest: "{{ item.dest_file }}"
+    src: "{{ item }}"
+    dest: "/etc/icinga2/{{ item | basename | regex_replace('.j2', '') }}"
     owner: icinga
     group: icinga
     mode: 0640
-  loop:
-    - { src_file: "{{ icinga_zone_config_file }}", dest_file: "/etc/icinga2/zones.conf" }
-    - { src_file: "{{ icinga_constants_config_file }}", dest_file: "/etc/icinga2/constants.conf" }
-    - { src_file: "{{ icinga_api_config_file }}", dest_file: "/etc/icinga2/features-available/api.conf" }
-    - { src_file: "{{ icinga_config_file }}", dest_file: "/etc/icinga2/icinga2.conf" }
+  with_fileglob:
+    - "../templates/configuration/*"
   notify:
     - restart icinga2
+
+- name: copy custom icinga configuration files
+  ansible.builtin.template:
+    src: "{{ item }}"
+    dest: "/etc/icinga2/{{ item | basename | regex_replace('.j2', '') }}"
+    owner: icinga
+    group: icinga
+    mode: 0640
+  with_fileglob:
+    - "{{ icinga_custom_configuration_template_path }}"
+  notify:
+    - restart icinga2
+  when:
+    - icinga_custom_configuration_template_path is defined
+    - icinga_custom_configuration_template_path | length > 0
 
 - name: copy icinga feature files
   ansible.builtin.template:
     src: "{{ item.src_file }}"
-    dest: "{{ item.dest_file }}"
+    dest: "/etc/icinga2/features-available/{{ item | basename | regex_replace('.j2', '') }}"
     owner: icinga
     group: icinga
     mode: 0640
-  loop:
-    - { src_file: "{{ icinga_api_config_file }}", dest_file: "/etc/icinga2/features-available/api.conf" }
+  with_fileglob:
+    - "../templates/features/*"
   notify:
     - restart icinga2
 

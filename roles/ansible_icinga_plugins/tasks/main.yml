@@ -1,6 +1,13 @@
 ---
 
-# tasks file for icinga_check_plugins
+- name: test if "icinga_plugins_path" is set correctly
+  ansible.builtin.assert:
+    that:
+      - icinga_plugins_path is defined
+    fail_msg: >
+      icinga_plugins_path is not defined
+      (this variable should point to the folder where your plugins are)
+
 - name: install required dependencies
   ansible.builtin.package:
     name: "{{ item }}"
@@ -9,33 +16,18 @@
   tags:
     - install_dependencies
 
-- name: copy directories to target host
-  synchronize:
-    src: "{{ icinga2_check_plugins_src_dir }}/{{ item.path.split('/')[0] }}"
+- name: copy icinga plugins to target node
+  ansible.builtin.copy:
+    src: "{{ item }}"
     dest: "{{ icinga2_check_plugins_dest_plugins_dir }}/"
-    recursive: yes
-  with_filetree:
-    - "{{ icinga2_check_plugins_src_dir }}/"
-  when: "item.state == 'directory'"
-  loop_control:
-    label: "{{ item.path }}"
-  tags:
-    - copy_files
+  with_fileglob:
+    - "{{ icinga_plugins_path }}/*"
+  when:
+    - icinga_plugins_path is defined
+    - icinga_plugins_path | length > 0
 
-- name: copy files to target host
-  copy:
-    src: "{{ icinga2_check_plugins_src_dir }}/{{ item.path }}"
-    dest: "{{ icinga2_check_plugins_dest_plugins_dir }}/{{ item.path }}"
-  with_filetree:
-    - "{{ icinga2_check_plugins_src_dir }}/"
-  when: "item.state == 'file'"
-  loop_control:
-    label: "{{ item.path }}"
-  tags:
-    - copy_files
-
-- name: "alle Dateien im Plugins-Verzeichnis suchen"
-  find:
+- name: "search for all files in plugins directory"
+  ansible.builtin.find:
     paths: "{{ icinga2_check_plugins_dest_plugins_dir }}"
     recurse: yes
     file_type: any
@@ -43,7 +35,7 @@
   check_mode: no
 
 - name: set plugins ownership
-  file:
+  ansible.builtin.file:
     path: "{{ item.path }}"
     owner: "icinga"
     group: "icinga"
