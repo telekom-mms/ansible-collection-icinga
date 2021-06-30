@@ -5,4 +5,4 @@ Documentation for the collection.
 
 - Ansible version: 2.9.10
 - Icinga package repository configured
-- And for Redhat based Distributions you need to have install epel package repository too
+- Note: for Redhat based Distributions you need to have install epel package repository too
