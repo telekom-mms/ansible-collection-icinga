@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+
+{% for constant in icinga_agent_constants -%}
+  {{ constant }}
+{% endfor %}

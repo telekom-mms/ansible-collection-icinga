@@ -3,6 +3,6 @@
 Documentation for the role.
 
 
-Variables:
+Available variables:
 
 icinga_plugins_path: "{{ playbook_dir }}/../files/icinga"
