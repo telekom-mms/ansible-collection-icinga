@@ -1,13 +1,5 @@
 # {{ ansible_managed }}
 
 object ApiListener "api" {
-{% if icinga_agent_api_accept_commands | bool -%}
-  accept_commands = {{ icinga_agent_api_accept_commands }}
-{% endif -%}
-{% if icinga_agent_api_accept_config | bool -%}
-  accept_config = {{ icinga_agent_api_accept_config }}
-{% endif -%}
-{% if icinga_agent_api_ticket_salt is defined -%}
-  ticket_salt = {{ icinga_agent_api_ticket_salt }}
-{% endif -%}
+  {{ icinga_agent_api_conf }}
 }
