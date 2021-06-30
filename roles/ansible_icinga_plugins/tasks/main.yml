@@ -1,13 +1,5 @@
 ---
 
-- name: test if "icinga_plugins_path" is set correctly
-  ansible.builtin.assert:
-    that:
-      - icinga_plugins_path is defined
-    fail_msg: >
-      icinga_plugins_path is not defined
-      (this variable should point to the folder where your plugins are)
-
 - name: install required dependencies
   ansible.builtin.package:
     name: "{{ item }}"
