@@ -1,0 +1,55 @@
+---
+
+# tasks file for icinga_check_plugins
+- name: install required dependencies
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ dependency_packages }}"
+  tags:
+    - install_dependencies
+
+- name: copy directories to target host
+  synchronize:
+    src: "{{ icinga2_check_plugins_src_dir }}/{{ item.path.split('/')[0] }}"
+    dest: "{{ icinga2_check_plugins_dest_plugins_dir }}/"
+    recursive: yes
+  with_filetree:
+    - "{{ icinga2_check_plugins_src_dir }}/"
+  when: "item.state == 'directory'"
+  loop_control:
+    label: "{{ item.path }}"
+  tags:
+    - copy_files
+
+- name: copy files to target host
+  copy:
+    src: "{{ icinga2_check_plugins_src_dir }}/{{ item.path }}"
+    dest: "{{ icinga2_check_plugins_dest_plugins_dir }}/{{ item.path }}"
+  with_filetree:
+    - "{{ icinga2_check_plugins_src_dir }}/"
+  when: "item.state == 'file'"
+  loop_control:
+    label: "{{ item.path }}"
+  tags:
+    - copy_files
+
+- name: "alle Dateien im Plugins-Verzeichnis suchen"
+  find:
+    paths: "{{ icinga2_check_plugins_dest_plugins_dir }}"
+    recurse: yes
+    file_type: any
+  register: files_in_plugins_dir
+  check_mode: no
+
+- name: set plugins ownership
+  file:
+    path: "{{ item.path }}"
+    owner: "icinga"
+    group: "icinga"
+    mode: 0755
+  loop: "{{ files_in_plugins_dir.files }}"
+  loop_control:
+    label: "{{ item.path }}"
+  tags:
+    - set_ownership

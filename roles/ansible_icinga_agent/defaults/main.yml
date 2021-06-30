@@ -10,3 +10,5 @@ icinga_config_file: "icinga2.conf.j2"
 icinga_enable_features:
   - "api.conf"
   - "notification.conf"
+
+icinga_ca_host_icinga_port: 5665
