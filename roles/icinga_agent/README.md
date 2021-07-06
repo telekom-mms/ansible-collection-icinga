@@ -88,20 +88,16 @@ icinga_agent_enable_features:
     - t_systems_mms.icinga_agent
   vars:
     icinga_agent_endpoints:
-      - endpoint:
-          name: "icinga2-master1.localdomain"
-          host: "192.154.44.101"
-      - endpoint:
-          name: "icinga2-satellite1.localdomain"
-          host: "192.154.44.107"
+      - name: "icinga2-master1.localdomain"
+        host: "192.154.44.101"
+      - name: "icinga2-satellite1.localdomain"
+        host: "192.154.44.107"
     icinga_agent_zones:
-      - zone:
-          name: "master"
-          endpoints: "icinga2-master1.localdomain"
-      - zone:
-          name: "satellite"
-          endpoints: "icinga2-satellite1.localdomain"
-          parent: "master"
+      - name: "master"
+        endpoints: "icinga2-master1.localdomain"
+      - name: "satellite"
+        endpoints: "icinga2-satellite1.localdomain"
+        parent: "master"
   roles:
     - icinga_agent
 
@@ -116,20 +112,16 @@ icinga_agent_enable_features:
   vars:
     icinga_agent_registration: true
     icinga_agent_endpoints:
-      - endpoint:
-          name: "icinga2-master1.localdomain"
-          host: "192.154.44.101"
-      - endpoint:
-          name: "icinga2-satellite1.localdomain"
-          host: "192.154.44.107"
+      - name: "icinga2-master1.localdomain"
+        host: "192.154.44.101"
+      - name: "icinga2-satellite1.localdomain"
+        host: "192.154.44.107"
     icinga_agent_zones:
-      - zone:
-          name: "master"
-          endpoints: "icinga2-master1.localdomain"
-      - zone:
-          name: "satellite"
-          endpoints: "icinga2-satellite1.localdomain"
-          parent: "master"
+      - name: "master"
+        endpoints: "icinga2-master1.localdomain"
+      - name: "satellite"
+        endpoints: "icinga2-satellite1.localdomain"
+        parent: "master"
     icinga_agent_ca_host: "icinga2-master1.localdomain"
     icinga_agent_salt: "thisisasalt"
     icinga_agent_enable_features:
