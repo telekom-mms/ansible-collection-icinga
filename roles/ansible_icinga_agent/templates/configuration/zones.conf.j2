@@ -1,21 +1,17 @@
 # {{ ansible_managed }}
 
-object Endpoint "{{ icinga_endpoint0 }}" {
-  host = "{{ icinga_host0 }}"
+{% for endpoint in icinga_agent_endpoints %}
+object Endpoint "{{ endpoint.name }}" {
+  host = "{{ endpoint.host }}"
 }
+{% endfor %}
 
-object Endpoint "{{ icinga_endpoint1 }}" {
-  host = "{{ icinga_host1 }}"
+{% for zone in icinga_agent_zones %}
+object Zone "{{ zone.name }}" {
+  endpoints = [ {{ zone.endpoints }} ]
+  parent = "{{ zone.parent }}"
 }
-
-object Endpoint "{{ ansible_hostname }}" {
-  host = "{{ ansible_hostname }}"
-}
-
-object Zone ZoneName {
-  endpoints = [ "{{ ansible_hostname }}", ]
-  parent = "{{ icinga_zone }}"
-}
+{% endfor %}
 
 object Zone "director-global" {
   global = true
@@ -23,8 +19,4 @@ object Zone "director-global" {
 
 object Zone "global-templates" {
   global = true
-}
-
-object Zone "{{ icinga_zone }}" {
-  endpoints = [ "{{ icinga_endpoint0 }}", "{{ icinga_endpoint1 }}" ]
 }
