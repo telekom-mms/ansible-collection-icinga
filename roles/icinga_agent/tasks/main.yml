@@ -50,7 +50,7 @@
     src: "../features-available/{{ item }}"
     dest: "/etc/icinga2/features-enabled/{{ item }}"
     state: link
-  loop:
+  with_items:
     - "{{ icinga_agent_enable_features }}"
   when:
     - icinga_agent_enable_features is defined
