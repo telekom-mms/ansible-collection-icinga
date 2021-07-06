@@ -83,6 +83,7 @@ icinga_agent_enable_features:
 ```yaml
 ---
 - hosts: localhost
+  gather_facts: true
   collections:
     - t_systems_mms.icinga_agent
   vars:
@@ -109,6 +110,7 @@ icinga_agent_enable_features:
 ```yaml
 ---
 - hosts: localhost
+  gather_facts: true
   collections:
     - t_systems_mms.icinga_agent
   vars:

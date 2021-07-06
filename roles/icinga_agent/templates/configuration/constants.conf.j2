@@ -1,11 +1,3 @@
 # {{ ansible_managed }}
 
 {{ icinga_agent_constants_conf }}
-
-{% if icinga_agent_constants_conf_zone_name is undefined %}
-const ZoneName = "{{ ansible_hostname }}"
-{% endif %}
-
-{% if icinga_agent_constants_conf_zone_name is undefined %}
-const NodeName = "{{ ansible_hostname }}"
-{% endif %}

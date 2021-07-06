@@ -6,6 +6,8 @@ icinga_agent_constants_conf: |
   const PluginDir = "/usr/lib64/nagios/plugins"
   const PluginContribDir = "/usr/lib64/nagios/plugins"
   const ManubulonPluginDir = "/usr/lib64/nagios/plugins"
+  const ZoneName = "{{ ansible_hostname }}"
+  const NodeName = "{{ ansible_hostname }}"
   const TicketSalt = ""
 icinga_agent_api_conf: |
   accept_config = true
