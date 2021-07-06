@@ -85,12 +85,12 @@
         creates: "/var/lib/icinga2/certs/ca.crt"
       notify:
         - restart icinga2-agent
-    when:
-      - icinga_agent_registration | bool
-      - icinga_agent_salt is defined
-      - icinga_agent_salt | length > 0
-      - icinga_agent_ca_host is defined
-      - icinga_agent_ca_host | length > 0
+  when:
+    - icinga_agent_registration | bool
+    - icinga_agent_salt is defined
+    - icinga_agent_salt | length > 0
+    - icinga_agent_ca_host is defined
+    - icinga_agent_ca_host | length > 0
 
 - name: enable autostart for icinga service
   ansible.builtin.service:
