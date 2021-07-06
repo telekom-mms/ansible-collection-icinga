@@ -84,7 +84,7 @@ icinga_agent_enable_features:
 ---
 - hosts: localhost
   collections:
-    t_systems_mms.icinga_agent
+    - t_systems_mms.icinga_agent
   vars:
     icinga_agent_endpoints:
       - endpoint:
@@ -110,7 +110,7 @@ icinga_agent_enable_features:
 ---
 - hosts: localhost
   collections:
-    t_systems_mms.icinga_agent
+    - t_systems_mms.icinga_agent
   vars:
     icinga_agent_registration: true
     icinga_agent_endpoints:
