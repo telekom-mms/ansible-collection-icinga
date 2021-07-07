@@ -8,7 +8,7 @@ object Endpoint "{{ endpoint.name }}" {
 
 {% for zone in icinga_agent_zones %}
 object Zone "{{ zone.name }}" {
-  endpoints = [ "{{ zone.endpoints }}" ]
+  endpoints = [ "{{ zone.endpoints | join(', ') }}" ]
 {% if zone.parent is defined %}
   parent = "{{ zone.parent }}"
 {% endif %}
