@@ -6,6 +6,13 @@
   loop:
     - "{{ icinga_agent_package }}"
 
+- name: create /etc/icinga2/repository.d
+  ansible.builtin.file:
+    dest: "/etc/icinga2/repository.d"
+    owner: icinga
+    group: icinga
+    state: directory
+
 - name: copy icinga configuration files
   ansible.builtin.template:
     src: "{{ item }}"
