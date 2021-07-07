@@ -1,4 +1,4 @@
-# Ansible Role - t_systems_mms.ansible_collection_icinga.ansible_icinga_agent
+# Ansible Role - t_systems_mms.ansible_collection_icinga.icinga_agent
 
 This role installs and configures the icinga agent.
 ## Variables
@@ -36,10 +36,12 @@ icinga_agent_endpoints:
 icinga_agent_zones:
   - zone:
       name: "master"
-      endpoints: "icinga2-master1.localdomain"
+      endpoints:
+        - "icinga2-master1.localdomain"
   - zone:
       name: "satellite"
-      endpoints: "icinga2-satellite1.localdomain"
+      endpoints:
+        - "icinga2-satellite1.localdomain"
       parent: "master"
 ```
 
@@ -85,7 +87,7 @@ icinga_agent_enable_features:
 - hosts: localhost
   gather_facts: true
   collections:
-    - t_systems_mms.icinga_agent
+    - t_systems_mms.ansible_collection_icinga
   vars:
     icinga_agent_endpoints:
       - name: "icinga2-master1.localdomain"
@@ -94,9 +96,11 @@ icinga_agent_enable_features:
         host: "192.154.44.107"
     icinga_agent_zones:
       - name: "master"
-        endpoints: "icinga2-master1.localdomain"
+        endpoints:
+          - "icinga2-master1.localdomain"
       - name: "satellite"
-        endpoints: "icinga2-satellite1.localdomain"
+        endpoints:
+          - "icinga2-satellite1.localdomain"
         parent: "master"
   roles:
     - icinga_agent
@@ -108,7 +112,7 @@ icinga_agent_enable_features:
 - hosts: localhost
   gather_facts: true
   collections:
-    - t_systems_mms.icinga_agent
+    - t_systems_mms.ansible_collection_icinga
   vars:
     icinga_agent_registration: true
     icinga_agent_endpoints:
@@ -118,9 +122,11 @@ icinga_agent_enable_features:
         host: "192.154.44.107"
     icinga_agent_zones:
       - name: "master"
-        endpoints: "icinga2-master1.localdomain"
+        endpoints:
+          - "icinga2-master1.localdomain"
       - name: "satellite"
-        endpoints: "icinga2-satellite1.localdomain"
+        endpoints:
+          - "icinga2-satellite1.localdomain"
         parent: "master"
     icinga_agent_ca_host: "icinga2-master1.localdomain"
     icinga_agent_salt: "thisisasalt"
