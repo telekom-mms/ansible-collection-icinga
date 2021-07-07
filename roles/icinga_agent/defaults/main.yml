@@ -12,3 +12,5 @@ icinga_agent_constants_conf: |
 icinga_agent_api_conf: |
   accept_config = true
   accept_commands = true
+
+icinga_agent_repositoryd_directory: false

@@ -12,6 +12,9 @@
     owner: icinga
     group: icinga
     state: directory
+  when:
+    - icinga_agent_repositoryd_directory is defined
+    - icinga_agent_repositoryd_directory | length > 0
 
 - name: copy icinga configuration files
   ansible.builtin.template:
