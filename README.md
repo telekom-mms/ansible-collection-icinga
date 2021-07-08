@@ -23,7 +23,7 @@ If you use an older version, you can install it with Ansible Galaxy:
 ansible-galaxy collection install t_systems_mms.ansible_collection_icinga
 ```
 
-Alternatively put the collection into a `requirements.yml`-file:
+Alternatively put the collection into a `requirements.yml` file:
 ```
 ---
 collections:
