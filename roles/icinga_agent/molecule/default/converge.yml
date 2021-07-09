@@ -9,7 +9,7 @@
     - name: import icinga2 repo key
       command: "rpm --import https://packages.icinga.com/icinga.key"
     - name: install icinga2 repo
-      command: "yum install https://packages.icinga.com/epel/icinga-rpm-release-7-latest.noarch.rpm"
+      command: "yum install https://packages.icinga.com/epel/icinga-rpm-release-7-latest.noarch.rpm -y"
   collections:
     - t_systems_mms.ansible_collection_icinga
   roles:
