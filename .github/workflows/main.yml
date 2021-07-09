@@ -13,7 +13,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   ansible-sanity-tests:
-    name: Sanity (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }})
+    name: Sanity (Ⓐ${{ matrix.ansible }}
     strategy:
       matrix:
         ansible:
@@ -21,11 +21,7 @@ jobs:
           # Testing against `devel` may fail as new tests are added.
           - stable-2.9
           - stable-2.10
-        python:
-          - 3.7
-          - 3.8
-        exclude:
-          - python: 3.8  # blocked by ansible/ansible#70155
+          - stable-2.11
     runs-on: ubuntu-latest
     steps:
       # ansible-test requires the collection to be in a directory in the form
@@ -39,7 +35,7 @@ jobs:
       - name: Set up Python ${{ matrix.ansible }}
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python }}
+          python-version: 3.8
 
       # Install the head of the given branch (devel, stable-2.10)
       - name: Install ansible-base (${{ matrix.ansible }})
