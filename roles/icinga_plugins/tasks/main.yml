@@ -8,6 +8,32 @@
   tags:
     - install_dependencies
 
+# https://github.com/Icinga/icinga2/issues/7927
+- name: install icinga and nagios plugins except for the mysql-plugins on el8
+  ansible.builtin.package:
+    name: "{{ item }}"
+    exclude:
+      - nagios-plugins-all
+      - nagios-plugins-mysql
+      - nagios-plugins-2.3.3-3.el8.x86_64
+    state: present
+  loop: "{{ icinga_install_plugins }}"
+  when:
+    - icinga_install_plugins is defined
+    - icinga_install_plugins | length > 0
+    - ansible_facts.os_family == "RedHat"
+    - ansible_facts.distribution_major_version|int is version('8', '>=')
+
+- name: install icinga and nagios plugins
+  ansible.builtin.package:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ icinga_install_plugins }}"
+  when:
+    - icinga_install_plugins is defined
+    - icinga_install_plugins | length > 0
+    - ansible_facts.distribution != "RedHat" and ansible_facts.distribution_major_version|int is version('8', '<')
+
 - name: copy icinga plugins to target node
   ansible.builtin.copy:
     src: "{{ item }}"
