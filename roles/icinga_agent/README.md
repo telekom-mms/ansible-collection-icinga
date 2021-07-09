@@ -27,22 +27,18 @@ related links:
 ```yaml
 ---
 icinga_agent_endpoints:
-  - endpoint:
-      name: "icinga2-master1.localdomain"
-      host: "192.154.44.101"
-  - endpoint:
-      name: "icinga2-satellite1.localdomain"
-      host: "192.154.44.107"
+  - name: "icinga2-master1.localdomain"
+    host: "192.154.44.101"
+  - name: "icinga2-satellite1.localdomain"
+    host: "192.154.44.107"
 icinga_agent_zones:
-  - zone:
-      name: "master"
-      endpoints:
-        - "icinga2-master1.localdomain"
-  - zone:
-      name: "satellite"
-      endpoints:
-        - "icinga2-satellite1.localdomain"
-      parent: "master"
+  - name: "master"
+    endpoints:
+      - "icinga2-master1.localdomain"
+  - name: "satellite"
+    endpoints:
+      - "icinga2-satellite1.localdomain"
+    parent: "master"
 ```
 
 ## defintion icinga2 agent features
