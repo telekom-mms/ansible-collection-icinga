@@ -1,6 +1,15 @@
 ---
 - name: Converge
   hosts: all
+  pre_tasks:
+    - name: install epel repo
+      yum:
+        name: epel-release
+        state: installed
+    - name: import icinga2 repo key
+      command: "rpm --import https://packages.icinga.com/icinga.key"
+    - name: install icinga2 repo
+      command: "yum install https://packages.icinga.com/epel/icinga-rpm-release-7-latest.noarch.rpm"
   collections:
     - t_systems_mms.ansible_collection_icinga
   roles:

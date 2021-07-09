@@ -4,9 +4,6 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: ubuntu20.04
-    image: jrei/systemd-ubuntu:20.04
-    pre_build_image: true
   - name: centos7
     image: ribose/centos-systemd:7.5.master
     pre_build_image: true
