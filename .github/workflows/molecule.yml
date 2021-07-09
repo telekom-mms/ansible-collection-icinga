@@ -1,5 +1,5 @@
 ---
-name: molecule test
+name: molecule test role icinga_agent
 on:
   # Run CI against all pushes (direct commits, also merged PRs), Pull Requests
   push:
@@ -24,8 +24,10 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
-          python3 -m pip install -r ansible_collections/t_systems_mms/ansible_collection_icinga/requirements.txt
+          python3 -m pip install -r requirements.txt
+        working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga
 
       - name: Test with molecule
         run: |
           molecule test
+        working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga/icinga_agent
