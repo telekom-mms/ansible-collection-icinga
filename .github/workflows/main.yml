@@ -1,0 +1,74 @@
+---
+name: ansible-test
+
+on:
+  # Run CI against all pushes (direct commits, also merged PRs), Pull Requests
+  push:
+  pull_request:
+  # Run CI once per day (at 06:00 UTC)
+  # This ensures that even if there haven't been commits that we are still testing against latest version of ansible-test for each ansible-base version
+  schedule:
+    - cron: '0 6 * * *'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  ansible-sanity-tests:
+    name: Sanity (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }})
+    strategy:
+      matrix:
+        ansible:
+          # It's important that Sanity is tested against all stable-X.Y branches
+          # Testing against `devel` may fail as new tests are added.
+          - stable-2.9
+          - stable-2.10
+        python:
+          - 3.7
+          - 3.8
+        exclude:
+          - python: 3.8  # blocked by ansible/ansible#70155
+    runs-on: ubuntu-latest
+    steps:
+      # ansible-test requires the collection to be in a directory in the form
+      # .../ansible_collections/NAMESPACE/COLLECTION_NAME/
+
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          path: ansible_collections/t_systems_mms/ansible_collection_icinga
+
+      - name: Set up Python ${{ matrix.ansible }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+
+      # Install the head of the given branch (devel, stable-2.10)
+      - name: Install ansible-base (${{ matrix.ansible }})
+        run: python -m pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
+
+      # run ansible-test sanity inside of Docker.
+      # The docker container has all the pinned dependencies that are required.
+      # Explicity specify the version of Python we want to test
+      - name: Run sanity tests
+        run: ansible-test sanity --docker -v --color --python ${{ matrix.python }}
+        working-directory: ./ansible_collections/t_systems_mms/ansible_collection_icinga
+
+  linting:
+    name: Ansible Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          path: ansible_collections/t_systems_mms/ansible_collection_icinga
+
+      - name: Run Linting - icinga_agent
+        uses: ansible/ansible-lint-action@master
+        with:
+          targets: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_agent
+          args: "-c ansible_collections/t_systems_mms/ansible_collection_icinga/.ansible-lint"
+
+      - name: Run Linting - icinga_plugins
+        uses: ansible/ansible-lint-action@master
+        with:
+          targets: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_plugins
+          args: "-c ansible_collections/t_systems_mms/ansible_collection_icinga/.ansible-lint"
