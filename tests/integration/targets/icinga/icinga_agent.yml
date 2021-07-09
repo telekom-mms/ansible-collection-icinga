@@ -21,71 +21,71 @@
         parent: "master"
   post_tasks:
     - name: verify that icinga2.conf exists
-      file:
+      ansible.builtin.file:
         path: /etc/icinga2/icinga2.conf
         register: result_icinga2_conf
 
     - name: validate icinga2.conf results
-      assert:
+      ansible.builtin.assert:
         that:
           - "result_icinga2_conf.state == 'file'"
           - "result_icinga2_conf.mode == '0640'"
           - "result_icinga2_conf.changed == true"
 
     - name: verify that constants.conf exists
-      file:
+      ansible.builtin.file:
         path: /etc/icinga2/constants.conf
         register: result_constants_conf
 
     - name: validate constants.conf results
-      assert:
+      ansible.builtin.assert:
         that:
           - "result_constants_conf.state == 'file'"
           - "result_constants_conf.mode == '0640'"
           - "result_constants_conf.changed == true"
 
     - name: verify that zones.conf exists
-      file:
+      ansible.builtin.file:
         path: /etc/icinga2/zones.conf
         register: result_zones_conf
 
     - name: validate zones.conf results
-      assert:
+      ansible.builtin.assert:
         that:
           - "result_zones_conf.state == 'file'"
           - "result_zones_conf.mode == '0640'"
           - "result_zones_conf.changed == true"
 
     - name: verify that api.conf exists
-      file:
+      ansible.builtin.file:
         path: /etc/icinga2/features-available/api.conf
         register: result_api_conf
 
     - name: validate api.conf results
-      assert:
+      ansible.builtin.assert:
         that:
           - "result_api_conf.state == 'file'"
           - "result_api_conf.mode == '0640'"
           - "result_api_conf.changed == true"
 
     - name: verify that icinga2 package is installed
-      command: "rpm -q icinga2"
+      ansible.builtin.command: "rpm -q icinga2"
       register: redhat_package_check
       when: ansible_facts['os_family'] == "RedHat"
 
     - name: verify that icinga2 package is installed
-      command: "dpkg-query -l icinga2"
+      ansible.builtin.command: "dpkg-query -l icinga2"
       register: debian_package_check
       when: ansible_facts['os_family'] == "Debian"
 
     - name: validate that package icinga2 is installed
-      assert:
+      ansible.builtin.assert:
         that:
           - "redhat_package_check.state == 'installed'"
       when: ansible_facts['os_family'] == "RedHat"
 
     - name: validate that package icinga2 is installed
-      assert:
+      ansible.builtin.assert:
         that:
           - "debian_package_check.state == 'installed'"
       when: ansible_facts['os_family'] == "Debian"
