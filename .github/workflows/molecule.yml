@@ -30,4 +30,4 @@ jobs:
       - name: Test with molecule
         run: |
           molecule test
-        working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga/icinga_agent
+        working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_agent
