@@ -5,7 +5,7 @@ driver:
   name: docker
 platforms:
   - name: centos7
-    image: ribose/centos-systemd:7.5.master
+    image: solita/centos-systemd:latest
     pre_build_image: true
 provisioner:
   name: ansible
