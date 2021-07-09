@@ -35,6 +35,8 @@ jobs:
       - name: Set up Python ${{ matrix.ansible }}
         uses: actions/setup-python@v2
         with:
+          # it is just required to run that once as "ansible-test sanity" in the docker image
+          # will run on all python versions it supports.
           python-version: 3.8
 
       # Install the head of the given branch (devel, stable-2.10)
@@ -45,7 +47,7 @@ jobs:
       # The docker container has all the pinned dependencies that are required.
       # Explicity specify the version of Python we want to test
       - name: Run sanity tests
-        run: ansible-test sanity --docker -v --color --python ${{ matrix.python }}
+        run: ansible-test sanity --docker -v --color
         working-directory: ./ansible_collections/t_systems_mms/ansible_collection_icinga
 
   linting:
