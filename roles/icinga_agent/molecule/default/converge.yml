@@ -1,0 +1,21 @@
+---
+- name: Converge
+  hosts: all
+  collections:
+    - t_systems_mms.ansible_collection_icinga
+  roles:
+    - icinga_agent
+  vars:
+    icinga_agent_endpoints:
+      - name: "icinga2-master1.localdomain"
+        host: "192.154.44.101"
+      - name: "icinga2-satellite1.localdomain"
+        host: "192.154.44.107"
+    icinga_agent_zones:
+      - name: "master"
+        endpoints:
+          - "icinga2-master1.localdomain"
+      - name: "satellite"
+        endpoints:
+          - "icinga2-satellite1.localdomain"
+        parent: "master"
