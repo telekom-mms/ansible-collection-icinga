@@ -35,7 +35,9 @@
       when: ansible_os_family == 'Debian'
 
     - name: import icinga2 key
-      command: "wget -O - https://packages.icinga.com/icinga.key | apt-key add -"
+      apt_key:
+        url: https://packages.icinga.com/icinga.key
+        state: present
       when: ansible_os_family == 'Debian'
       tags:
         - molecule-idempotence-notest
