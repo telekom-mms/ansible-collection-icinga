@@ -46,7 +46,8 @@
         that:
           - "result_icinga2_conf.state == 'file'"
           - "result_icinga2_conf.mode == '0640'"
-          - "result_icinga2_conf.changed == true"
+          - "result_icinga2_conf.owner == 'icinga'"
+          - "result_icinga2_conf.group == 'icinga'"
 
     - name: verify that constants.conf exists
       file:
@@ -59,7 +60,8 @@
         that:
           - "result_constants_conf.state == 'file'"
           - "result_constants_conf.mode == '0640'"
-          - "result_constants_conf.changed == true"
+          - "result_constants_conf.owner == 'icinga'"
+          - "result_constants_conf.group == 'icinga'"
 
     - name: verify that zones.conf exists
       file:
@@ -72,7 +74,8 @@
         that:
           - "result_zones_conf.state == 'file'"
           - "result_zones_conf.mode == '0640'"
-          - "result_zones_conf.changed == true"
+          - "result_zones_conf.owner == 'icinga'"
+          - "result_zones_conf.group == 'icinga'"
 
     - name: verify that api.conf exists
       file:
@@ -85,26 +88,17 @@
         that:
           - "result_api_conf.state == 'file'"
           - "result_api_conf.mode == '0640'"
-          - "result_api_conf.changed == true"
+          - "result_api_conf.owner == 'icinga'"
+          - "result_api_conf.group == 'icinga'"
 
     - name: verify that icinga2 package is installed
-      command: "rpm -q icinga2"
-      register: redhat_package_check
+      yum:
+        name: icinga2
+        state: present
       when: ansible_facts['os_family'] == "RedHat"
 
     - name: verify that icinga2 package is installed
-      command: "dpkg-query -l icinga2"
-      register: debian_package_check
-      when: ansible_facts['os_family'] == "Debian"
-
-    - name: validate that package icinga2 is installed
-      assert:
-        that:
-          - "redhat_package_check.state == 'installed'"
-      when: ansible_facts['os_family'] == "RedHat"
-
-    - name: validate that package icinga2 is installed
-      assert:
-        that:
-          - "debian_package_check.state == 'installed'"
+      apt:
+        name: icinga2
+        state: present
       when: ansible_facts['os_family'] == "Debian"
