@@ -38,6 +38,7 @@
     - name: verify that icinga2.conf exists
       file:
         path: /etc/icinga2/icinga2.conf
+        state: file
         register: result_icinga2_conf
 
     - name: validate icinga2.conf results
@@ -50,6 +51,7 @@
     - name: verify that constants.conf exists
       file:
         path: /etc/icinga2/constants.conf
+        state: file
         register: result_constants_conf
 
     - name: validate constants.conf results
@@ -62,6 +64,7 @@
     - name: verify that zones.conf exists
       file:
         path: /etc/icinga2/zones.conf
+        state: file
         register: result_zones_conf
 
     - name: validate zones.conf results
@@ -74,6 +77,7 @@
     - name: verify that api.conf exists
       file:
         path: /etc/icinga2/features-available/api.conf
+        state: file
         register: result_api_conf
 
     - name: validate api.conf results
