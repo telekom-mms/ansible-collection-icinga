@@ -26,7 +26,7 @@
     - name: install required packages
       apt:
         name: "{{ item }}"
-        state: installed
+        state: latest
         update_cache: true
       loop:
         - "apt-transport-https"
