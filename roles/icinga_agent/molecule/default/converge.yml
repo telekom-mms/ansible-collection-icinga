@@ -43,6 +43,7 @@
         - molecule-idempotence-notest
 
     - name: import sources list - debian
+      become: true
       command: |
         echo "deb https://packages.icinga.com/debian icinga-buster main" > /etc/apt/sources.list.d/buster-icinga.list
         echo "deb-src https://packages.icinga.com/debian icinga-buster main" >> /etc/apt/sources.list.d/buster-icinga.list
@@ -51,6 +52,7 @@
         - molecule-idempotence-notest
 
     - name: import sources list - ubuntu
+      become: true
       command: |
         . /etc/os-release; if [ ! -z ${UBUNTU_CODENAME+x} ]; then DIST="${UBUNTU_CODENAME}"; else DIST="$(lsb_release -c| awk '{print $2}')"; fi; \
         echo "deb https://packages.icinga.com/ubuntu icinga-${DIST} main" > \
