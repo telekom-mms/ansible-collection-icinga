@@ -25,7 +25,7 @@
 
     - name: install required packages
       apt:
-        name:
+        name: "{{ item }}"
         state: installed
         update_cache: true
       loop:
