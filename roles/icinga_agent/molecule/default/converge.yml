@@ -39,7 +39,7 @@
       file:
         path: /etc/icinga2/icinga2.conf
         state: file
-        register: result_icinga2_conf
+      register: result_icinga2_conf
 
     - name: validate icinga2.conf results
       assert:
@@ -52,7 +52,7 @@
       file:
         path: /etc/icinga2/constants.conf
         state: file
-        register: result_constants_conf
+      register: result_constants_conf
 
     - name: validate constants.conf results
       assert:
@@ -65,7 +65,7 @@
       file:
         path: /etc/icinga2/zones.conf
         state: file
-        register: result_zones_conf
+      register: result_zones_conf
 
     - name: validate zones.conf results
       assert:
@@ -78,7 +78,7 @@
       file:
         path: /etc/icinga2/features-available/api.conf
         state: file
-        register: result_api_conf
+      register: result_api_conf
 
     - name: validate api.conf results
       assert:
