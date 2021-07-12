@@ -4,13 +4,12 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: centos7
-    image: geerlingguy/docker-centos7-ansible
-    image_version: latest
-    privileged: True
-    volume_mounts:
-      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
+  - name: instance
+    image: "geerlingguy/docker-${MOLECULE_DISTRO}-ansible:latest"
     command: "/usr/sbin/init"
-    environment: { container: docker }
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+    pre_build_image: true
 provisioner:
   name: ansible

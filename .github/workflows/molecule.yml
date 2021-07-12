@@ -5,10 +5,16 @@ on:
   push:
   pull_request:
 jobs:
-  build:
+  molecule:
+    name: Molecule
     runs-on: ubuntu-latest
     strategy:
-      max-parallel: 4
+      matrix:
+        distro:
+          - centos7
+          - ubuntu2004
+          - ubuntu1804
+          - debian10
 
     steps:
       - name: Check out code
@@ -28,6 +34,9 @@ jobs:
         working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga
 
       - name: Test with molecule
-        run: |
-          molecule test
+        run: molecule test
         working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_agent
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+          MOLECULE_DISTRO: ${{ matrix.distro }}
