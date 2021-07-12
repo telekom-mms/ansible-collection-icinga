@@ -70,3 +70,36 @@ jobs:
         with:
           targets: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_plugins
           args: "-c ansible_collections/t_systems_mms/ansible_collection_icinga/.ansible-lint"
+
+  molecule:
+      name: Molecule
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          distro:
+            - centos7
+
+      steps:
+        - name: Check out code
+          uses: actions/checkout@v2
+          with:
+            path: ansible_collections/t_systems_mms/ansible_collection_icinga
+
+        - name: Set up Python 3.8
+          uses: actions/setup-python@v2
+          with:
+            python-version: 3.8
+
+        - name: Install dependencies
+          run: |
+            python3 -m pip install --upgrade pip
+            python3 -m pip install -r requirements.txt
+          working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga
+
+        - name: Test with molecule
+          run: molecule test
+          working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_agent
+          env:
+            PY_COLORS: '1'
+            ANSIBLE_FORCE_COLOR: '1'
+            MOLECULE_DISTRO: ${{ matrix.distro }}
