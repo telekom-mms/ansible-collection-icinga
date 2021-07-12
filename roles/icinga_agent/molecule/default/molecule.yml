@@ -5,8 +5,13 @@ driver:
   name: docker
 platforms:
   - name: centos7
-    image: solita/centos-systemd:latest
-    pre_build_image: true
+    image: geerlingguy/docker-centos7-ansible
+    image_version: latest
+    privileged: True
+    volume_mounts:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
+    command: "/usr/sbin/init"
+    environment: { container: docker }
 provisioner:
   name: ansible
 verifier:
