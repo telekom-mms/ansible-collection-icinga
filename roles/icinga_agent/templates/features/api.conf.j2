@@ -1,5 +1,5 @@
 # {{ ansible_managed }}
 
 object ApiListener "api" {
-  {{ icinga_agent_api_conf }}
+  {{ icinga_agent_api_conf | indent(2) }}
 }
