@@ -25,7 +25,7 @@ Click **Fork** (in the top-right corner of the page) to copy this repository to 
 
 A *clone* is a downloaded version of a repository. Cloning our fork lets you download a copy of the repository to your computer.
 
-Use `git` to clone your fork
+Use `git clone` to clone your fork
 
 ```
 $ git clone https://github.com/T-Systems-MMS/ansible-collection-icinga.git
@@ -84,7 +84,10 @@ $ git push origin master
 
 ### Open a Pull Request
 
-
+1. Find the [Create Pull Request](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/) button
+2. Select **compare across forks**
+3. Add your forked branch and select the right base repository
+3. Click **Create Pull Request**
 
 ## License
 By contributing, you agree that your contributions will be licensed under its GPLv3 license.
