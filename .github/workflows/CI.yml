@@ -1,0 +1,92 @@
+---
+name: 'CI - Linting & Testing'
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 6 * * *'
+
+jobs:
+  ansible-sanity-tests:
+    name: Sanity (Ⓐ${{ matrix.ansible }})
+    strategy:
+      matrix:
+        ansible:
+          - stable-2.9
+          - stable-2.10
+          - stable-2.11
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          path: ansible_collections/t_systems_mms/ansible_collection_icinga
+
+      - name: Set up Python ${{ matrix.ansible }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install ansible-base (${{ matrix.ansible }})
+        run: python -m pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
+
+      - name: Run sanity tests
+        run: ansible-test sanity --docker -v --color
+        working-directory: ./ansible_collections/t_systems_mms/ansible_collection_icinga
+
+  linting:
+    name: Ansible Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          path: ansible_collections/t_systems_mms/ansible_collection_icinga
+
+      - name: Run Linting - icinga_agent
+        uses: ansible/ansible-lint-action@master
+        with:
+          targets: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_agent
+          args: "-c ansible_collections/t_systems_mms/ansible_collection_icinga/.ansible-lint"
+
+      - name: Run Linting - icinga_plugins
+        uses: ansible/ansible-lint-action@master
+        with:
+          targets: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_plugins
+          args: "-c ansible_collections/t_systems_mms/ansible_collection_icinga/.ansible-lint"
+
+  molecule:
+      name: Molecule
+      runs-on: ubuntu-latest
+      strategy:
+        matrix:
+          distro:
+            - centos7
+
+      steps:
+        - name: Check out code
+          uses: actions/checkout@v2
+          with:
+            path: ansible_collections/t_systems_mms/ansible_collection_icinga
+
+        - name: Set up Python 3.8
+          uses: actions/setup-python@v2
+          with:
+            python-version: 3.8
+
+        - name: Install dependencies
+          run: |
+            python3 -m pip install --upgrade pip
+            python3 -m pip install -r requirements.txt
+          working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga
+
+        - name: Test with molecule
+          run: molecule test
+          working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_agent
+          env:
+            PY_COLORS: '1'
+            ANSIBLE_FORCE_COLOR: '1'
+            MOLECULE_DISTRO: ${{ matrix.distro }}

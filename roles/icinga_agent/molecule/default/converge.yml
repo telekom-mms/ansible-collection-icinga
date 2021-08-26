@@ -1,0 +1,108 @@
+---
+- name: Converge
+  hosts: all
+
+  pre_tasks:
+    - name: install epel repo
+      yum:
+        name: epel-release
+        state: installed
+      when: ansible_os_family == 'RedHat'
+      tags:
+        - molecule-idempotence-notest
+
+    - name: import icinga2 key
+      command: "rpm --import https://packages.icinga.com/icinga.key"
+      when: ansible_os_family == 'RedHat'
+      tags:
+        - molecule-idempotence-notest
+
+    - name: install icinga2 repo
+      command: "yum install https://packages.icinga.com/epel/icinga-rpm-release-7-latest.noarch.rpm -y"
+      when: ansible_os_family == 'RedHat'
+      tags:
+        - molecule-idempotence-notest
+
+  collections:
+    - t_systems_mms.ansible_collection_icinga
+
+  roles:
+    - icinga_agent
+
+  vars:
+    icinga_agent_endpoints:
+      - name: "icinga2-master1.localdomain"
+        host: "192.154.44.101"
+      - name: "icinga2-satellite1.localdomain"
+        host: "192.154.44.107"
+    icinga_agent_zones:
+      - name: "master"
+        endpoints:
+          - "icinga2-master1.localdomain"
+      - name: "satellite"
+        endpoints:
+          - "icinga2-satellite1.localdomain"
+        parent: "master"
+
+  post_tasks:
+    - name: verify that icinga2.conf exists
+      file:
+        path: /etc/icinga2/icinga2.conf
+        state: file
+      register: result_icinga2_conf
+
+    - name: validate icinga2.conf results
+      assert:
+        that:
+          - "result_icinga2_conf.state == 'file'"
+          - "result_icinga2_conf.mode == '0640'"
+          - "result_icinga2_conf.owner == 'icinga'"
+          - "result_icinga2_conf.group == 'icinga'"
+
+    - name: verify that constants.conf exists
+      file:
+        path: /etc/icinga2/constants.conf
+        state: file
+      register: result_constants_conf
+
+    - name: validate constants.conf results
+      assert:
+        that:
+          - "result_constants_conf.state == 'file'"
+          - "result_constants_conf.mode == '0640'"
+          - "result_constants_conf.owner == 'icinga'"
+          - "result_constants_conf.group == 'icinga'"
+
+    - name: verify that zones.conf exists
+      file:
+        path: /etc/icinga2/zones.conf
+        state: file
+      register: result_zones_conf
+
+    - name: validate zones.conf results
+      assert:
+        that:
+          - "result_zones_conf.state == 'file'"
+          - "result_zones_conf.mode == '0640'"
+          - "result_zones_conf.owner == 'icinga'"
+          - "result_zones_conf.group == 'icinga'"
+
+    - name: verify that api.conf exists
+      file:
+        path: /etc/icinga2/features-available/api.conf
+        state: file
+      register: result_api_conf
+
+    - name: validate api.conf results
+      assert:
+        that:
+          - "result_api_conf.state == 'file'"
+          - "result_api_conf.mode == '0640'"
+          - "result_api_conf.owner == 'icinga'"
+          - "result_api_conf.group == 'icinga'"
+
+    - name: verify that icinga2 package is installed
+      yum:
+        name: icinga2
+        state: present
+      when: ansible_os_family == 'RedHat'

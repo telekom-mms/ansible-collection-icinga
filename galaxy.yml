@@ -23,7 +23,6 @@ tags:
   - icinga-collection
   - icinga-director
   - icinga-plugins
-dependencies: {}
 repository: 'https://github.com/T-Systems-MMS/ansible-collection-icinga'
 documentation: 'https://github.com/T-Systems-MMS/ansible-collection-icinga'
 homepage: 'https://github.com/T-Systems-MMS/ansible-collection-icinga'
