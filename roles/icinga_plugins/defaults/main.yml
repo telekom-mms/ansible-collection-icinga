@@ -1,8 +1,3 @@
 ---
-
-dependency_packages:
-  - "perl-Switch"
-  - "python-requests"
-
-icinga2_check_plugins_dest_basedir: /usr/lib64/nagios
-icinga2_check_plugins_dest_plugins_dir: "{{ icinga2_check_plugins_dest_basedir }}/plugins"
+icinga2_plugins_basedir: /usr/lib64/nagios
+icinga2_plugins_pluginsdir: "{{ icinga2_plugins_basedir }}/plugins"
