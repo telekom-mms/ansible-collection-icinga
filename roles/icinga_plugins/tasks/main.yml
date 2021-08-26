@@ -5,6 +5,9 @@
     name: "{{ item }}"
     state: present
   loop: "{{ dependency_packages }}"
+  when:
+   - dependency_packages is defined
+   - dependency_packages | length > 0
   tags:
     - install_dependencies
 
@@ -37,7 +40,7 @@
 - name: copy icinga plugins to target node
   ansible.builtin.copy:
     src: "{{ item }}"
-    dest: "{{ icinga2_check_plugins_dest_plugins_dir }}/"
+    dest: "{{ icinga2_plugins_pluginsdir }}/"
   with_fileglob:
     - "{{ icinga_plugins_path }}/*"
   when:
@@ -46,7 +49,7 @@
 
 - name: "search for all files in plugins directory"
   ansible.builtin.find:
-    paths: "{{ icinga2_check_plugins_dest_plugins_dir }}"
+    paths: "{{ icinga2_plugins_pluginsdir }}"
     recurse: yes
     file_type: any
   register: files_in_plugins_dir
