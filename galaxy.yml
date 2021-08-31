@@ -11,8 +11,8 @@ description: >-
   Additionally, this collection is used to install the
   Icinga agent and roll out custom checks for every agent.
 dependencies:
-  t_systems_mms.icinga_director: "=>1.0.0 <=2.0.0"
-  t_systems_mms.icinga_business_process: "=>1.0.0 <=2.0.0"
+  t_systems_mms.icinga_director: "=>1.0.0,<=2.0.0"
+  t_systems_mms.icinga_business_process: "=>1.0.0,<=2.0.0"
 license:
   - GPL-3.0-only
 license_file: ''
