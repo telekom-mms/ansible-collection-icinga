@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.0.1](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.1) (2021-08-31)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.0...1.0.1)
+
 ## [1.0.0](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.0) (2021-08-31)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/cdb54076888588fb8a9a7f3c7596e70c7bb70527...1.0.0)
