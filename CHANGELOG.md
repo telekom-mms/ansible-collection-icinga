@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.0.4](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.4) (2021-10-01)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.3...1.0.4)
+
+**Implemented enhancements:**
+
+- publish collection to ansible-galaxy [\#7](https://github.com/T-Systems-MMS/ansible-collection-icinga/issues/7)
+- Molecule Tests for more distributions [\#5](https://github.com/T-Systems-MMS/ansible-collection-icinga/issues/5)
+
+**Merged pull requests:**
+
+- added rocky linux 8 to our molecule tests [\#8](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/8) ([xFuture603](https://github.com/xFuture603))
+
+## [1.0.3](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.3) (2021-08-31)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.2...1.0.3)
+
 ## [1.0.2](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.2) (2021-08-31)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.1...1.0.2)
