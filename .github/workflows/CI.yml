@@ -65,7 +65,7 @@ jobs:
         matrix:
           distro:
             - centos7
-            - debian11
+            - rockylinux8
 
       steps:
         - name: Check out code
