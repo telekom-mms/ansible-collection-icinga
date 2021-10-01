@@ -65,6 +65,7 @@ jobs:
         matrix:
           distro:
             - centos7
+            - debian-11
 
       steps:
         - name: Check out code
