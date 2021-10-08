@@ -42,9 +42,12 @@
 
     - name: add icinga2 repository
       apt_repository:
-        repo: "deb http://packages.icinga.com/debian icinga-buster main"
+        repo: "{{ item }}"
         state: present
         update_cache: true
+      with_items:
+        - deb http://packages.icinga.com/debian icinga-buster main
+        - deb-src http://packages.icinga.com/debian icinga-buster main
       when: ansible_os_family == 'Debian'
       tags:
         - molecule-idempotence-notest
