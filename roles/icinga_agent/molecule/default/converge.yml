@@ -53,7 +53,6 @@
       apt:
         name: "icinga2"
         state: "present"
-        upgrade: true
         update_cache: true
       when: ansible_os_family == 'Debian'
       tags:
