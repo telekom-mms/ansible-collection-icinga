@@ -24,7 +24,7 @@
         - molecule-idempotence-notest
 
     - name: install icinga2 repo on Debian
-      command: "apt install icinga2"
+      command: "apt-get -y install icinga2"
       when: ansible_os_family == 'Debian'
       tags:
         - molecule-idempotence-notest
