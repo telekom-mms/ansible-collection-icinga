@@ -10,6 +10,6 @@ platforms:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     privileged: true
     pre_build_image: true
-    command: "/bin/sh && /usr/sbin/init"
+    command: ""
 provisioner:
   name: ansible
