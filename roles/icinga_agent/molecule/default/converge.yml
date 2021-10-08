@@ -51,7 +51,7 @@
 
     - name: install icinga2 build dependencies
       apt:
-        pgk: "icinga2"
+        pkg: "icinga2"
         state: "build-dep"
         update_cache: true
       when: ansible_os_family == 'Debian'
