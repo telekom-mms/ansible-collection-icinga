@@ -23,6 +23,12 @@
       tags:
         - molecule-idempotence-notest
 
+    - name: install icinga2 repo on Debian
+      command: "apt install icinga2"
+      when: ansible_os_family == 'Debian'
+      tags:
+        - molecule-idempotence-notest
+
   collections:
     - t_systems_mms.ansible_collection_icinga
 
@@ -106,3 +112,9 @@
         name: icinga2
         state: present
       when: ansible_os_family == 'RedHat'
+
+    - name: verify that icinga2 package is installed for Debian based systems
+      apt:
+        name: icinga2
+        state: present
+      when: ansible_os_family == 'Debian'
