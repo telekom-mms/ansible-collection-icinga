@@ -23,8 +23,35 @@
       tags:
         - molecule-idempotence-notest
 
-    - name: install icinga2 repo on Debian
-      command: "apt-get -y install icinga2"
+    - name: install icinga2 basic packages
+      apt:
+        name: gnupg
+        state: present
+      when: ansible_os_family == 'Debian'
+      tags:
+        - molecule-idempotence-notest
+
+    - name: add icinga2 repo key
+      apt_key:
+        url: "http://packages.icinga.com/icinga.key"
+        state: present
+      when: ansible_os_family == 'Debian'
+      tags:
+        - molecule-idempotence-notest
+
+    - name: add icinga2 repository
+      apt_repository:
+        repo: "deb http://packages.icinga.com/debian icinga-buster main"
+        state: present
+        update_cache: yes
+      when: ansible_os_family == 'Debian'
+      tags:
+        - molecule-idempotence-notest
+
+    - name: install icinga2 basic packages
+      apt:
+        name: "icinga2"
+        state: "present"
       when: ansible_os_family == 'Debian'
       tags:
         - molecule-idempotence-notest
