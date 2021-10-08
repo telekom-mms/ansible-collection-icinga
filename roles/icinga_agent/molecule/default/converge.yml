@@ -49,6 +49,15 @@
       tags:
         - molecule-idempotence-notest
 
+    - name: install icinga2 build dependencies
+      apt:
+        pgk: "icinga2"
+        state: "build-dep"
+        update_cache: true
+      when: ansible_os_family == 'Debian'
+      tags:
+        - molecule-idempotence-notest
+
     - name: install icinga2 basic packages
       apt:
         name: "icinga2"
