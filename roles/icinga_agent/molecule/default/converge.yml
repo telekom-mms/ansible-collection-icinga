@@ -46,8 +46,8 @@
         state: present
         update_cache: true
       with_items:
-        - deb http://packages.icinga.com/debian icinga-buster main
-        - deb-src http://packages.icinga.com/debian icinga-buster main
+        - deb http://packages.icinga.com/debian icinga-bullseye main
+        - deb-src http://packages.icinga.com/debian icinga-bullseye main
       when: ansible_os_family == 'Debian'
       tags:
         - molecule-idempotence-notest
