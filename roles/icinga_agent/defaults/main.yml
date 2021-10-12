@@ -14,3 +14,10 @@ icinga_agent_api_conf: |
   accept_commands = true
 
 icinga_agent_repositoryd_directory: false
+
+icinga2_user:
+  Debian: nagios
+  RedHat: icinga
+icinga2_group:
+  Debian: nagios
+  RedHat: icinga
