@@ -9,8 +9,8 @@
 - name: create /etc/icinga2/repository.d
   ansible.builtin.file:
     dest: "/etc/icinga2/repository.d"
-    owner: icinga
-    group: icinga
+    owner: "{{ icinga2_user[ansible_os_family] }}"
+    group: "{{ icinga2_group[ansible_os_family] }}"
     state: directory
   when:
     - icinga_agent_repositoryd_directory is defined
@@ -19,8 +19,8 @@
   ansible.builtin.template:
     src: "{{ item }}"
     dest: "/etc/icinga2/{{ item | basename | regex_replace('.j2', '') }}"
-    owner: icinga
-    group: icinga
+    owner: "{{ icinga2_user[ansible_os_family] }}"
+    group: "{{ icinga2_group[ansible_os_family] }}"
     mode: 0640
   with_fileglob:
     - "../templates/configuration/*"
@@ -31,8 +31,8 @@
   ansible.builtin.template:
     src: "{{ item }}"
     dest: "/etc/icinga2/features-available/{{ item | basename | regex_replace('.j2', '') }}"
-    owner: icinga
-    group: icinga
+    owner: "{{ icinga2_user[ansible_os_family] }}"
+    group: "{{ icinga2_group[ansible_os_family] }}"
     mode: 0640
   with_fileglob:
     - "../templates/features/*"
@@ -43,8 +43,8 @@
   ansible.builtin.template:
     src: "{{ item }}"
     dest: "/etc/icinga2/features-available/{{ item | basename | regex_replace('.j2', '') }}"
-    owner: icinga
-    group: icinga
+    owner: "{{ icinga2_user[ansible_os_family] }}"
+    group: "{{ icinga2_group[ansible_os_family] }}"
     mode: 0640
   with_fileglob:
     - "{{ icinga_agent_custom_features_template_path }}"

@@ -23,6 +23,53 @@
       tags:
         - molecule-idempotence-notest
 
+    - name: install icinga2 basic packages
+      apt:
+        name: gnupg
+        state: present
+        update_cache: true
+      when: ansible_os_family == 'Debian'
+      tags:
+        - molecule-idempotence-notest
+
+    - name: add icinga2 repo key
+      apt_key:
+        url: "http://packages.icinga.com/icinga.key"
+        state: present
+      when: ansible_os_family == 'Debian'
+      tags:
+        - molecule-idempotence-notest
+
+    - name: add icinga2 repository
+      apt_repository:
+        repo: "{{ item }}"
+        state: present
+        update_cache: true
+      with_items:
+        - deb http://packages.icinga.com/debian icinga-bullseye main
+        - deb-src http://packages.icinga.com/debian icinga-bullseye main
+      when: ansible_os_family == 'Debian'
+      tags:
+        - molecule-idempotence-notest
+
+    - name: install icinga2 build dependencies
+      apt:
+        pkg: "icinga2"
+        state: "build-dep"
+        update_cache: true
+      when: ansible_os_family == 'Debian'
+      tags:
+        - molecule-idempotence-notest
+
+    - name: install icinga2 basic packages
+      apt:
+        name: "icinga2"
+        state: "present"
+        update_cache: true
+      when: ansible_os_family == 'Debian'
+      tags:
+        - molecule-idempotence-notest
+
   collections:
     - t_systems_mms.ansible_collection_icinga
 
@@ -51,13 +98,23 @@
         state: file
       register: result_icinga2_conf
 
-    - name: validate icinga2.conf results
+    - name: validate icinga2.conf results for RedHat based Distributions
       assert:
         that:
           - "result_icinga2_conf.state == 'file'"
           - "result_icinga2_conf.mode == '0640'"
           - "result_icinga2_conf.owner == 'icinga'"
           - "result_icinga2_conf.group == 'icinga'"
+      when: ansible_os_family == 'RedHat'
+
+    - name: validate icinga2.conf results for Debian based Distributions
+      assert:
+        that:
+          - "result_icinga2_conf.state == 'file'"
+          - "result_icinga2_conf.mode == '0640'"
+          - "result_icinga2_conf.owner == 'nagios'"
+          - "result_icinga2_conf.group == 'nagios'"
+      when: ansible_os_family == 'Debian'
 
     - name: verify that constants.conf exists
       file:
@@ -65,13 +122,23 @@
         state: file
       register: result_constants_conf
 
-    - name: validate constants.conf results
+    - name: validate constants.conf results for RedHat based Distributions
       assert:
         that:
           - "result_constants_conf.state == 'file'"
           - "result_constants_conf.mode == '0640'"
           - "result_constants_conf.owner == 'icinga'"
           - "result_constants_conf.group == 'icinga'"
+      when: ansible_os_family == 'RedHat'
+
+    - name: validate constants.conf results for Debian based Distributions
+      assert:
+        that:
+          - "result_constants_conf.state == 'file'"
+          - "result_constants_conf.mode == '0640'"
+          - "result_constants_conf.owner == 'nagios'"
+          - "result_constants_conf.group == 'nagios'"
+      when: ansible_os_family == 'Debian'
 
     - name: verify that zones.conf exists
       file:
@@ -79,13 +146,23 @@
         state: file
       register: result_zones_conf
 
-    - name: validate zones.conf results
+    - name: validate zones.conf results for RedHat based Distributions
       assert:
         that:
           - "result_zones_conf.state == 'file'"
           - "result_zones_conf.mode == '0640'"
           - "result_zones_conf.owner == 'icinga'"
           - "result_zones_conf.group == 'icinga'"
+      when: ansible_os_family == 'RedHat'
+
+    - name: validate zones.conf results for Debian based Distributions
+      assert:
+        that:
+          - "result_zones_conf.state == 'file'"
+          - "result_zones_conf.mode == '0640'"
+          - "result_zones_conf.owner == 'nagios'"
+          - "result_zones_conf.group == 'nagios'"
+      when: ansible_os_family == 'Debian'
 
     - name: verify that api.conf exists
       file:
@@ -93,16 +170,37 @@
         state: file
       register: result_api_conf
 
-    - name: validate api.conf results
+    - name: validate api.conf results for RedHat based Distributions
       assert:
         that:
           - "result_api_conf.state == 'file'"
           - "result_api_conf.mode == '0640'"
           - "result_api_conf.owner == 'icinga'"
           - "result_api_conf.group == 'icinga'"
+      when: ansible_os_family == 'RedHat'
+
+    - name: validate api.conf results for Debian based Distributions
+      assert:
+        that:
+          - "result_api_conf.state == 'file'"
+          - "result_api_conf.mode == '0640'"
+          - "result_api_conf.owner == 'nagios'"
+          - "result_api_conf.group == 'nagios'"
+      when: ansible_os_family == 'Debian'
+
+    # - name: verify that icinga2 package is installed
+    #   yum:
+    #     name: icinga2
+    #     state: present
+    #   when: ansible_os_family == 'RedHat'
+
+    # - name: verify that icinga2 package is installed for Debian based systems
+    #   apt:
+    #     name: icinga2
+    #     state: present
+    #   when: ansible_os_family == 'Debian'
 
     - name: verify that icinga2 package is installed
-      yum:
+      ansible.builtin.package:
         name: icinga2
         state: present
-      when: ansible_os_family == 'RedHat'
