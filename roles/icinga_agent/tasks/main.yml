@@ -27,6 +27,16 @@
   notify:
     - restart icinga2-agent
 
+- name: create features-* folders in case it is missing
+  ansible.builtin.file:
+    path: "{{ icinga_feature_folders }}"
+    state: directory
+    mode: 0750
+    owner: "{{ icinga2_user[ansible_os_family] }}"
+    group: "{{ icinga2_group[ansible_os_family] }}"
+  loop:
+    - "{{ icinga_feature_folders }}"
+
 - name: copy icinga feature files
   ansible.builtin.template:
     src: "{{ item }}"
@@ -66,6 +76,14 @@
     - icinga_agent_enable_features | length > 0
 
 - block:
+    - name: create certs folder in case it is missing
+      ansible.builtin.file:
+        path: /var/lib/icinga2/certs/ca.crt
+        state: directory
+        mode: 0750
+        owner: "{{ icinga2_user[ansible_os_family] }}"
+        group: "{{ icinga2_group[ansible_os_family] }}"
+
     - name: generate ticket and save it as a variable
       ansible.builtin.shell: /usr/sbin/icinga2 pki ticket --cn {{ ansible_hostname }} --salt {{ icinga_agent_salt }}
       environment:
