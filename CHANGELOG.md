@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.5](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.5) (2022-01-04)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.4...1.0.5)
+
+**Fixed bugs:**
+
+- icinga\_agent role is not compatible to debian [\#10](https://github.com/T-Systems-MMS/ansible-collection-icinga/issues/10)
+
+**Merged pull requests:**
+
+- added first draft to add full compatibility for Debian [\#11](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/11) ([xFuture603](https://github.com/xFuture603))
+
 ## [1.0.4](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.4) (2021-10-20)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.3...1.0.4)
