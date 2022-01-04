@@ -21,7 +21,3 @@ icinga2_user:
 icinga2_group:
   Debian: nagios
   RedHat: icinga
-
-icinga_feature_folders:
-  - /etc/icinga2/features-available/
-  - /etc/icinga2/features-enabled/

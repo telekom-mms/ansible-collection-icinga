@@ -15,6 +15,17 @@
   when:
     - icinga_agent_repositoryd_directory is defined
 
+- name: create features-* folders in case it is missing
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0750
+    owner: "{{ icinga2_user[ansible_os_family] }}"
+    group: "{{ icinga2_group[ansible_os_family] }}"
+  loop:
+    - /etc/icinga2/features-available/
+    - /etc/icinga2/features-enabled/
+
 - name: copy icinga configuration files
   ansible.builtin.template:
     src: "{{ item }}"
@@ -26,16 +37,6 @@
     - "../templates/configuration/*"
   notify:
     - restart icinga2-agent
-
-- name: create features-* folders in case it is missing
-  ansible.builtin.file:
-    path: "{{ icinga_feature_folders }}"
-    state: directory
-    mode: 0750
-    owner: "{{ icinga2_user[ansible_os_family] }}"
-    group: "{{ icinga2_group[ansible_os_family] }}"
-  loop:
-    - "{{ icinga_feature_folders }}"
 
 - name: copy icinga feature files
   ansible.builtin.template:
