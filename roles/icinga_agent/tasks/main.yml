@@ -79,7 +79,7 @@
 - block:
     - name: create certs folder in case it is missing
       ansible.builtin.file:
-        path: /var/lib/icinga2/certs/ca.crt
+        path: /var/lib/icinga2/certs/
         state: directory
         mode: 0750
         owner: "{{ icinga2_user[ansible_os_family] }}"
