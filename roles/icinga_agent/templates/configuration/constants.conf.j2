@@ -1,3 +1,7 @@
 # {{ ansible_managed }}
 
-{{ icinga_agent_constants_conf }}
+{% if ansible_os_family == 'RedHat' %}
+  {{ icinga_agent_constants_conf_rhel }}
+{% elif ansible_os_family == 'Debian' %}
+  {{ icinga_agent_constants_conf_debian }}
+{% endif %}"
