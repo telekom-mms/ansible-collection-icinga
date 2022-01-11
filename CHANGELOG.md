@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.7](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.7) (2022-01-11)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.6...1.0.7)
+
+**Merged pull requests:**
+
+- fix handler name and add the correct path for constants.conf on Debian based installations [\#14](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/14) ([xFuture603](https://github.com/xFuture603))
+
 ## [1.0.6](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.6) (2022-01-05)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.5...1.0.6)
@@ -27,6 +35,7 @@
 **Merged pull requests:**
 
 - added Debian to test coverage [\#9](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/9) ([xFuture603](https://github.com/xFuture603))
+- added rocky linux 8 to our molecule tests [\#8](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/8) ([xFuture603](https://github.com/xFuture603))
 
 ## [1.0.3](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.3) (2021-08-31)
 
@@ -46,7 +55,6 @@
 
 **Merged pull requests:**
 
-- added rocky linux 8 to our molecule tests [\#8](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/8) ([xFuture603](https://github.com/xFuture603))
 - improve readme, rename some variables [\#6](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/6) ([beechesII](https://github.com/beechesII))
 - Add CONTRIBUTING.md [\#4](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/4) ([xFuture603](https://github.com/xFuture603))
 - indent api object config to match original style [\#3](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/3) ([rndmh3ro](https://github.com/rndmh3ro))
