@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.8](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.8) (2022-01-14)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.7...1.0.8)
+
+**Merged pull requests:**
+
+- renamed handler and use "restarted" instead of "started" [\#15](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/15) ([xFuture603](https://github.com/xFuture603))
+
 ## [1.0.7](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.7) (2022-01-11)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.6...1.0.7)
