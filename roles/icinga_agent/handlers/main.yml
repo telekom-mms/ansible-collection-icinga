@@ -1,6 +1,6 @@
 ---
-- name: start icinga2-agent
+- name: restart icinga2-agent
   ansible.builtin.service:
     name: icinga2
     enabled: true
-    state: started
+    state: restarted
