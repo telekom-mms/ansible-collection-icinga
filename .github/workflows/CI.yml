@@ -52,7 +52,7 @@ jobs:
           targets: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_agent
           args: "-c ansible_collections/t_systems_mms/ansible_collection_icinga/.ansible-lint"
           override-deps: |
-            ansible-lint==4.3.6
+            ansible-lint==5.3.2
 
       - name: Run Linting - icinga_plugins
         uses: ansible/ansible-lint-action@master
@@ -60,7 +60,7 @@ jobs:
           targets: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_plugins
           args: "-c ansible_collections/t_systems_mms/ansible_collection_icinga/.ansible-lint"
           override-deps: |
-            ansible-lint==4.3.6
+            ansible-lint==5.3.2
 
   molecule:
       name: Molecule
