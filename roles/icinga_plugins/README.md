@@ -2,6 +2,10 @@
 
 This role copies custom checks to the wished icinga-agent node.
 
+## Limitations
+
+The users nagios (Debian) or icinga (Redhat) are not created by this Role you need to create these user by yourself or by the role icinga_agent.
+
 ## Dependencies
 
 Some checks might have dependencies, define `dependency_packages` as variable to install them.
@@ -19,7 +23,7 @@ dependency_packages:
 | dependency_packages | no | [] | install dependency packages
 | icinga_install_plugins | yes | | list of plugins that should be installed
 | icinga2_plugins_pluginsdir | yes | {{ icinga2_plugins_basedir }}/plugins | directory for icinga plugins
-| icinga2_plugins_basedir | yes | /usr/lib64/nagios | base directory for your icinga plugins
+| icinga2_plugins_basedir | yes | Debian: /usr/lib/nagios Redhat: /usr/lib64/nagios | base directory for your icinga plugins
 | icinga_plugins_path | yes | | path with your plugins for example {{ playbook_dir }}/../files
 
 # Examples
