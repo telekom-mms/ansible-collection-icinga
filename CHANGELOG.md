@@ -8,9 +8,14 @@
 
 - icinga\_agent role is not compatible to debian [\#10](https://github.com/T-Systems-MMS/ansible-collection-icinga/issues/10)
 
+**Closed issues:**
+
+- icinga\_plugins role is not compatible to debian [\#13](https://github.com/T-Systems-MMS/ansible-collection-icinga/issues/13)
+
 **Merged pull requests:**
 
 - Workaround ansible lint [\#19](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/19) ([beechesII](https://github.com/beechesII))
+- fix role icinga\_plugins for debian [\#16](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/16) ([beechesII](https://github.com/beechesII))
 
 ## [1.0.8](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.8) (2022-01-14)
 
