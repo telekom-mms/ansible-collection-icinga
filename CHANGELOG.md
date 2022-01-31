@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.0.9](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.9) (2022-01-31)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.8...1.0.9)
+
+**Fixed bugs:**
+
+- icinga\_agent role is not compatible to debian [\#10](https://github.com/T-Systems-MMS/ansible-collection-icinga/issues/10)
+
+**Merged pull requests:**
+
+- Workaround ansible lint [\#19](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/19) ([beechesII](https://github.com/beechesII))
+
 ## [1.0.8](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.8) (2022-01-14)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.7...1.0.8)
