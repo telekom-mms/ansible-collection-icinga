@@ -6,18 +6,6 @@
       include_vars:
         file: ../../defaults/main.yml
 
-    - name: set name of installation package based on distro
-      set_fact:
-        icinga_install_plugins:
-          - nagios-plugins-all
-      when: ansible_os_family == 'Redhat'
-
-    - name: set name of installation package based on distro
-      set_fact:
-        icinga_install_plugins:
-          - monitoring-plugins
-      when: ansible_os_family == 'Debian'
-
     - name: verify that plugin dir exists
       file:
         path: "{{ icinga2_plugins_pluginsdir }}"
