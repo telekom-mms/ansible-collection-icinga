@@ -1,0 +1,60 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: verify that plugin dir exists
+      file:
+        path: "{{ icinga2_plugins_pluginsdir }}"
+        state: directory
+      register: result_plugin_dir
+
+    - name: validate plugin dir exists on system
+      assert:
+        that:
+          - "result_plugin_dir.state == 'directory'"
+          - "result_plugin_dir.mode == '0755'"
+          - "result_plugin_dir.owner == 'root'"
+          - "result_plugin_dir.group == 'root'"
+
+    - name: search for all files in plugins directory
+      ansible.builtin.find:
+        paths: "{{ icinga2_plugins_pluginsdir }}"
+        recurse: yes
+        file_type: file
+      register: files_in_plugins_dir
+      check_mode: no
+
+    - name: validate plugins belongs to the right user for Redhat based systems
+      assert:
+        that:
+          - "item.pw_name == 'icinga'"
+          - "item.gr_name == 'icinga'"
+      loop: "{{ files_in_plugins_dir.files }}"
+      when: ansible_os_family == 'RedHat'
+
+    - name: validate plugins belongs to the right user for Debian based systems
+      assert:
+        that:
+          - "item.pw_name == 'nagios'"
+          - "item.gr_name == 'nagios'"
+      loop: "{{ files_in_plugins_dir.files }}"
+      when: ansible_os_family == 'Debian'
+
+    - name: verify that package is installed for Redhat based systems
+      yum:
+        name: "{{ icinga_install_plugins }}"
+        state: present
+      register: result_installation
+      when: ansible_os_family == 'RedHat'
+
+    - name: verify that package is installed for Debian based systems
+      apt:
+        name: "{{ icinga_install_plugins }}"
+        state: present
+      register: result_installation
+      when: ansible_os_family == 'Debian'
+
+    - name: validate package is installed
+      assert:
+        that:
+          - "result_installation.changed == false"
