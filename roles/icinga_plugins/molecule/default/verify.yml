@@ -4,7 +4,7 @@
   tasks:
     - name: include default vars from icinga_plugins roles
       include_vars:
-        file: defaults/main.yml
+        file: ../../defaults/main.yml
 
     - name: verify that plugin dir exists
       file:
