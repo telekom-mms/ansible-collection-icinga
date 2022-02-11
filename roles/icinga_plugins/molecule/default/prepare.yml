@@ -64,14 +64,12 @@
       when: ansible_os_family == 'Debian'
 
     - name: set name of installation package based on distro
-      delegate_facts: true
       set_fact:
         icinga_install_plugins:
           - nagios-plugins-all
       when: ansible_os_family == 'Redhat'
 
     - name: set name of installation package based on distro
-      delegate_facts: true
       set_fact:
         icinga_install_plugins:
           - monitoring-plugins
