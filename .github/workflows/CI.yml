@@ -89,9 +89,17 @@ jobs:
             python3 -m pip install -r requirements.txt
           working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga
 
-        - name: Test with molecule
+        - name: Test role icinga_agent with molecule
           run: molecule test
           working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_agent
+          env:
+            PY_COLORS: '1'
+            ANSIBLE_FORCE_COLOR: '1'
+            MOLECULE_DISTRO: ${{ matrix.distro }}
+
+        - name: Test role icinga_plugins with molecule
+          run: molecule test
+          working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_plugins
           env:
             PY_COLORS: '1'
             ANSIBLE_FORCE_COLOR: '1'

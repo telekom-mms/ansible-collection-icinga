@@ -188,18 +188,6 @@
           - "result_api_conf.group == 'nagios'"
       when: ansible_os_family == 'Debian'
 
-    # - name: verify that icinga2 package is installed
-    #   yum:
-    #     name: icinga2
-    #     state: present
-    #   when: ansible_os_family == 'RedHat'
-
-    # - name: verify that icinga2 package is installed for Debian based systems
-    #   apt:
-    #     name: icinga2
-    #     state: present
-    #   when: ansible_os_family == 'Debian'
-
     - name: verify that icinga2 package is installed
       ansible.builtin.package:
         name: icinga2

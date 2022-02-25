@@ -1,0 +1,35 @@
+---
+- name: Converge
+  hosts: all
+  collections:
+    - t_systems_mms.ansible_collection_icinga
+  pre_tasks:
+
+    - name: set name of installation package based on distro
+      set_fact:
+        icinga_install_plugins:
+          - nagios-plugins-all
+      when:
+        - ansible_os_family == 'RedHat'
+        - ansible_facts.distribution_major_version | int is version('8', '<')
+
+    - name: set name of installation package based on distro
+      set_fact:
+        icinga_install_plugins:
+          - monitoring-plugins
+      when: ansible_os_family == 'Debian'
+
+    - name: add icinga group
+      ansible.builtin.group:
+        name: icinga
+        state: present
+      when: ansible_os_family == 'RedHat'
+
+    - name: add icinga user with icinga group
+      ansible.builtin.user:
+        name: icinga
+        group: icinga
+      when: ansible_os_family == 'RedHat'
+
+  roles:
+    - icinga_plugins
