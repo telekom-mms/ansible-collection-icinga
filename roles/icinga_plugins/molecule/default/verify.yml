@@ -6,7 +6,9 @@
       set_fact:
         icinga_install_plugins:
           - nagios-plugins-all
-      when: ansible_os_family == 'RedHat'
+      when:
+        - ansible_os_family == 'RedHat'
+        - ansible_facts.distribution_major_version | int is version('8', '<')
 
     - name: set name of installation package based on distro
       set_fact:

@@ -62,15 +62,3 @@
         state: "present"
         update_cache: true
       when: ansible_os_family == 'Debian'
-
-    - name: set name of installation package based on distro
-      set_fact:
-        icinga_install_plugins:
-          - nagios-plugins-all
-      when: ansible_os_family == 'RedHat'
-
-    - name: set name of installation package based on distro
-      set_fact:
-        icinga_install_plugins:
-          - monitoring-plugins
-      when: ansible_os_family == 'Debian'
