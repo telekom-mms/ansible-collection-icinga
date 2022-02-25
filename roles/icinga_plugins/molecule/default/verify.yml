@@ -58,28 +58,17 @@
       loop: "{{ files_in_plugins_dir.files }}"
       when: ansible_os_family == 'Debian'
 
-    - name: verify that package is installed for Redhat based systems
-      yum:
+    - name: verify that package is installed
+      package:
         name: "{{ icinga_install_plugins }}"
         state: present
-      register: result_redhat_installation
-      when: ansible_os_family == 'RedHat'
+      register: result_installation
+      when:
+        - icinga_install_plugins is defined
 
-    - name: verify that package is installed for Debian based systems
-      apt:
-        name: "{{ icinga_install_plugins }}"
-        state: present
-      register: result_debian_installation
-      when: ansible_os_family == 'Debian'
-
-    - name: validate package is installed (redhat)
+    - name: validate package is installed
       assert:
         that:
-          - "result_redhat_installation is not changed"
-      when: ansible_os_family == 'RedHat'
-
-    - name: validate package is installed (debian)
-      assert:
-        that:
-          - "result_debian_installation is not changed"
-      when: ansible_os_family == 'Debian'
+          - "result_installation is not changed"
+      when:
+        - icinga_install_plugins is defined
