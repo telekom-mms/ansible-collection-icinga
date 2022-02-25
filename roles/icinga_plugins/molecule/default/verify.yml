@@ -73,11 +73,11 @@
     - name: validate package is installed (redhat)
       assert:
         that:
-          - "result_redhat_installation is changed"
+          - "result_redhat_installation is not changed"
       when: ansible_os_family == 'RedHat'
 
     - name: validate package is installed (debian)
       assert:
         that:
-          - "result_debian_installation is changed"
+          - "result_debian_installation is not changed"
       when: ansible_os_family == 'Debian'
