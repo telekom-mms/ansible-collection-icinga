@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.9](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.9) (2022-01-31)
+## [1.0.9](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.9) (2022-02-25)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.8...1.0.9)
 
@@ -15,6 +15,7 @@
 **Merged pull requests:**
 
 - Workaround ansible lint [\#19](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/19) ([beechesII](https://github.com/beechesII))
+- Add molecule for role icinga\_plugins [\#18](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/18) ([beechesII](https://github.com/beechesII))
 - fix role icinga\_plugins for debian [\#16](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/16) ([beechesII](https://github.com/beechesII))
 
 ## [1.0.8](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.8) (2022-01-14)
