@@ -19,5 +19,17 @@
           - monitoring-plugins
       when: ansible_os_family == 'Debian'
 
+    - name: add icinga group
+      ansible.builtin.group:
+        name: icinga
+        state: present
+      when: ansible_os_family == 'RedHat'
+
+    - name: add icinga user with icinga group
+      ansible.builtin.user:
+        name: icinga
+        group: icinga
+      when: ansible_os_family == 'RedHat'
+
   roles:
     - icinga_plugins
