@@ -1,6 +1,6 @@
 namespace: t_systems_mms
 name: ansible_collection_icinga
-version: 1.0.8
+version: 1.0.9
 readme: README.md
 authors:
   - Christopher Grau <christopher.grau@t-systems.com>
