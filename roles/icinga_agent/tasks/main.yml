@@ -117,7 +117,7 @@
         --port {{ icinga_agent_ca_host_icinga_port }}
         --ticket {{ ticket.stdout }} --key /var/lib/icinga2/certs/{{ ansible_hostname }}.key
         --cert /var/lib/icinga2/certs/{{ ansible_hostname }}.crt
-        --trustedcert /var/lib/icinga2/certs/trusted-master.crt --ca /var/lib/icinga2/certs/ca.crt"
+        --trustedcert /var/lib/icinga2/certs/trusted-master.crt --ca /var/lib/icinga2/certs/ca.crt
       args:
         creates: "/var/lib/icinga2/certs/ca.crt"
       notify:
