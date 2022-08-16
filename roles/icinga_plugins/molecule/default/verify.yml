@@ -38,10 +38,10 @@
     - name: search for all files in plugins directory
       ansible.builtin.find:
         paths: "{{ icinga2_plugins_pluginsdir }}"
-        recurse: yes
+        recurse: true
         file_type: file
       register: files_in_plugins_dir
-      check_mode: no
+      check_mode: false
 
     - name: validate plugins belongs to the right user for Redhat based systems
       assert:

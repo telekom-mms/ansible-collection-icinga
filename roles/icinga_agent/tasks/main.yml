@@ -93,6 +93,8 @@
       environment:
         LD_LIBRARY_PATH: "/usr/lib64"
       register: ticket
+      changed_when: ticket.rc != 0
+      failed_when: ticket.rc != 0
 
     - name: create certificate
       ansible.builtin.command: >

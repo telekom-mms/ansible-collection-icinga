@@ -20,7 +20,7 @@
     - name: verfiy that plugin files belong to icinga
       ansible.builtin.find:
         paths: "/usr/lib64/nagios/plugins"
-        recurse: yes
+        recurse: true
         file_type: any
       register: files_in_plugins_dir
 

@@ -9,5 +9,5 @@ exclude_paths:
   - ../molecule/
   - ../.github/
 
-skip_list:
+warn_list:
   - fqcn-builtins
