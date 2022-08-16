@@ -43,20 +43,14 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v3
-        with:
-          path: ansible_collections/t_systems_mms/ansible_collection_icinga
 
-      - name: Run Linting - icinga_agent
+      - name: Run Linting
         uses: ansible/ansible-lint-action@main
         with:
-          targets: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_agent
-          args: "-c ansible_collections/t_systems_mms/ansible_collection_icinga/.ansible-lint"
-
-      - name: Run Linting - icinga_plugins
-        uses: ansible/ansible-lint-action@main
-        with:
-          targets: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_plugins
-          args: "-c ansible_collections/t_systems_mms/ansible_collection_icinga/.ansible-lint"
+          targets: "roles/"
+          override-deps: |
+            rich>=9.5.1,<11.0.0
+          args: ""
 
   molecule:
       name: Molecule
