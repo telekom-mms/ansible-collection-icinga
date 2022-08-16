@@ -34,11 +34,11 @@ collections:
 
 **icinga_agent role:**
 
-Examples on how to use the role can be found [here](https://github.com/T-Systems-MMS/ansible-collection-icinga/blob/improve_readme/roles/icinga_agent/README.md)
+Examples on how to use the role can be found [here](roles/icinga_agent/README.md)
 
 **icinga_plugins role:**
 
-Examples on how to use the role can be found [here](https://github.com/T-Systems-MMS/ansible-collection-icinga/blob/improve_readme/roles/icinga_plugins/README.md)
+Examples on how to use the role can be found [here](roles/icinga_plugins/README.md)
 
 
 **icinga_director collection:**
