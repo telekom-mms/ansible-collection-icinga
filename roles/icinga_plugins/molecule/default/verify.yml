@@ -23,6 +23,7 @@
     - name: verify that plugin dir exists
       file:
         path: "{{ icinga2_plugins_pluginsdir }}"
+        mode: 0755
         state: directory
       register: result_plugin_dir
 

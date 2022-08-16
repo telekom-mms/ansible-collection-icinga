@@ -6,8 +6,8 @@
     state: present
   loop: "{{ dependency_packages }}"
   when:
-   - dependency_packages is defined
-   - dependency_packages | length > 0
+    - dependency_packages is defined
+    - dependency_packages | length > 0
   tags:
     - install_dependencies
 
@@ -37,7 +37,7 @@
     - icinga_install_plugins | length > 0
     - (ansible_facts.os_family == "RedHat" and ansible_facts.distribution_major_version | int is version('7', "=")) or ansible_facts.os_family == "Debian"
 
-- name: copy icinga plugins to target node
+- name: copy icinga plugins to target node # noqa risky-file-permissions
   ansible.builtin.copy:
     src: "{{ item }}"
     dest: "{{ icinga2_plugins_pluginsdir }}/"
@@ -50,10 +50,10 @@
 - name: "search for all files in plugins directory"
   ansible.builtin.find:
     paths: "{{ icinga2_plugins_pluginsdir }}"
-    recurse: yes
+    recurse: true
     file_type: any
   register: files_in_plugins_dir
-  check_mode: no
+  check_mode: false
 
 - name: set plugins ownership
   ansible.builtin.file:

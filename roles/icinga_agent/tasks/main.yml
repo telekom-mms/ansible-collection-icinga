@@ -9,6 +9,7 @@
 - name: create /etc/icinga2/repository.d
   ansible.builtin.file:
     dest: "/etc/icinga2/repository.d"
+    mode: 0750
     owner: "{{ icinga2_user[ansible_os_family] }}"
     group: "{{ icinga2_group[ansible_os_family] }}"
     state: directory
@@ -76,7 +77,8 @@
     - icinga_agent_enable_features is defined
     - icinga_agent_enable_features | length > 0
 
-- block:
+- name: start icinga agent registration
+  block:
     - name: create certs folder in case it is missing
       ansible.builtin.file:
         path: /var/lib/icinga2/certs/
@@ -86,29 +88,36 @@
         group: "{{ icinga2_group[ansible_os_family] }}"
 
     - name: generate ticket and save it as a variable
-      ansible.builtin.shell: /usr/sbin/icinga2 pki ticket --cn {{ ansible_hostname }} --salt {{ icinga_agent_salt }}
+      ansible.builtin.command: >
+        /usr/sbin/icinga2 pki ticket --cn {{ ansible_hostname }} --salt {{ icinga_agent_salt }}
       environment:
         LD_LIBRARY_PATH: "/usr/lib64"
       register: ticket
 
     - name: create certificate
-      ansible.builtin.command: "/usr/sbin/icinga2 pki new-cert --cn {{ ansible_hostname }} --key /var/lib/icinga2/certs/{{ ansible_hostname }}.key --cert /var/lib/icinga2/certs/{{ ansible_hostname }}.crt"
+      ansible.builtin.command: >
+        /usr/sbin/icinga2 pki new-cert --cn {{ ansible_hostname }}
+        --key /var/lib/icinga2/certs/{{ ansible_hostname }}.key
+        --cert /var/lib/icinga2/certs/{{ ansible_hostname }}.crt
       args:
         creates: "/var/lib/icinga2/certs/{{ ansible_hostname }}.crt"
 
     - name: save the icinga master's certificate to the host
-      ansible.builtin.command: "/usr/sbin/icinga2 pki save-cert --key /var/lib/icinga2/certs/{{ ansible_hostname }}.key --cert /var/lib/icinga2/certs/{{ ansible_hostname }}.crt --trustedcert /var/lib/icinga2/certs/trusted-master.crt --host {{ icinga_agent_ca_host }}"
+      ansible.builtin.command: >
+        /usr/sbin/icinga2 pki save-cert --key /var/lib/icinga2/certs/{{ ansible_hostname }}.key
+        --cert /var/lib/icinga2/certs/{{ ansible_hostname }}.crt
+        --trustedcert /var/lib/icinga2/certs/trusted-master.crt
+        --host {{ icinga_agent_ca_host }}
       args:
         creates: "/var/lib/icinga2/certs/trusted-master.crt"
 
-    - name: generate ticket and save it as a variable
-      ansible.builtin.command: "/usr/sbin/icinga2 pki ticket --cn {{ ansible_hostname }} --salt {{ icinga_agent_salt }}"
-      register: ticket
-      args:
-        creates: "/var/lib/icinga2/certs/ca.crt"
-
     - name: send a pki request to the icinga master
-      ansible.builtin.command: "/usr/sbin/icinga2 pki request --host {{ icinga_agent_ca_host }} --port {{ icinga_agent_ca_host_icinga_port }} --ticket {{ ticket.stdout }} --key /var/lib/icinga2/certs/{{ ansible_hostname }}.key --cert /var/lib/icinga2/certs/{{ ansible_hostname }}.crt --trustedcert /var/lib/icinga2/certs/trusted-master.crt --ca /var/lib/icinga2/certs/ca.crt"
+      ansible.builtin.command: >
+        /usr/sbin/icinga2 pki request --host {{ icinga_agent_ca_host }}
+        --port {{ icinga_agent_ca_host_icinga_port }}
+        --ticket {{ ticket.stdout }} --key /var/lib/icinga2/certs/{{ ansible_hostname }}.key
+        --cert /var/lib/icinga2/certs/{{ ansible_hostname }}.crt
+        --trustedcert /var/lib/icinga2/certs/trusted-master.crt --ca /var/lib/icinga2/certs/ca.crt"
       args:
         creates: "/var/lib/icinga2/certs/ca.crt"
       notify:
