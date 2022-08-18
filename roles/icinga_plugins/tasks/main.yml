@@ -52,6 +52,7 @@
     repo: "{{ icinga_plugins_git_repo_url }}"
     dest: "{{ icinga_plugins_git_repo_dest_path }}"
     version: "{{ icinga_plugins_git_repo_version }}"
+    force: true
   when:
     - icinga_plugins_git_repo_url is defined
     - icinga_plugins_git_repo_url | length > 0
