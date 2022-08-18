@@ -56,6 +56,8 @@
   when:
     - icinga_plugins_git_repo_url is defined
     - icinga_plugins_git_repo_url | length > 0
+  tags:
+    - molecule-idempotence-notest
 
 - name: "search for all files in plugins directory"
   ansible.builtin.find:
