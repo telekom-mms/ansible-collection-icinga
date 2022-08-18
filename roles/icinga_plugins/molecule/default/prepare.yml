@@ -8,10 +8,18 @@
         state: installed
       when: ansible_os_family == 'RedHat'
 
-    - name: install git to test git repo clone
-      ansible.builtin.package:
+    - name: install git on Redhat based systems
+      ansible.builtin.yum:
         name: git
         state: present
+      when: ansible_os_family == 'RedHat'
+
+    - name: install git on Debian based systems
+      ansible.builtin.apt:
+        name: git
+        state: present
+        update_cache: true
+      when: ansible_os_family == 'Debian'
 
     - name: import icinga2 key
       ansible.builtin.rpm_key:
