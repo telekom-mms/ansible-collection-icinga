@@ -78,7 +78,7 @@
       ansible.builtin.file:
         path: "{{ icinga_plugins_git_repo_dest_path }}/check_hello.sh"
         mode: 0755
-        state: present
+        state: file
       register: result_cloned_check
 
     - name: validate that cloned check exists on Redhat based systems
