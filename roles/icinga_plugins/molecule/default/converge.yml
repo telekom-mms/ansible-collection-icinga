@@ -3,6 +3,10 @@
   hosts: all
   collections:
     - t_systems_mms.ansible_collection_icinga
+
+  vars:
+    icinga_plugins_git_repo_url: https://github.com/beechesII/icinga_plugins.git
+
   pre_tasks:
 
     - name: set name of installation package based on distro

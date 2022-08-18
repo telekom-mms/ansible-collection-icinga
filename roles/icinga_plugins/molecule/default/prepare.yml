@@ -8,6 +8,11 @@
         state: installed
       when: ansible_os_family == 'RedHat'
 
+    - name: install git to test git repo clone
+      ansible.builtin.package:
+        name: git
+        state: present
+
     - name: import icinga2 key
       ansible.builtin.rpm_key:
         state: present
