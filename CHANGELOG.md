@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.0.10](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.10) (2022-08-18)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.9...1.0.10)
+
+**Fixed bugs:**
+
+- Fix Ansible-Lint Action  [\#30](https://github.com/T-Systems-MMS/ansible-collection-icinga/issues/30)
+
+**Merged pull requests:**
+
+- fix ansible lint action [\#31](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/31) ([beechesII](https://github.com/beechesII))
+- change broken absolute README links to relative links [\#29](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/29) ([lansfojo](https://github.com/lansfojo))
+- Update actions/setup-python action to v4 [\#27](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/27) ([renovate[bot]](https://github.com/apps/renovate))
+- Update actions/checkout action to v3 [\#25](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/25) ([renovate[bot]](https://github.com/apps/renovate))
+- Update github-actions-x/commit action to v2.9 [\#24](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/24) ([renovate[bot]](https://github.com/apps/renovate))
+- Update charmixer/auto-changelog-action action to v1.4 [\#22](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/22) ([renovate[bot]](https://github.com/apps/renovate))
+- Update actions/checkout action to v2.4.2 [\#21](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/21) ([renovate[bot]](https://github.com/apps/renovate))
+- Configure Renovate [\#20](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/20) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [1.0.9](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.9) (2022-02-25)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.8...1.0.9)
