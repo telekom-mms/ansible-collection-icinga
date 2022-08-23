@@ -97,13 +97,13 @@
 
   post_tasks:
     - name: verify that icinga2.conf exists
-      file:
+      ansible.builtin.file:
         path: /etc/icinga2/icinga2.conf
         state: file
       register: result_icinga2_conf
 
     - name: validate icinga2.conf results for RedHat based Distributions
-      assert:
+      ansible.builtin.assert:
         that:
           - "result_icinga2_conf.state == 'file'"
           - "result_icinga2_conf.mode == '0640'"
@@ -121,13 +121,13 @@
       when: ansible_os_family == 'Debian'
 
     - name: verify that constants.conf exists
-      file:
+      ansible.builtin.file:
         path: /etc/icinga2/constants.conf
         state: file
       register: result_constants_conf
 
     - name: validate constants.conf results for RedHat based Distributions
-      assert:
+      ansible.builtin.assert:
         that:
           - "result_constants_conf.state == 'file'"
           - "result_constants_conf.mode == '0640'"
@@ -136,7 +136,7 @@
       when: ansible_os_family == 'RedHat'
 
     - name: validate constants.conf results for Debian based Distributions
-      assert:
+      ansible.builtin.assert:
         that:
           - "result_constants_conf.state == 'file'"
           - "result_constants_conf.mode == '0640'"
@@ -145,13 +145,13 @@
       when: ansible_os_family == 'Debian'
 
     - name: verify that zones.conf exists
-      file:
+      ansible.builtin.file:
         path: /etc/icinga2/zones.conf
         state: file
       register: result_zones_conf
 
     - name: validate zones.conf results for RedHat based Distributions
-      assert:
+      ansible.builtin.assert:
         that:
           - "result_zones_conf.state == 'file'"
           - "result_zones_conf.mode == '0640'"
