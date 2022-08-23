@@ -6,7 +6,7 @@
   pre_tasks:
 
     - name: set name of installation package based on distro
-      set_fact:
+      ansible.builtin.set_fact:
         icinga_install_plugins:
           - nagios-plugins-all
       when:
@@ -14,7 +14,7 @@
         - ansible_facts.distribution_major_version | int is version('8', '<')
 
     - name: set name of installation package based on distro
-      set_fact:
+      ansible.builtin.set_fact:
         icinga_install_plugins:
           - monitoring-plugins
       when: ansible_os_family == 'Debian'

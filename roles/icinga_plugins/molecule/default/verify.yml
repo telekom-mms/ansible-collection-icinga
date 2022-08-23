@@ -3,7 +3,7 @@
   hosts: all
   tasks:
     - name: set name of installation package based on distro
-      set_fact:
+      ansible.builtin.set_fact:
         icinga_install_plugins:
           - nagios-plugins-all
       when:
@@ -11,24 +11,24 @@
         - ansible_facts.distribution_major_version | int is version('8', '<')
 
     - name: set name of installation package based on distro
-      set_fact:
+      ansible.builtin.set_fact:
         icinga_install_plugins:
           - monitoring-plugins
       when: ansible_os_family == 'Debian'
 
     - name: include default vars from icinga_plugins roles
-      include_vars:
+      ansible.builtin.include_vars:
         file: ../../defaults/main.yml
 
     - name: verify that plugin dir exists
-      file:
+      ansible.builtin.file:
         path: "{{ icinga2_plugins_pluginsdir }}"
         mode: 0755
         state: directory
       register: result_plugin_dir
 
     - name: validate plugin dir exists on system
-      assert:
+      ansible.builtin.assert:
         that:
           - "result_plugin_dir.state == 'directory'"
           - "result_plugin_dir.mode == '0755'"
@@ -44,7 +44,7 @@
       check_mode: false
 
     - name: validate plugins belongs to the right user for Redhat based systems
-      assert:
+      ansible.builtin.assert:
         that:
           - "item.pw_name == 'icinga'"
           - "item.gr_name == 'icinga'"
@@ -52,7 +52,7 @@
       when: ansible_os_family == 'RedHat'
 
     - name: validate plugins belongs to the right user for Debian based systems
-      assert:
+      ansible.builtin.assert:
         that:
           - "item.pw_name == 'nagios'"
           - "item.gr_name == 'nagios'"
@@ -60,7 +60,7 @@
       when: ansible_os_family == 'Debian'
 
     - name: verify that package is installed
-      package:
+      ansible.builtin.package:
         name: "{{ icinga_install_plugins }}"
         state: present
       register: result_installation
@@ -68,7 +68,7 @@
         - icinga_install_plugins is defined
 
     - name: validate package is installed
-      assert:
+      ansible.builtin.assert:
         that:
           - "result_installation is not changed"
       when:
