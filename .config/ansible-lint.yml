@@ -8,3 +8,5 @@ exclude_paths:
   - .yamllint
   - ../molecule/
   - ../.github/
+warn_list:
+  - name[casing]
