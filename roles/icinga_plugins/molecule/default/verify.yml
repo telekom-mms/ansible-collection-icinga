@@ -73,3 +73,30 @@
           - "result_installation is not changed"
       when:
         - icinga_install_plugins is defined
+
+    - name: verify cloned check exists
+      ansible.builtin.file:
+        path: "{{ icinga_plugins_git_repo_dest_path }}/check_hello.sh"
+        mode: 0755
+        state: file
+      register: result_cloned_check
+
+    - name: validate that cloned check exists on Redhat based systems
+      ansible.builtin.assert:
+        that:
+          - "result_cloned_check.state == 'file'"
+          - "result_cloned_check.mode == '0755'"
+          - "result_cloned_check.owner == 'icinga'"
+          - "result_cloned_check.group == 'icinga'"
+          - "result_cloned_check.changed == false"
+      when: ansible_os_family == 'RedHat'
+
+    - name: validate that cloned check exists on Debian based systems
+      ansible.builtin.assert:
+        that:
+          - "result_cloned_check.state == 'file'"
+          - "result_cloned_check.mode == '0755'"
+          - "result_cloned_check.owner == 'nagios'"
+          - "result_cloned_check.group == 'nagios'"
+          - "result_cloned_check.changed == false"
+      when: ansible_os_family == 'Debian'

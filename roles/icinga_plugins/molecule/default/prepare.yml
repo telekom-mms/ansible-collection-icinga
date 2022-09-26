@@ -8,6 +8,12 @@
         state: installed
       when: ansible_os_family == 'RedHat'
 
+    - name: install git
+      ansible.builtin.package:
+        name: git
+        state: present
+        update_cache: "{{ (ansible_pkg_mgr == 'apt') | ternary('true', omit) }}"
+
     - name: import icinga2 key
       ansible.builtin.rpm_key:
         state: present

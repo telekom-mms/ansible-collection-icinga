@@ -11,3 +11,6 @@ icinga2_user:
 icinga2_group:
   Debian: nagios
   RedHat: icinga
+
+icinga_plugins_git_repo_dest_path: "{{ icinga2_plugins_pluginsdir }}/git"
+icinga_plugins_git_repo_version: HEAD
