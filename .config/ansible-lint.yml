@@ -10,5 +10,4 @@ exclude_paths:
   - ../.github/
 
 warn_list:
-  - fqcn-builtins
   - name[casing]

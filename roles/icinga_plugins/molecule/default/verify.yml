@@ -2,40 +2,40 @@
 - name: Verify
   hosts: all
   tasks:
-    - name: set name of installation package based on distro
-      set_fact:
+    - name: Set name of installation package based on distro
+      ansible.builtin.set_fact:
         icinga_install_plugins:
           - nagios-plugins-all
       when:
         - ansible_os_family == 'RedHat'
         - ansible_facts.distribution_major_version | int is version('8', '<')
 
-    - name: set name of installation package based on distro
-      set_fact:
+    - name: Set name of installation package based on distro
+      ansible.builtin.set_fact:
         icinga_install_plugins:
           - monitoring-plugins
       when: ansible_os_family == 'Debian'
 
-    - name: include default vars from icinga_plugins roles
-      include_vars:
+    - name: Include default vars from icinga_plugins roles
+      ansible.builtin.include_vars:
         file: ../../defaults/main.yml
 
-    - name: verify that plugin dir exists
-      file:
+    - name: Verify that plugin dir exists
+      ansible.builtin.file:
         path: "{{ icinga2_plugins_pluginsdir }}"
         mode: 0755
         state: directory
       register: result_plugin_dir
 
-    - name: validate plugin dir exists on system
-      assert:
+    - name: Validate plugin dir exists on system
+      ansible.builtin.assert:
         that:
           - "result_plugin_dir.state == 'directory'"
           - "result_plugin_dir.mode == '0755'"
           - "result_plugin_dir.owner == 'root'"
           - "result_plugin_dir.group == 'root'"
 
-    - name: search for all files in plugins directory
+    - name: Search for all files in plugins directory
       ansible.builtin.find:
         paths: "{{ icinga2_plugins_pluginsdir }}"
         recurse: true
@@ -43,45 +43,45 @@
       register: files_in_plugins_dir
       check_mode: false
 
-    - name: validate plugins belongs to the right user for Redhat based systems
-      assert:
+    - name: Validate plugins belongs to the right user for Redhat based systems
+      ansible.builtin.assert:
         that:
           - "item.pw_name == 'icinga'"
           - "item.gr_name == 'icinga'"
       loop: "{{ files_in_plugins_dir.files }}"
       when: ansible_os_family == 'RedHat'
 
-    - name: validate plugins belongs to the right user for Debian based systems
-      assert:
+    - name: Validate plugins belongs to the right user for Debian based systems
+      ansible.builtin.assert:
         that:
           - "item.pw_name == 'nagios'"
           - "item.gr_name == 'nagios'"
       loop: "{{ files_in_plugins_dir.files }}"
       when: ansible_os_family == 'Debian'
 
-    - name: verify that package is installed
-      package:
+    - name: Verify that package is installed
+      ansible.builtin.package:
         name: "{{ icinga_install_plugins }}"
         state: present
       register: result_installation
       when:
         - icinga_install_plugins is defined
 
-    - name: validate package is installed
-      assert:
+    - name: Validate package is installed
+      ansible.builtin.assert:
         that:
           - "result_installation is not changed"
       when:
         - icinga_install_plugins is defined
 
-    - name: verify cloned check exists
+    - name: Verify cloned check exists
       ansible.builtin.file:
         path: "{{ icinga_plugins_git_repo_dest_path }}/check_hello.sh"
         mode: 0755
         state: file
       register: result_cloned_check
 
-    - name: validate that cloned check exists on Redhat based systems
+    - name: Validate that cloned check exists on Redhat based systems
       ansible.builtin.assert:
         that:
           - "result_cloned_check.state == 'file'"
@@ -91,7 +91,7 @@
           - "result_cloned_check.changed == false"
       when: ansible_os_family == 'RedHat'
 
-    - name: validate that cloned check exists on Debian based systems
+    - name: Validate that cloned check exists on Debian based systems
       ansible.builtin.assert:
         that:
           - "result_cloned_check.state == 'file'"

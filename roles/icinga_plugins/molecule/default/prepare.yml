@@ -2,25 +2,25 @@
 - name: Prepare
   hosts: all
   tasks:
-    - name: install epel repo
-      yum:
+    - name: Install epel repo
+      ansible.builtin.yum:
         name: epel-release
         state: installed
       when: ansible_os_family == 'RedHat'
 
-    - name: install git
+    - name: Install git
       ansible.builtin.package:
         name: git
         state: present
         update_cache: "{{ (ansible_pkg_mgr == 'apt') | ternary('true', omit) }}"
 
-    - name: import icinga2 key
+    - name: Import icinga2 key
       ansible.builtin.rpm_key:
         state: present
         key: "https://packages.icinga.com/icinga.key"
       when: ansible_os_family == 'RedHat'
 
-    - name: install icinga2 repo
+    - name: Install icinga2 repo
       ansible.builtin.yum:
         name: https://packages.icinga.com/epel/icinga-rpm-release-7-latest.noarch.rpm
         state: present
@@ -28,7 +28,7 @@
         - ansible_os_family == 'RedHat'
         - ansible_facts.distribution_major_version | int is version('7', '=')
 
-    - name: install icinga2 repo
+    - name: Install icinga2 repo
       ansible.builtin.yum:
         name: https://packages.icinga.com/epel/icinga-rpm-release-7-latest.noarch.rpm
         state: present
@@ -36,21 +36,21 @@
         - ansible_os_family == 'RedHat'
         - ansible_facts.distribution_major_version | int is version('8', '=')
 
-    - name: install icinga2 basic packages
-      apt:
+    - name: Install icinga2 basic packages
+      ansible.builtin.apt:
         name: gnupg
         state: present
         update_cache: true
       when: ansible_os_family == 'Debian'
 
-    - name: add icinga2 repo key
-      apt_key:
+    - name: Add icinga2 repo key
+      ansible.builtin.apt_key:
         url: "http://packages.icinga.com/icinga.key"
         state: present
       when: ansible_os_family == 'Debian'
 
-    - name: add icinga2 repository on debian 11
-      apt_repository:
+    - name: Add icinga2 repository on debian 11
+      ansible.builtin.apt_repository:
         repo: "{{ item }}"
         state: present
         update_cache: true
@@ -61,15 +61,15 @@
         - ansible_os_family == 'Debian'
         - ansible_facts.distribution_major_version | int is version('11', '=')
 
-    - name: install icinga2 build dependencies
-      apt:
+    - name: Install icinga2 build dependencies
+      ansible.builtin.apt:
         pkg: "icinga2"
         state: "build-dep"
         update_cache: true
       when: ansible_os_family == 'Debian'
 
-    - name: install icinga2 basic packages
-      apt:
+    - name: Install icinga2 basic packages
+      ansible.builtin.apt:
         name: "icinga2"
         state: "present"
         update_cache: true
