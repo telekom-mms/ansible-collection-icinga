@@ -1,15 +1,22 @@
 # Changelog
 
-## [1.0.10](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.10) (2022-08-18)
+## [1.0.10](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.10) (2022-09-26)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.9...1.0.10)
 
+**Implemented enhancements:**
+
+- icinga\_plugins - pull additional checks from git repo [\#28](https://github.com/T-Systems-MMS/ansible-collection-icinga/issues/28)
+
 **Fixed bugs:**
 
+- Icinga master does not recognize ticket created on agent [\#33](https://github.com/T-Systems-MMS/ansible-collection-icinga/issues/33)
 - Fix Ansible-Lint Action  [\#30](https://github.com/T-Systems-MMS/ansible-collection-icinga/issues/30)
 
 **Merged pull requests:**
 
+- add name\[casing\] to ansible-lint warn\_list [\#36](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/36) ([beechesII](https://github.com/beechesII))
+-  icinga\_plugins - pull additional checks from git repo [\#34](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/34) ([beechesII](https://github.com/beechesII))
 - fix ansible lint action [\#31](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/31) ([beechesII](https://github.com/beechesII))
 - change broken absolute README links to relative links [\#29](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/29) ([lansfojo](https://github.com/lansfojo))
 - Update actions/setup-python action to v4 [\#27](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/27) ([renovate[bot]](https://github.com/apps/renovate))

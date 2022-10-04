@@ -47,6 +47,18 @@
     - icinga_plugins_path is defined
     - icinga_plugins_path | length > 0
 
+- name: copy icinga plugins to destination path from git repo
+  ansible.builtin.git:
+    repo: "{{ icinga_plugins_git_repo_url }}"
+    dest: "{{ icinga_plugins_git_repo_dest_path }}"
+    version: "{{ icinga_plugins_git_repo_version }}"
+    force: true
+  when:
+    - icinga_plugins_git_repo_url is defined
+    - icinga_plugins_git_repo_url | length > 0
+  tags:
+    - molecule-idempotence-notest
+
 - name: "search for all files in plugins directory"
   ansible.builtin.find:
     paths: "{{ icinga2_plugins_pluginsdir }}"

@@ -25,6 +25,9 @@ dependency_packages:
 | icinga2_plugins_pluginsdir | yes | {{ icinga2_plugins_basedir }}/plugins | directory for icinga plugins
 | icinga2_plugins_basedir | yes | Debian: /usr/lib/nagios Redhat: /usr/lib64/nagios | base directory for your icinga plugins
 | icinga_plugins_path | yes | | path with your plugins for example {{ playbook_dir }}/../files
+| icinga_plugins_git_repo_url | no | | directory for icinga plugins
+| icinga_plugins_git_repo_dest_path | no | {{ icinga2_plugins_pluginsdir }}/git | base directory for your icinga plugins pulled from git repo
+| icinga_plugins_git_repo_version | no | HEAD | what version of the repository to check out
 
 # Examples
 
@@ -36,6 +39,30 @@ dependency_packages:
     - t_systems_mms.ansible_collection_icinga
   vars:
     icinga_plugins_path: "{{ playbook_dir }}/../files"
+  roles:
+    - icinga_plugins
+```
+
+```yaml
+---
+- hosts: localhost
+  gather_facts: true
+  collections:
+    - t_systems_mms.ansible_collection_icinga
+  vars:
+    icinga_plugins_git_repo_url: https://github.com/example/my-public-plugins.git
+  roles:
+    - icinga_plugins
+```
+
+```yaml
+---
+- hosts: localhost
+  gather_facts: true
+  collections:
+    - t_systems_mms.ansible_collection_icinga
+  vars:
+    icinga_plugins_git_repo_url: https://<username>:<token>@github.com/example/my-private-plugins.git
   roles:
     - icinga_plugins
 ```
