@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.10](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.10) (2022-09-26)
+## [1.0.10](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.10) (2022-10-04)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.9...1.0.10)
 
@@ -15,7 +15,9 @@
 
 **Merged pull requests:**
 
+- Update actions/checkout action to v3.1.0 [\#38](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/38) ([renovate[bot]](https://github.com/apps/renovate))
 - add name\[casing\] to ansible-lint warn\_list [\#36](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/36) ([beechesII](https://github.com/beechesII))
+- added missing fqcns for Issue  \#32 [\#35](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/35) ([xFuture603](https://github.com/xFuture603))
 -  icinga\_plugins - pull additional checks from git repo [\#34](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/34) ([beechesII](https://github.com/beechesII))
 - fix ansible lint action [\#31](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/31) ([beechesII](https://github.com/beechesII))
 - change broken absolute README links to relative links [\#29](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/29) ([lansfojo](https://github.com/lansfojo))
