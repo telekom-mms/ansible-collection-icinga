@@ -37,7 +37,7 @@
   with_fileglob:
     - "../templates/configuration/*"
   notify:
-    - restart icinga2-agent
+    - Restart icinga2-agent
 
 - name: copy icinga feature files
   ansible.builtin.template:
@@ -49,7 +49,7 @@
   with_fileglob:
     - "../templates/features/*"
   notify:
-    - restart icinga2-agent
+    - Restart icinga2-agent
 
 - name: copy custom icinga feature files
   ansible.builtin.template:
@@ -61,7 +61,7 @@
   with_fileglob:
     - "{{ icinga_agent_custom_features_template_path }}"
   notify:
-    - restart icinga2-agent
+    - Restart icinga2-agent
   when:
     - icinga_agent_custom_features_template_path is defined
     - icinga_agent_custom_features_template_path | length > 0
@@ -123,7 +123,7 @@
       args:
         creates: "/var/lib/icinga2/certs/ca.crt"
       notify:
-        - restart icinga2-agent
+        - Restart icinga2-agent
   when:
     - icinga_agent_registration | bool
     - icinga_agent_salt is defined

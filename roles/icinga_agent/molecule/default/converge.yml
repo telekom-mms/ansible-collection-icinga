@@ -3,7 +3,7 @@
   hosts: all
 
   pre_tasks:
-    - name: install epel repo
+    - name: Install epel repo
       ansible.builtin.yum:
         name: epel-release
         state: installed
@@ -11,7 +11,7 @@
       tags:
         - molecule-idempotence-notest
 
-    - name: import icinga2 key
+    - name: Import icinga2 key
       ansible.builtin.rpm_key:
         state: present
         key: "https://packages.icinga.com/icinga.key"
@@ -19,7 +19,7 @@
       tags:
         - molecule-idempotence-notest
 
-    - name: install icinga2 repo
+    - name: Install icinga2 repo
       ansible.builtin.yum:
         name: https://packages.icinga.com/epel/icinga-rpm-release-7-latest.noarch.rpm
         state: present
@@ -27,7 +27,7 @@
       tags:
         - molecule-idempotence-notest
 
-    - name: install icinga2 basic packages
+    - name: Install icinga2 basic packages
       ansible.builtin.apt:
         name: gnupg
         state: present
@@ -36,7 +36,7 @@
       tags:
         - molecule-idempotence-notest
 
-    - name: add icinga2 repo key
+    - name: Add icinga2 repo key
       ansible.builtin.apt_key:
         url: "http://packages.icinga.com/icinga.key"
         state: present
@@ -44,7 +44,7 @@
       tags:
         - molecule-idempotence-notest
 
-    - name: add icinga2 repository
+    - name: Add icinga2 repository
       ansible.builtin.apt_repository:
         repo: "{{ item }}"
         state: present
@@ -56,7 +56,7 @@
       tags:
         - molecule-idempotence-notest
 
-    - name: install icinga2 build dependencies
+    - name: Install icinga2 build dependencies
       ansible.builtin.apt:
         pkg: "icinga2"
         state: "build-dep"
@@ -65,7 +65,7 @@
       tags:
         - molecule-idempotence-notest
 
-    - name: install icinga2 basic packages
+    - name: Install icinga2 basic packages
       ansible.builtin.apt:
         name: "icinga2"
         state: "present"
@@ -96,13 +96,13 @@
         parent: "master"
 
   post_tasks:
-    - name: verify that icinga2.conf exists
+    - name: Verify that icinga2.conf exists
       ansible.builtin.file:
         path: /etc/icinga2/icinga2.conf
         state: file
       register: result_icinga2_conf
 
-    - name: validate icinga2.conf results for RedHat based Distributions
+    - name: Validate icinga2.conf results for RedHat based Distributions
       ansible.builtin.assert:
         that:
           - "result_icinga2_conf.state == 'file'"
@@ -111,7 +111,7 @@
           - "result_icinga2_conf.group == 'icinga'"
       when: ansible_os_family == 'RedHat'
 
-    - name: validate icinga2.conf results for Debian based Distributions
+    - name: Validate icinga2.conf results for Debian based Distributions
       ansible.builtin.assert:
         that:
           - "result_icinga2_conf.state == 'file'"
@@ -120,13 +120,13 @@
           - "result_icinga2_conf.group == 'nagios'"
       when: ansible_os_family == 'Debian'
 
-    - name: verify that constants.conf exists
+    - name: Verify that constants.conf exists
       ansible.builtin.file:
         path: /etc/icinga2/constants.conf
         state: file
       register: result_constants_conf
 
-    - name: validate constants.conf results for RedHat based Distributions
+    - name: Validate constants.conf results for RedHat based Distributions
       ansible.builtin.assert:
         that:
           - "result_constants_conf.state == 'file'"
@@ -135,7 +135,7 @@
           - "result_constants_conf.group == 'icinga'"
       when: ansible_os_family == 'RedHat'
 
-    - name: validate constants.conf results for Debian based Distributions
+    - name: Validate constants.conf results for Debian based Distributions
       ansible.builtin.assert:
         that:
           - "result_constants_conf.state == 'file'"
@@ -144,13 +144,13 @@
           - "result_constants_conf.group == 'nagios'"
       when: ansible_os_family == 'Debian'
 
-    - name: verify that zones.conf exists
+    - name: Verify that zones.conf exists
       ansible.builtin.file:
         path: /etc/icinga2/zones.conf
         state: file
       register: result_zones_conf
 
-    - name: validate zones.conf results for RedHat based Distributions
+    - name: Validate zones.conf results for RedHat based Distributions
       ansible.builtin.assert:
         that:
           - "result_zones_conf.state == 'file'"
@@ -159,7 +159,7 @@
           - "result_zones_conf.group == 'icinga'"
       when: ansible_os_family == 'RedHat'
 
-    - name: validate zones.conf results for Debian based Distributions
+    - name: Validate zones.conf results for Debian based Distributions
       ansible.builtin.assert:
         that:
           - "result_zones_conf.state == 'file'"
@@ -168,13 +168,13 @@
           - "result_zones_conf.group == 'nagios'"
       when: ansible_os_family == 'Debian'
 
-    - name: verify that api.conf exists
+    - name: Verify that api.conf exists
       ansible.builtin.file:
         path: /etc/icinga2/features-available/api.conf
         state: file
       register: result_api_conf
 
-    - name: validate api.conf results for RedHat based Distributions
+    - name: Validate api.conf results for RedHat based Distributions
       ansible.builtin.assert:
         that:
           - "result_api_conf.state == 'file'"
@@ -183,7 +183,7 @@
           - "result_api_conf.group == 'icinga'"
       when: ansible_os_family == 'RedHat'
 
-    - name: validate api.conf results for Debian based Distributions
+    - name: Validate api.conf results for Debian based Distributions
       ansible.builtin.assert:
         that:
           - "result_api_conf.state == 'file'"
@@ -192,7 +192,7 @@
           - "result_api_conf.group == 'nagios'"
       when: ansible_os_family == 'Debian'
 
-    - name: verify that icinga2 package is installed
+    - name: Verify that icinga2 package is installed
       ansible.builtin.package:
         name: icinga2
         state: present

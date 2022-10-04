@@ -9,7 +9,7 @@
 
   pre_tasks:
 
-    - name: set name of installation package based on distro
+    - name: Set name of installation package based on distro
       ansible.builtin.set_fact:
         icinga_install_plugins:
           - nagios-plugins-all
@@ -17,19 +17,19 @@
         - ansible_os_family == 'RedHat'
         - ansible_facts.distribution_major_version | int is version('8', '<')
 
-    - name: set name of installation package based on distro
+    - name: Set name of installation package based on distro
       ansible.builtin.set_fact:
         icinga_install_plugins:
           - monitoring-plugins
       when: ansible_os_family == 'Debian'
 
-    - name: add icinga group
+    - name: Add icinga group
       ansible.builtin.group:
         name: icinga
         state: present
       when: ansible_os_family == 'RedHat'
 
-    - name: add icinga user with icinga group
+    - name: Add icinga user with icinga group
       ansible.builtin.user:
         name: icinga
         group: icinga
