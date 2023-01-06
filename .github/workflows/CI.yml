@@ -61,11 +61,6 @@ jobs:
           - centos7
           - rockylinux8
           - debian11
-        image:
-          - "geerlingguy/docker-centos7-ansible:latest"
-          - "eniocarboni/docker-rockylinux-systemd:8"
-          - "geerlingguy/docker-debian11-ansible:latest"
-    container: ${{ matrix.image }}
 
     steps:
       - name: Check out code
