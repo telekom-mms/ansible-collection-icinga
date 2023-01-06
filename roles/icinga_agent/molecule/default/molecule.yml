@@ -5,7 +5,7 @@ driver:
   name: docker
 platforms:
   - name: centos7
-    image: "geerlingguy/docker-centos7-ansible:latest"
+    image: "docker-centos-systemd:centos7"
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     cgroupns_mode: host
