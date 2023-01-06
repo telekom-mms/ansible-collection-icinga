@@ -1,12 +1,12 @@
 ---
-- name: install specificed icinga version
+- name: Install specificed icinga version
   ansible.builtin.package:
     name: "{{ item }}"
     state: present
   loop:
     - "{{ icinga_agent_package }}"
 
-- name: create /etc/icinga2/repository.d
+- name: Create /etc/icinga2/repository.d
   ansible.builtin.file:
     dest: "/etc/icinga2/repository.d"
     mode: 0750
@@ -16,7 +16,7 @@
   when:
     - icinga_agent_repositoryd_directory is defined
 
-- name: create features-* folders in case it is missing
+- name: Create features-* folders in case it is missing
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
@@ -27,7 +27,7 @@
     - /etc/icinga2/features-available/
     - /etc/icinga2/features-enabled/
 
-- name: copy icinga configuration files
+- name: Copy icinga configuration files
   ansible.builtin.template:
     src: "{{ item }}"
     dest: "/etc/icinga2/{{ item | basename | regex_replace('.j2', '') }}"
@@ -39,7 +39,7 @@
   notify:
     - Restart icinga2-agent
 
-- name: copy icinga feature files
+- name: Copy icinga feature files
   ansible.builtin.template:
     src: "{{ item }}"
     dest: "/etc/icinga2/features-available/{{ item | basename | regex_replace('.j2', '') }}"
@@ -51,7 +51,7 @@
   notify:
     - Restart icinga2-agent
 
-- name: copy custom icinga feature files
+- name: Copy custom icinga feature files
   ansible.builtin.template:
     src: "{{ item }}"
     dest: "/etc/icinga2/features-available/{{ item | basename | regex_replace('.j2', '') }}"
@@ -66,7 +66,7 @@
     - icinga_agent_custom_features_template_path is defined
     - icinga_agent_custom_features_template_path | length > 0
 
-- name: activate specified icinga features
+- name: Activate specified icinga features
   ansible.builtin.file:
     src: "../features-available/{{ item }}"
     dest: "/etc/icinga2/features-enabled/{{ item }}"
@@ -77,9 +77,14 @@
     - icinga_agent_enable_features is defined
     - icinga_agent_enable_features | length > 0
 
-- name: start icinga agent registration
+- name: Start icinga agent registration
+  when:
+    - icinga_agent_registration | bool
+    - icinga_agent_salt is defined
+    - icinga_agent_ca_host is defined
+    - icinga_agent_ca_host | length > 0
   block:
-    - name: create certs folder in case it is missing
+    - name: Create certs folder in case it is missing
       ansible.builtin.file:
         path: /var/lib/icinga2/certs/
         state: directory
@@ -87,7 +92,7 @@
         owner: "{{ icinga2_user[ansible_os_family] }}"
         group: "{{ icinga2_group[ansible_os_family] }}"
 
-    - name: generate ticket and save it as a variable
+    - name: Generate ticket and save it as a variable
       ansible.builtin.command: >
         /usr/sbin/icinga2 pki ticket --cn {{ ansible_hostname }} --salt {{ icinga_agent_salt }}
       environment:
@@ -96,7 +101,7 @@
       changed_when: false
       failed_when: ticket.rc != 0
 
-    - name: create certificate
+    - name: Create certificate
       ansible.builtin.command: >
         /usr/sbin/icinga2 pki new-cert --cn {{ ansible_hostname }}
         --key /var/lib/icinga2/certs/{{ ansible_hostname }}.key
@@ -104,7 +109,7 @@
       args:
         creates: "/var/lib/icinga2/certs/{{ ansible_hostname }}.crt"
 
-    - name: save the icinga master's certificate to the host
+    - name: Save the icinga master's certificate to the host
       ansible.builtin.command: >
         /usr/sbin/icinga2 pki save-cert --key /var/lib/icinga2/certs/{{ ansible_hostname }}.key
         --cert /var/lib/icinga2/certs/{{ ansible_hostname }}.crt
@@ -113,7 +118,7 @@
       args:
         creates: "/var/lib/icinga2/certs/trusted-master.crt"
 
-    - name: send a pki request to the icinga master
+    - name: Send a pki request to the icinga master
       ansible.builtin.command: >
         /usr/sbin/icinga2 pki request --host {{ icinga_agent_ca_host }}
         --port {{ icinga_agent_ca_host_icinga_port }}
@@ -124,13 +129,8 @@
         creates: "/var/lib/icinga2/certs/ca.crt"
       notify:
         - Restart icinga2-agent
-  when:
-    - icinga_agent_registration | bool
-    - icinga_agent_salt is defined
-    - icinga_agent_ca_host is defined
-    - icinga_agent_ca_host | length > 0
 
-- name: enable autostart for icinga service
+- name: Enable autostart for icinga service
   ansible.builtin.service:
     name: icinga2
     enabled: true
