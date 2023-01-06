@@ -55,12 +55,6 @@ jobs:
   molecule:
     name: Molecule
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        distro:
-          - centos7
-          - rockylinux8
-          - debian11
 
     steps:
       - name: Check out code
@@ -85,7 +79,6 @@ jobs:
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
-          MOLECULE_DISTRO: ${{ matrix.distro }}
 
       - name: Test role icinga_plugins with molecule
         run: molecule test
@@ -93,4 +86,3 @@ jobs:
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
-          MOLECULE_DISTRO: ${{ matrix.distro }}
