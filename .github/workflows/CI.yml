@@ -53,44 +53,49 @@ jobs:
           args: ""
 
   molecule:
-      name: Molecule
-      runs-on: ubuntu-latest
-      strategy:
-        matrix:
-          distro:
-            - centos7
-            - rockylinux8
-            - debian11
+    name: Molecule
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        distro:
+          - centos7
+          - rockylinux8
+          - debian11
+        image:
+          - "geerlingguy/docker-centos7-ansible:latest"
+          - "eniocarboni/docker-rockylinux-systemd:8"
+          - "geerlingguy/docker-debian11-ansible:latest"
+    container: ${{ matrix.image }}
 
-      steps:
-        - name: Check out code
-          uses: actions/checkout@v3
-          with:
-            path: ansible_collections/t_systems_mms/ansible_collection_icinga
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          path: ansible_collections/t_systems_mms/ansible_collection_icinga
 
-        - name: Set up Python 3.8
-          uses: actions/setup-python@v4
-          with:
-            python-version: 3.8
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8
 
-        - name: Install dependencies
-          run: |
-            python3 -m pip install --upgrade pip
-            python3 -m pip install -r requirements.txt
-          working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga
+      - name: Install dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install -r requirements.txt
+        working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga
 
-        - name: Test role icinga_agent with molecule
-          run: molecule test
-          working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_agent
-          env:
-            PY_COLORS: '1'
-            ANSIBLE_FORCE_COLOR: '1'
-            MOLECULE_DISTRO: ${{ matrix.distro }}
+      - name: Test role icinga_agent with molecule
+        run: molecule test
+        working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_agent
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+          MOLECULE_DISTRO: ${{ matrix.distro }}
 
-        - name: Test role icinga_plugins with molecule
-          run: molecule test
-          working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_plugins
-          env:
-            PY_COLORS: '1'
-            ANSIBLE_FORCE_COLOR: '1'
-            MOLECULE_DISTRO: ${{ matrix.distro }}
+      - name: Test role icinga_plugins with molecule
+        run: molecule test
+        working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_plugins
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+          MOLECULE_DISTRO: ${{ matrix.distro }}
