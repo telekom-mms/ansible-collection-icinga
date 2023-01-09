@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.10](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.10) (2022-10-04)
+## [1.0.10](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.10) (2023-01-09)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.9...1.0.10)
 
@@ -13,8 +13,14 @@
 - Icinga master does not recognize ticket created on agent [\#33](https://github.com/T-Systems-MMS/ansible-collection-icinga/issues/33)
 - Fix Ansible-Lint Action  [\#30](https://github.com/T-Systems-MMS/ansible-collection-icinga/issues/30)
 
+**Closed issues:**
+
+- ansible-lint: fix fqcn-builtins [\#32](https://github.com/T-Systems-MMS/ansible-collection-icinga/issues/32)
+
 **Merged pull requests:**
 
+- fix molecule tests, use reusable workflow and fix linting [\#40](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/40) ([beechesII](https://github.com/beechesII))
+- use reusable workflow [\#39](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/39) ([rndmh3ro](https://github.com/rndmh3ro))
 - Update actions/checkout action to v3.1.0 [\#38](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/38) ([renovate[bot]](https://github.com/apps/renovate))
 - add name\[casing\] to ansible-lint warn\_list [\#36](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/36) ([beechesII](https://github.com/beechesII))
 - added missing fqcns for Issue  \#32 [\#35](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/35) ([xFuture603](https://github.com/xFuture603))
