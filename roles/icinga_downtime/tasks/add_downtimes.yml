@@ -1,14 +1,14 @@
 ---
-- name: "vars output"
-  debug:
+- name: "Vars output"
+  ansible.builtin.debug:
     msg: "icinga_host_filter: {{ icinga_host_filter }}"
 
 - name: "Add icinga host downtimes"
-  uri:
+  ansible.builtin.uri:
     url: "{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/schedule-downtime?type=Host"
     user: "{{ icinga_api_user }}"
     password: "{{ icinga_api_password }}"
-    validate_certs: False
+    validate_certs: false
     method: POST
     status_code: 200
     return_content: yes
@@ -30,11 +30,11 @@
     - host_downtime == 'true'
 
 - name: "Add icinga service downtimes"
-  uri:
+  ansible.builtin.uri:
     url: "{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/schedule-downtime?type=Service"
     user: "{{ icinga_api_user }}"
     password: "{{ icinga_api_password }}"
-    validate_certs: False
+    validate_certs: false
     method: POST
     status_code: 200
     return_content: yes
@@ -58,11 +58,11 @@
     - service_filter == ''
 
 - name: "Add icinga single service downtimes"
-  uri:
+  ansible.builtin.uri:
     url: "{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/schedule-downtime?type=Service"
     user: "{{ icinga_api_user }}"
     password: "{{ icinga_api_password }}"
-    validate_certs: False
+    validate_certs: false
     method: POST
     status_code: 200
     return_content: yes
@@ -84,4 +84,3 @@
   when:
     - single_service_downtime == 'true'
     - service_filter != ''
-

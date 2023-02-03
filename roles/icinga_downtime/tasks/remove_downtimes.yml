@@ -1,10 +1,10 @@
 ---
 - name: "Delete icinga downtimes (host and service) from defined author"
-  uri:
+  ansible.builtin.uri:
     url: "{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/remove-downtime?type=Downtime"
     user: "{{ icinga_api_user }}"
     password: "{{ icinga_api_password }}"
-    validate_certs: False
+    validate_certs: false
     method: POST
     status_code: 200
     return_content: yes
