@@ -1,0 +1,14 @@
+---
+# defaults
+#
+
+duration: 2
+duration_unit: hours
+author: Ansible
+comment: 'Downtime set by automation'
+host_downtime: 'true'
+service_downtime: 'true'
+single_service_downtime: 'false'
+single_host_downtime: 'false'
+service_filter: ""
+icinga_api_port: "5665"

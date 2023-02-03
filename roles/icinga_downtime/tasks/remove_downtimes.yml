@@ -1,0 +1,20 @@
+---
+- name: "Delete icinga downtimes (host and service) from defined author"
+  uri:
+    url: "{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/remove-downtime?type=Downtime"
+    user: "{{ icinga_api_user }}"
+    password: "{{ icinga_api_password }}"
+    validate_certs: False
+    method: POST
+    status_code: 200
+    return_content: yes
+    headers:
+      Accept: 'application/json'
+    body_format: json
+    body: '{
+             "filter": "host.name==\"{{ item }}\" && downtime.author==\"{{ author }}\"",
+             "pretty": true
+           }'
+  delegate_to: localhost
+  with_items:
+    - "{{ icinga_host_filter }}"

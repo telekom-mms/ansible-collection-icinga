@@ -1,0 +1,58 @@
+---
+# Set start_date and end_date in epoch format
+- name: "default task: set start_date"
+  command: date +%s
+  register: start_date
+  delegate_to: localhost
+  run_once: True
+  changed_when: False
+  when:
+    - icinga_action == "add_downtimes"
+
+- name: "default task: set end_date"
+  command: date +%s -d '+{{ duration }} {{ duration_unit }}'
+  register: end_date
+  delegate_to: localhost
+  run_once: True
+  changed_when: False
+  when:
+    - icinga_action == "add_downtimes"
+
+- name: "default task: set_fact"
+  set_fact:
+    start_time_now: "{{ start_date.stdout }}"
+    end_time: "{{ end_date.stdout }}"
+  when:
+    - icinga_action == "add_downtimes"
+
+- name: "default task: set_fact: define icinga_host_filter as single host"
+  set_fact:
+    icinga_host_filter: "{{ target }}"
+  when:
+    - single_host_downtime == "true"
+
+- debug:
+    var: target
+
+- name: "default task: set_fact: define icinga_host_filter as group"
+  set_fact:
+    icinga_host_filter: "{{ groups[target]|
+                            list|
+                            flatten }}"
+  when:
+    - single_host_downtime == "false"
+
+- debug:
+    var: icinga_host_filter
+
+- include_tasks: add_downtimes.yml
+  when:
+    - icinga_action == "add_downtimes"
+
+- include_tasks: remove_downtimes.yml
+  when:
+    - icinga_action == "remove_downtimes"
+
+- include_tasks: remove_all_downtimes.yml
+  when:
+    - icinga_action == "remove_all_downtimes"

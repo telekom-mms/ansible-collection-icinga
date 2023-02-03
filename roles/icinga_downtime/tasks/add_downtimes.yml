@@ -1,0 +1,87 @@
+---
+- name: "vars output"
+  debug:
+    msg: "icinga_host_filter: {{ icinga_host_filter }}"
+
+- name: "Add icinga host downtimes"
+  uri:
+    url: "{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/schedule-downtime?type=Host"
+    user: "{{ icinga_api_user }}"
+    password: "{{ icinga_api_password }}"
+    validate_certs: False
+    method: POST
+    status_code: 200
+    return_content: yes
+    headers:
+      Accept: 'application/json'
+    body_format: json
+    body: '{
+             "filter": "host.name==\"{{ item }}\"",
+             "author": "{{ author }}",
+             "comment": "{{ comment }}",
+             "start_time": "{{ start_time_now }}",
+             "end_time": "{{ end_time }}",
+             "pretty": true,
+             "fixed": true,
+           }'
+  with_items:
+    - "{{ icinga_host_filter }}"
+  when:
+    - host_downtime == 'true'
+
+- name: "Add icinga service downtimes"
+  uri:
+    url: "{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/schedule-downtime?type=Service"
+    user: "{{ icinga_api_user }}"
+    password: "{{ icinga_api_password }}"
+    validate_certs: False
+    method: POST
+    status_code: 200
+    return_content: yes
+    headers:
+      Accept: 'application/json'
+    body_format: json
+    body: '{
+             "filter": "host.name==\"{{ item }}\"",
+             "author": "{{ author }}",
+             "comment": "{{ comment }}",
+             "start_time": {{ start_time_now }},
+             "end_time": {{ end_time }},
+             "pretty": true,
+             "fixed": true,
+           }'
+  delegate_to: localhost
+  with_items:
+    - "{{ icinga_host_filter }}"
+  when:
+    - service_downtime == 'true'
+    - service_filter == ''
+
+- name: "Add icinga single service downtimes"
+  uri:
+    url: "{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/schedule-downtime?type=Service"
+    user: "{{ icinga_api_user }}"
+    password: "{{ icinga_api_password }}"
+    validate_certs: False
+    method: POST
+    status_code: 200
+    return_content: yes
+    headers:
+      Accept: 'application/json'
+    body_format: json
+    body: '{
+             "filter": "host.name==\"{{ item }}\" && match(\"*{{ service_filter }}*\",service.name)",
+             "author": "{{ author }}",
+             "comment": "{{ comment }}",
+             "start_time": {{ start_time_now }},
+             "end_time": {{ end_time }},
+             "pretty": true,
+             "fixed": true,
+           }'
+  delegate_to: localhost
+  with_items:
+    - "{{ icinga_host_filter }}"
+  when:
+    - single_service_downtime == 'true'
+    - service_filter != ''
+
