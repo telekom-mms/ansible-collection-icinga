@@ -9,7 +9,7 @@
   when:
     - icinga_action == "add_downtimes"
 
-- name: "Default task: set_fact: define icinga_host_filter as single host"
+- name: "define icinga_host_filter as single host"
   ansible.builtin.set_fact:
     icinga_host_filter: "{{ target }}"
   when:
@@ -18,7 +18,7 @@
 - ansible.builtin.debug:
     var: target
 
-- name: "set_fact: define icinga_host_filter as group"
+- name: "define icinga_host_filter as group"
   ansible.builtin.set_fact:
     icinga_host_filter: "{{ groups[target] |
                             list |
