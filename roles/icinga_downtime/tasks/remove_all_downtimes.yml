@@ -18,3 +18,4 @@
   delegate_to: localhost
   with_inventory_hostnames:
     - "{{ groups[icinga_host_filter] }}"
+    

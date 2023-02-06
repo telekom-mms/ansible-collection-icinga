@@ -17,7 +17,7 @@ galaxy_info:
   license: Apache-2.0
 
 
-  min_ansible_version: 3.5
+  min_ansible_version: '3.5'
 
   # If this a Container Enabled role, provide the minimum Ansible Container version.
   # min_ansible_container_version:
