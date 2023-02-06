@@ -16,22 +16,22 @@ Requirements
 
 Role Variables
 --------------
-
-- mandatory: target                   (String), define icinga-host-objects as target (must be idendically in ansibles inventory)
-- mandatory: icinga_action            [add_downtimes | remove_downtimes]
-- mandatory: icinga_api_uri           (String), could be "https://<hostname>.<domain>)
-- mandatory: icinga_api_user          (String), icinga-REST-API-user)
-- mandatory: icinga_api_pwd           (String), should be encrypted e.g. with ansible-vault
-- optional : icinga_api_port          (default: "5665")
-- optional : duration                 (default: "2")
-- optional : duration_unit            (default: "hours")
-- optional : author                   (default: "Ansible") 
-- optional : comment                  (default: "Downtime set by automation")
-- optional : host_downtime            (default: true)
-- optional : service_downtime         (default: true)
-- optional : single_service_downtime  (default: false)
-- optional : host_service_downtime    (default: false)
-- optional : service_filter           (default: "")
+| Variable                 | Required    | Default                        | Description
+| target                   | mandatory   | ""                             | define icinga-host-objects as target (must be idendically in ansibles inventory)
+| icinga_action            | mandatory   | [add_downtimes                 | remove_downtimes]
+| icinga_api_uri           | mandatory   | ""                             | could be "https://<hostname>.<domain>)
+| icinga_api_user          | mandatory   | ""                             | icinga-REST-API-user)
+| icinga_api_pwd           | mandatory   | ""                             | should be encrypted e.g. with ansible-vault
+| icinga_api_port          | optional    | "5665"                         |
+| duration                 | optional    | "2"                            |
+| duration_unit            | optional    | "hours"                        |
+| author                   | optional    | "Ansible"                      |
+| comment                  | optional    | "Downtime set by automation"   |
+| host_downtime            | optional    | true                           |
+| service_downtime         | optional    | true                           |
+| single_service_downtime  | optional    | false                          |
+| host_service_downtime    | optional    | false                          |
+| service_filter           | optional    | ""                             |
 
 Dependencies
 ------------

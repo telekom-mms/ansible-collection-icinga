@@ -1,27 +1,11 @@
 ---
-# Set start_date and end_date in epoch format
-- name: "Default task: set start_date"
-  ansible.builtin.command: date +%s
-  register: start_date
-  delegate_to: localhost
-  run_once: true
-  changed_when: false
-  when:
-    - icinga_action == "add_downtimes"
-
-- name: "Default task: set end_date"
-  ansible.builtin.command: date +%s -d '+{{ duration }} {{ duration_unit }}'
-  register: end_date
-  delegate_to: localhost
-  run_once: true
-  changed_when: false
-  when:
-    - icinga_action == "add_downtimes"
-
-- name: "Default task: set_fact"
+- name: "set facts for start_time_now and end_time of the maintenance window"
   ansible.builtin.set_fact:
-    start_time_now: "{{ start_date.stdout }}"
-    end_time: "{{ end_date.stdout }}"
+    start_time_now: "{{ ansible_date_time.epoch }}"
+    end_time: "{{ ((duration + duration_unit) | community.general.to_time_unit('seconds') | int) + ansible_date_time.epoch | int }}"
+  delegate_to: localhost
+  run_once: true
+  changed_when: false
   when:
     - icinga_action == "add_downtimes"
 
@@ -34,7 +18,7 @@
 - ansible.builtin.debug:
     var: target
 
-- name: "Default task: set_fact: define icinga_host_filter as group"
+- name: "set_fact: define icinga_host_filter as group"
   ansible.builtin.set_fact:
     icinga_host_filter: "{{ groups[target] |
                             list |
@@ -42,17 +26,17 @@
   when:
     - single_host_downtime == "false"
 
-- ansible.builtin.debug:
-    var: icinga_host_filter
-
-- ansible.builtin.include_tasks: add_downtimes.yml
+- name: "include add_downtimes"
+  ansible.builtin.include_tasks: add_downtimes.yml
   when:
     - icinga_action == "add_downtimes"
 
-- ansible.builtin.include_tasks: remove_downtimes.yml
+- name: "include remove_downtimes"
+  ansible.builtin.include_tasks: remove_downtimes.yml
   when:
     - icinga_action == "remove_downtimes"
 
-- ansible.builtin.include_tasks: remove_all_downtimes.yml
+- name: "include remove_all_downtimes"
+  ansible.builtin.include_tasks: remove_all_downtimes.yml
   when:
     - icinga_action == "remove_all_downtimes"
