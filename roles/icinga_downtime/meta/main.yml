@@ -1,7 +1,7 @@
 galaxy_info:
-  author: Filip Krahl
-  description: Set Icinga downtimes with Ansible
-  company: T-Systems Multimedia Solutions GmbH
+  author: Filip Krahl, 2Fraennk
+  description: Set Icinga downtimes with Ansible via REST-API
+  company: TMMS
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
@@ -17,7 +17,7 @@ galaxy_info:
   license: Apache-2.0
 
 
-  min_ansible_version: 1.2
+  min_ansible_version: 3.5
 
   # If this a Container Enabled role, provide the minimum Ansible Container version.
   # min_ansible_container_version:
