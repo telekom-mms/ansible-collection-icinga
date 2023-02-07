@@ -1,0 +1,12 @@
+galaxy_info:
+  author: Filip Krahl, 2Fraennk
+  description: Set Icinga downtimes with Ansible via REST-API
+  company: TMMS
+  license: GPLv3
+  min_ansible_version: '3.5'
+  platforms:
+    - name: Ubuntu
+      versions:
+        - jammy
+  galaxy_tags:
+    - icinga

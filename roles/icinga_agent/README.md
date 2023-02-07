@@ -19,7 +19,7 @@ This role installs and configures the icinga agent.
 
 
 # Examples
-## defintion endpoints and zones
+## definition endpoints and zones
 
 related links:
 * [Icinga 2 zones.conf](https://icinga.com/docs/icinga-2/latest/doc/04-configuration/#zonesconf)
