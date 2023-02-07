@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.0.10](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.10) (2023-01-09)
+## [1.0.10](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.10) (2023-02-07)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.9...1.0.10)
 
@@ -19,6 +19,7 @@
 
 **Merged pull requests:**
 
+- add\_role\_icinga\_downtime [\#41](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/41) ([2Fraennk](https://github.com/2Fraennk))
 - fix molecule tests, use reusable workflow and fix linting [\#40](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/40) ([beechesII](https://github.com/beechesII))
 - use reusable workflow [\#39](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/39) ([rndmh3ro](https://github.com/rndmh3ro))
 - Update actions/checkout action to v3.1.0 [\#38](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/38) ([renovate[bot]](https://github.com/apps/renovate))
