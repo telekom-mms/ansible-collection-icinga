@@ -1,12 +1,14 @@
 # Changelog
 
-## [1.0.10](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.0.10) (2023-02-07)
+## [1.1.0](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.1.0) (2023-02-07)
 
-[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.9...1.0.10)
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.9...1.1.0)
 
 **Implemented enhancements:**
 
 - icinga\_plugins - pull additional checks from git repo [\#28](https://github.com/T-Systems-MMS/ansible-collection-icinga/issues/28)
+- add\_role\_icinga\_downtime [\#41](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/41) ([2Fraennk](https://github.com/2Fraennk))
+-  icinga\_plugins - pull additional checks from git repo [\#34](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/34) ([beechesII](https://github.com/beechesII))
 
 **Fixed bugs:**
 
@@ -19,13 +21,11 @@
 
 **Merged pull requests:**
 
-- add\_role\_icinga\_downtime [\#41](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/41) ([2Fraennk](https://github.com/2Fraennk))
 - fix molecule tests, use reusable workflow and fix linting [\#40](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/40) ([beechesII](https://github.com/beechesII))
 - use reusable workflow [\#39](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/39) ([rndmh3ro](https://github.com/rndmh3ro))
 - Update actions/checkout action to v3.1.0 [\#38](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/38) ([renovate[bot]](https://github.com/apps/renovate))
 - add name\[casing\] to ansible-lint warn\_list [\#36](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/36) ([beechesII](https://github.com/beechesII))
 - added missing fqcns for Issue  \#32 [\#35](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/35) ([xFuture603](https://github.com/xFuture603))
--  icinga\_plugins - pull additional checks from git repo [\#34](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/34) ([beechesII](https://github.com/beechesII))
 - fix ansible lint action [\#31](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/31) ([beechesII](https://github.com/beechesII))
 - change broken absolute README links to relative links [\#29](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/29) ([lansfojo](https://github.com/lansfojo))
 - Update actions/setup-python action to v4 [\#27](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/27) ([renovate[bot]](https://github.com/apps/renovate))
