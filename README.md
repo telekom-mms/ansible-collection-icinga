@@ -5,6 +5,8 @@ This Ansible collection contains:
   1. A [role](roles/icinga_agent) to manage the Installation for your Icinga agents
 
   2. A [role](roles/icinga_plugins) to deploy your custom check scripts to your Icinga agents
+  
+  3. A [role](roles/icinga_downtime) to manage downtimes in your Icinga
 
   3. The [collection](https://github.com/T-Systems-MMS/ansible-collection-icinga-director) to deploy your Icinga master via the Icinga Director module
 
