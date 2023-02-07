@@ -1,7 +1,4 @@
 ---
-# defaults
-#
-
 duration: 2
 duration_unit: hours
 author: Ansible
