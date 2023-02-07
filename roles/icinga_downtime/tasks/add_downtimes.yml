@@ -33,7 +33,7 @@
     validate_certs: true
     method: POST
     status_code: 200
-    return_content: yes
+    return_content: true
     headers:
       Accept: 'application/json'
     body_format: json
@@ -61,7 +61,7 @@
     validate_certs: true
     method: POST
     status_code: 200
-    return_content: yes
+    return_content: true
     headers:
       Accept: 'application/json'
     body_format: json

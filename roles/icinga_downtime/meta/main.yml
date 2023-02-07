@@ -40,7 +40,7 @@ galaxy_info:
   #   - 25
   - name: Ubuntu
     versions:
-    - 22.04.1 LTS
+    - jammy
   #   - 1.0
   #   - 7
   #   - 99.99
