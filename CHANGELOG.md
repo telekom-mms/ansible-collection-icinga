@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.1](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.1.1) (2023-02-08)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.1.0...1.1.1)
+
+**Merged pull requests:**
+
+- fix yaml\[line-length\] [\#42](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/42) ([beechesII](https://github.com/beechesII))
+
 ## [1.1.0](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.1.0) (2023-02-07)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.0.9...1.1.0)
