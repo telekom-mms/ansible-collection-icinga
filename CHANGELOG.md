@@ -1,11 +1,16 @@
 # Changelog
 
-## [1.1.1](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.1.1) (2023-02-08)
+## [1.1.1](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.1.1) (2023-03-16)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.1.0...1.1.1)
 
+**Closed issues:**
+
+- ansible-lint: fix name\[casing\] [\#37](https://github.com/T-Systems-MMS/ansible-collection-icinga/issues/37)
+
 **Merged pull requests:**
 
+- Update actions/checkout action to v3.4.0 [\#43](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/43) ([renovate[bot]](https://github.com/apps/renovate))
 - fix yaml\[line-length\] [\#42](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/42) ([beechesII](https://github.com/beechesII))
 
 ## [1.1.0](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.1.0) (2023-02-07)
