@@ -72,7 +72,7 @@
     path: "{{ item.path }}"
     owner: "{{ icinga2_user[ansible_os_family] }}"
     group: "{{ icinga2_group[ansible_os_family] }}"
-    mode: 0755
+    mode: "0755"
   loop: "{{ files_in_plugins_dir.files }}"
   loop_control:
     label: "{{ item.path }}"
