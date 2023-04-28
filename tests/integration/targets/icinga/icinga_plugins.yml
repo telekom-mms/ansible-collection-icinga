@@ -7,14 +7,16 @@
     - icinga_plugins
   post_tasks:
     - name: Verify that icinga2 package is installed
-      ansible.builtin.command: "rpm -q nagios-plugins-all"
+      ansible.builtin.yum:
+        name: nagios-plugins-all
+        state: installed
       register: redhat_package_check
       when: ansible_facts['os_family'] == "RedHat"
 
     - name: Validate that package icinga2 is installed
       ansible.builtin.assert:
         that:
-          - "redhat_package_check.state == 'installed'"
+          - "redhat_package_check.changed == false"
       when: ansible_facts['os_family'] == "RedHat"
 
     - name: Verfiy that plugin files belong to icinga

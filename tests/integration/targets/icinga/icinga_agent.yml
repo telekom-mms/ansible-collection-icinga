@@ -69,19 +69,23 @@
           - "result_api_conf.changed == true"
 
     - name: Verify that icinga2 package is installed
-      ansible.builtin.command: "rpm -q icinga2"
+      ansible.builtin.yum:
+        name: icinga2
+        state: installed
       register: redhat_package_check
       when: ansible_facts['os_family'] == "RedHat"
 
     - name: Verify that icinga2 package is installed
       ansible.builtin.command: "dpkg-query -l icinga2"
       register: debian_package_check
+      changed_when: false
+      failed_when: debian_package_check.rc != 0
       when: ansible_facts['os_family'] == "Debian"
 
     - name: Validate that package icinga2 is installed
       ansible.builtin.assert:
         that:
-          - "redhat_package_check.state == 'installed'"
+          - "redhat_package_check.changed == false"
       when: ansible_facts['os_family'] == "RedHat"
 
     - name: Validate that package icinga2 is installed
