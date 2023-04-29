@@ -11,6 +11,7 @@
 **Merged pull requests:**
 
 - Fix linting issues [\#46](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/46) ([beechesII](https://github.com/beechesII))
+- Update actions/checkout action to v3.5.2 [\#45](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/45) ([renovate[bot]](https://github.com/apps/renovate))
 - Update actions/checkout action to v3.5.0 [\#44](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/44) ([renovate[bot]](https://github.com/apps/renovate))
 - Update actions/checkout action to v3.4.0 [\#43](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/43) ([renovate[bot]](https://github.com/apps/renovate))
 - fix yaml\[line-length\] [\#42](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/42) ([beechesII](https://github.com/beechesII))
