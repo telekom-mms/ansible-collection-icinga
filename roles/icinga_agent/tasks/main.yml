@@ -9,7 +9,7 @@
 - name: Create /etc/icinga2/repository.d
   ansible.builtin.file:
     dest: "/etc/icinga2/repository.d"
-    mode: 0750
+    mode: "0750"
     owner: "{{ icinga2_user[ansible_os_family] }}"
     group: "{{ icinga2_group[ansible_os_family] }}"
     state: directory
@@ -20,7 +20,7 @@
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
-    mode: 0750
+    mode: "0750"
     owner: "{{ icinga2_user[ansible_os_family] }}"
     group: "{{ icinga2_group[ansible_os_family] }}"
   loop:
@@ -33,7 +33,7 @@
     dest: "/etc/icinga2/{{ item | basename | regex_replace('.j2', '') }}"
     owner: "{{ icinga2_user[ansible_os_family] }}"
     group: "{{ icinga2_group[ansible_os_family] }}"
-    mode: 0640
+    mode: "0640"
   with_fileglob:
     - "../templates/configuration/*"
   notify:
@@ -45,7 +45,7 @@
     dest: "/etc/icinga2/features-available/{{ item | basename | regex_replace('.j2', '') }}"
     owner: "{{ icinga2_user[ansible_os_family] }}"
     group: "{{ icinga2_group[ansible_os_family] }}"
-    mode: 0640
+    mode: "0640"
   with_fileglob:
     - "../templates/features/*"
   notify:
@@ -57,7 +57,7 @@
     dest: "/etc/icinga2/features-available/{{ item | basename | regex_replace('.j2', '') }}"
     owner: "{{ icinga2_user[ansible_os_family] }}"
     group: "{{ icinga2_group[ansible_os_family] }}"
-    mode: 0640
+    mode: "0640"
   with_fileglob:
     - "{{ icinga_agent_custom_features_template_path }}"
   notify:
@@ -88,7 +88,7 @@
       ansible.builtin.file:
         path: /var/lib/icinga2/certs/
         state: directory
-        mode: 0750
+        mode: "0750"
         owner: "{{ icinga2_user[ansible_os_family] }}"
         group: "{{ icinga2_group[ansible_os_family] }}"
 

@@ -23,7 +23,7 @@
     - name: Verify that plugin dir exists
       ansible.builtin.file:
         path: "{{ icinga2_plugins_pluginsdir }}"
-        mode: 0755
+        mode: "0755"
         state: directory
       register: result_plugin_dir
 
@@ -77,7 +77,7 @@
     - name: Verify cloned check exists
       ansible.builtin.file:
         path: "{{ icinga_plugins_git_repo_dest_path }}/check_hello.sh"
-        mode: 0755
+        mode: "0755"
         state: file
       register: result_cloned_check
 
