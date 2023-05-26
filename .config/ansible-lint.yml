@@ -11,3 +11,4 @@ exclude_paths:
 
 warn_list:
   - fqcn[keyword]
+  - var-naming[no-role-prefix]
