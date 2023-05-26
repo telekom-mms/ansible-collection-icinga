@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.1.1](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.1.1) (2023-04-29)
+## [1.1.1](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.1.1) (2023-05-26)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.1.0...1.1.1)
 
@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- add var-naming\[no-role-prefix\] to ansible-lint warn\_list [\#47](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/47) ([beechesII](https://github.com/beechesII))
 - Fix linting issues [\#46](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/46) ([beechesII](https://github.com/beechesII))
 - Update actions/checkout action to v3.5.2 [\#45](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/45) ([renovate[bot]](https://github.com/apps/renovate))
 - Update actions/checkout action to v3.5.0 [\#44](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/44) ([renovate[bot]](https://github.com/apps/renovate))
