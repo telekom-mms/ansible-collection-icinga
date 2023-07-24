@@ -2,15 +2,13 @@
 - name: Create objects in Icinga
   hosts: localhost
   gather_facts: false
-  collections:
-    - telekom_mms.icinga_director
   vars:
     object_name: check_json
   tasks:
     # icinga_command
     - name: "Icinga_command-{{ object_name }}"
       ansible.builtin.include_role:
-        name: "ansible_icinga"
+        name: "telekom_mms.icinga_director.ansible_icinga"
         tasks_from: "icinga_command"
       vars:
         icinga_commands:
@@ -47,7 +45,7 @@
     # icinga_service_template
     - name: "Icinga_service_template-{{ object_name }}"
       ansible.builtin.include_role:
-        name: "ansible_icinga"
+        name: "telekom_mms.icinga_director.ansible_icinga"
         tasks_from: "icinga_service_template"
       vars:
         icinga_service_templates:
@@ -62,7 +60,7 @@
 ## used for service_apply
 # - name: "Icinga_service_apply_azure"
 #   include_role:
-#     name: "ansible_icinga"
+#     name: "telekom_mms.icinga_director.ansible_icinga"
 #     tasks_from: "icinga_service_apply"
 #   vars:
 #     icinga_service_applies:
