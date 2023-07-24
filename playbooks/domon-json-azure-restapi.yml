@@ -60,7 +60,9 @@
             check_command: "{{ object_name }}"
             check_interval: 5m
             vars:
-              json_url: https://management.azure.com/subscriptions/$azure_subscription_id$/resourcegroups/$azure_resource_group$$azure_resource_uri$?api-version=$azure_restapi_version$
+              json_url:
+                "https://management.azure.com/subscriptions/$azure_subscription_id$/resourcegroups/$azure_resource_group$$azure_resource_uri$\
+                ?api-version=$azure_restapi_version$"
               json_ignoressl: true
 
 # EXAMPLES
