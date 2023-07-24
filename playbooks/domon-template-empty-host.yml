@@ -2,15 +2,13 @@
 - name: Create objects in Icinga
   hosts: localhost
   gather_facts: false
-  collections:
-    - telekom_mms.icinga_director
   vars:
     object_name: empty-host
   tasks:
     # icinga_host_template
     - name: "Icinga_host_template"
       ansible.builtin.include_role:
-        name: "ansible_icinga"
+        name: "telekom_mms.icinga_director.ansible_icinga"
         tasks_from: "icinga_host_template"
       vars:
         icinga_host_templates:
