@@ -1,25 +1,23 @@
 ---
-- hosts: localhost
+- name: Create objects in Icinga
+  hosts: localhost
   gather_facts: false
   collections:
-  - telekom_mms.icinga_director
+    - telekom_mms.icinga_director
   vars:
-    ansible_role: ansible_icinga
-    ansible_task:
-      service_template: icinga_service_template
     object_name: domon-https
   tasks:
     # icinga_service_template
-    - name: "{{ ansible_task.service_template }}-{{ object_name }}"
-      include_role:
-        name: "{{ ansible_role }}"
-        tasks_from: "{{ ansible_task.service_template }}"
+    - name: "Icinga_service_template-{{ object_name }}"
+      ansible.builtin.include_role:
+        name: "ansible_icinga"
+        tasks_from: "icinga_service_template"
       vars:
         icinga_service_templates:
           - service_template_object:
-            - "{{ object_name }}"
+              - "{{ object_name }}"
             imports:
-            - "domon-non-agent-service"
+              - domon-non-agent-service
             check_command: http
             check_interval: 300
             vars:
@@ -30,8 +28,8 @@
               http_ssl: true
               http_timeout: 30
           - service_template_object:
-            - "{{ object_name }}-certificate"
+              - "{{ object_name }}-certificate"
             imports:
-            - "{{ object_name }}"
+              - "{{ object_name }}"
             check_period: only_at_1000-1005
             check_timeout: 60

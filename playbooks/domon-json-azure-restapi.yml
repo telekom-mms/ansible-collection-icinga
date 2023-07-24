@@ -1,87 +1,84 @@
 ---
-- hosts: localhost
+- name: Create objects in Icinga
+  hosts: localhost
   gather_facts: false
   collections:
-  - telekom_mms.icinga_director
+    - telekom_mms.icinga_director
   vars:
-    ansible_role: ansible_icinga
-    ansible_task:
-      command: icinga_command
-      service_template: icinga_service_template
     object_name: check_json_azure_restapi
   tasks:
     # icinga_command
-    - name: "{{ ansible_task.command }}-{{ object_name }}"
-      include_role:
-        name: "{{ ansible_role }}"
-        tasks_from: "{{ ansible_task.command }}"
+    - name: "Icinga_command-{{ object_name }}"
+      ansible.builtin.include_role:
+        name: "ansible_icinga"
+        tasks_from: "icinga_command"
       vars:
         icinga_commands:
           - command_object:
-            - "{{ object_name }}"
-            command: "check_json.pl"
+              - "{{ object_name }}"
+            command: check_json.pl
             arguments:
-              '--ignoressl':
-                set_if: "$json_ignoressl$"
-              '-T': "$json_contenttype$"
-              '-a':
+              --ignoressl:
+                set_if: $json_ignoressl$
+              -T: $json_contenttype$
+              -a:
                 required: true
-                value: "$json_attributes$"
-              '-b':
-                required: true
-                type: Function
-                body: "return get_service(macro(\"$azure_oauth_token_host$\"), macro(\"$azure_oauth_token_service$\")).last_check_result.output"
-              '-c':
+                value: $json_attributes$
+              -b:
                 required: true
                 type: Function
-                body: "macro(\"$json_crit$\")"
-              '-d': "$json_divisor$"
-              '-e': "$json_expect$"
-              '-m': "$json_metadata$"
-              '-o': "$json_outputvars$"
-              '-p': "$json_perfvars$"
-              '-t': "$json_timeout$"
-              '-u':
-                required: true
-                value: "$json_url$"
-              '-w':
+                body: return get_service(macro("$azure_oauth_token_host$"), macro("$azure_oauth_token_service$")).last_check_result.output
+              -c:
                 required: true
                 type: Function
-                body: "macro(\"$json_warn$\")"
-              '-x': "$json_xauth$"
+                body: macro("$json_crit$")
+              -d: $json_divisor$
+              -e: $json_expect$
+              -m: $json_metadata$
+              -o: $json_outputvars$
+              -p: $json_perfvars$
+              -t: $json_timeout$
+              -u:
+                required: true
+                value: $json_url$
+              -w:
+                required: true
+                type: Function
+                body: macro("$json_warn$")
+              -x: $json_xauth$
     # icinga_service_template
-    - name: "{{ ansible_task.service_template }}-{{ object_name }}"
-      include_role:
-        name: "{{ ansible_role }}"
-        tasks_from: "{{ ansible_task.service_template }}"
+    - name: "Icinga_service_template-{{ object_name }}"
+      ansible.builtin.include_role:
+        name: "ansible_icinga"
+        tasks_from: "icinga_service_template"
       vars:
         icinga_service_templates:
           - service_template_object:
-            - "domon-json-azure-restapi"
+              - domon-json-azure-restapi
             imports:
-            - "domon-non-agent-service"
+              - domon-non-agent-service
             check_command: "{{ object_name }}"
             check_interval: 5m
             vars:
-              json_url: "https://management.azure.com/subscriptions/$azure_subscription_id$/resourcegroups/$azure_resource_group$$azure_resource_uri$?api-version=$azure_restapi_version$"
+              json_url: https://management.azure.com/subscriptions/$azure_subscription_id$/resourcegroups/$azure_resource_group$$azure_resource_uri$?api-version=$azure_restapi_version$
               json_ignoressl: true
 
 # EXAMPLES
 ## used for service_apply
-#- name: "{{ ansible_task.service_apply }}_azure"
-#  include_role:
-#    name: "{{ ansible_role }}"
-#    tasks_from: "{{ ansible_task.service_apply }}"
-#  vars:
-#    icinga_service_applies:
-#    - service_apply_object:
-#      - "{{ object_name }}-service_apply"
-#      imports: "domon-json-azure-restapi"
-#      display_name: "{{ object_name }}"
-#      assign_filter: "{{'host.name=\"azure\"'}}"
-#      vars:
-#        json_url: "https://management.azure.com/subscriptions/xxx"
-#        json_attributes: '{properties}->{state}'
-#        json_expect: Ready
-#        json_ignoressl: true
-#        json_outputvars: '{properties}->{state}'
+# - name: "Icinga_service_template_azure"
+#   include_role:
+#     name: "ansible_icinga"
+#     tasks_from: "icinga_service_apply"
+#   vars:
+#     icinga_service_applies:
+#     - service_apply_object:
+#       - "{{ object_name }}-service_apply"
+#       imports: "domon-json-azure-restapi"
+#       display_name: "{{ object_name }}"
+#       assign_filter: "{{'host.name=\"azure\"'}}"
+#       vars:
+#         json_url: "https://management.azure.com/subscriptions/xxx"
+#         json_attributes: '{properties}->{state}'
+#         json_expect: Ready
+#         json_ignoressl: true
+#         json_outputvars: '{properties}->{state}'

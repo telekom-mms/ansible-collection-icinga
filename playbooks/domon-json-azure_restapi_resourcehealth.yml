@@ -1,30 +1,29 @@
 ---
-- hosts: localhost
+- name: Create objects in Icinga
+  hosts: localhost
   gather_facts: false
   collections:
-  - telekom_mms.icinga_director
+    - telekom_mms.icinga_director
   vars:
-    ansible_role: ansible_icinga
-    ansible_task:
-      service_template: icinga_service_template
-      object_name: azure_restapi_resourcehealth
+    object_name: azure_restapi_resourcehealth
   tasks:
     # icinga_service_template
-    - name: "{{ ansible_task.service_template }}-{{ object_name }}"
-      include_role:
-        name: "{{ ansible_role }}"
-        tasks_from: "{{ ansible_task.service_template }}"
+    - name: "Icinga_service_template-{{ object_name }}"
+      ansible.builtin.include_role:
+        name: "ansible_icinga"
+        tasks_from: "icinga_service_template"
       vars:
         icinga_service_templates:
           - service_template_object:
-            - "domon-json-azure_restapi_resourcehealth"
+              - domon-json-azure_restapi_resourcehealth
             imports:
-            - "domon-non-agent-service"
-            check_command: "check_json_azure_restapi"
+              - domon-non-agent-service
+            check_command: check_json_azure_restapi
             check_interval: 5m
             vars:
-              json_url: "https://management.azure.com/subscriptions/$azure_subscription_id$/resourcegroups/$azure_resource_group$$azure_resource_uri$/providers/Microsoft.ResourceHealth/availabilityStatuses/current?api-version=2020-05-01-preview"
+              json_url:
+                https://management.azure.com/subscriptions/$azure_subscription_id$/resourcegroups/$azure_resource_group$$azure_resource_uri$/providers/Microsoft.ResourceHealth/availabilityStatuses/current?api-version=2020-05-01-preview
               json_expect: Available
               json_ignoressl: true
-              json_attributes: '{properties}->{availabilityState}'
-              json_outputvars: '{properties}->{availabilityState},{properties}->{summary},{properties}->{reasonType},{properties}->{occuredTime}'
+              json_attributes: "{properties}->{availabilityState}"
+              json_outputvars: "{properties}->{availabilityState},{properties}->{summary},{properties}->{reasonType},{properties}->{occuredTime}"

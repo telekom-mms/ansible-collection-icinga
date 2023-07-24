@@ -1,65 +1,61 @@
 ---
-- hosts: localhost
+- name: Create objects in Icinga
+  hosts: localhost
   gather_facts: false
   collections:
-  - telekom_mms.icinga_director
+    - telekom_mms.icinga_director
   vars:
-    ansible_role: ansible_icinga
-    ansible_task:
-      command: icinga_command
-      service_template: icinga_service_template
     object_name: check_gitlab_scheduler
   tasks:
     # icinga_command
-    - name: "{{ ansible_task.command }}-{{ object_name }}"
-      include_role:
-        name: "{{ ansible_role }}"
-        tasks_from: "{{ ansible_task.command }}"
+    - name: "Icinga_command-{{ object_name }}"
+      ansible.builtin.include_role:
+        name: "ansible_icinga"
+        tasks_from: "icinga_command}"
       vars:
         icinga_commands:
           - command_object:
-            - "{{ object_name }}"
+              - "{{ object_name }}"
             command: "{{ object_name }}.py"
             arguments:
-              '-p':
+              -p:
                 required: true
-                value: "$projectid$"
-              '-s':
+                value: $projectid$
+              -s:
                 required: true
-                value: "$schedulerid$"
-              '-t':
+                value: $schedulerid$
+              -t:
                 required: true
-                value: "$token$"
-              '-o':
+                value: $token$
+              -o:
                 required: false
-                value: "$pending_timeout$"
+                value: $pending_timeout$
     # icinga_service_template
-    - name: "{{ ansible_task.service_template }}-{{ object_name }}"
-      include_role:
-        name: "{{ ansible_role }}"
-        tasks_from: "{{ ansible_task.service_template }}"
+    - name: "Icinga_service_template-{{ object_name }}"
+      ansible.builtin.include_role:
+        name: "ansible_icinga"
+        tasks_from: "icinga_service_template"
       vars:
         icinga_service_templates:
           - service_template_object:
-            - "{{ object_name }}"
+              - "{{ object_name }}"
             check_command: "{{ object_name }}"
             check_interval: 5m
 
 # EXAMPLES
 ## used for service_apply
-#- name: "{{ ansible_task.service_apply }}_azure"
-#  include_role:
-#    name: "{{ ansible_role }}"
-#    tasks_from: "{{ ansible_task.service_apply }}"
-#  vars:
-#    icinga_service_applies:
-#    - service_apply_object:
-#      - "{{ object_name }}-service_apply"
-#      imports: "check_gitlab_scheduler"
-#      display_name: "{{ object_name }}_pipelinename"
-#      assign_filter: "{{'host.name="gitlab-pipelines"'}}"
-#      vars:
-#        projectid: "111"
-#        schedulerid: "222"
-#        token: "{{ gitlab_project_token }}"
-
+# - name: "Icinga_service_apply_azure"
+#   include_role:
+#     name: "ansible_icinga"
+#     tasks_from: "icinga_service_apply"
+#   vars:
+#     icinga_service_applies:
+#     - service_apply_object:
+#       - "{{ object_name }}-service_apply"
+#       imports: "check_gitlab_scheduler"
+#       display_name: "{{ object_name }}_pipelinename"
+#       assign_filter: "{{'host.name="gitlab-pipelines"'}}"
+#       vars:
+#         projectid: "111"
+#         schedulerid: "222"
+#         token: "{{ gitlab_project_token }}"
