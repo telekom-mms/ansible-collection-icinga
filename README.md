@@ -12,6 +12,8 @@ This Ansible collection contains:
 
   4. An extra [collection](https://github.com/T-Systems-MMS/ansible-collection-icinga-business-process) to use the [Business Process module](https://github.com/Icinga/icingaweb2-module-businessprocess)
 
+  5. Ansible playbooks to create various objects in Icinga 2 using the director API
+
 ## Requirements
 
 - Ansible version: 2.9.10
@@ -50,6 +52,20 @@ Check out the 'Documentation' part for the modules [here](https://github.com/T-S
 **icinga_business_process collection:**
 
 Check out the 'Documentation' part for this collection [here](https://github.com/T-Systems-MMS/ansible-collection-icinga-business-process/blob/master/roles/ansible_icinga_business_process/README.md)
+
+**icinga playbooks:**
+
+| playbook| description
+|------------|-----------------------------------------------------------------------
+| azure_oauth_token.yml | get azure oauth token 
+| domon-check_gitlab_scheduler.yml | check gitlab scheduled pipelines
+| domon-https.yml | check https reacahbility and certificates
+| domon-json-azure_restapi_resourcehealth.yml | check state of azure resourcehealth
+| domon-json-azure-restapi.yml | do a json check against azure restapi (with oauth_token)
+| domon-json.yml | do a json check
+| domon-template-empty-host.yml | create a host template for an empty host
+
+
 ## License
 
 GPLv3
