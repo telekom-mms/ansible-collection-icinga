@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  gather_facts: false
+  collections:
+  - telekom_mms.icinga_director
+  vars:
+    ansible_role: ansible_icinga
+    ansible_task:
+      host_template: icinga_host_template
+    object_name: empty-host
+  tasks:
+    # icinga_host_template
+    - name: "{{ ansible_task.host_template }}"
+      include_role:
+        name: "{{ ansible_role }}"
+        tasks_from: "{{ ansible_task.host_template }}"
+      vars:
+        icinga_host_templates:
+          - host_template_object:
+            - domon-template-{{ object_name }}
+            check_command: dummy
