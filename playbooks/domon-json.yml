@@ -1,82 +1,79 @@
 ---
-- hosts: localhost
+- name: Create objects in Icinga
+  hosts: localhost
   gather_facts: false
   collections:
-  - telekom_mms.icinga_director
+    - telekom_mms.icinga_director
   vars:
-    ansible_role: ansible_icinga
-    ansible_task:
-      command: icinga_command
-      service_template: icinga_service_template
     object_name: check_json
   tasks:
     # icinga_command
-    - name: "{{ ansible_task.command }}-{{ object_name }}"
-      include_role:
-        name: "{{ ansible_role }}"
-        tasks_from: "{{ ansible_task.command }}"
+    - name: "Icinga_command-{{ object_name }}"
+      ansible.builtin.include_role:
+        name: "ansible_icinga"
+        tasks_from: "icinga_command"
       vars:
         icinga_commands:
           - command_object:
-            - "{{ object_name }}"
+              - "{{ object_name }}"
             command: "{{ object_name }}.pl"
             arguments:
-              '--ignoressl':
-                set_if: "$json_ignoressl$"
-              '-T': "$json_contenttype$"
-              '-a':
+              --ignoressl:
+                set_if: $json_ignoressl$
+              -T: $json_contenttype$
+              -a:
                 required: true
-                value: "$json_attributes$"
-              '-b':
-                value: "$json_bearer$"
-              '-c':
-                required: true
-                type: Function
-                body: "macro(\"$json_crit$\")"
-              '-d': "$json_divisor$"
-              '-e': "$json_expect$"
-              '-m': "$json_metadata$"
-              '-o': "$json_outputvars$"
-              '-p': "$json_perfvars$"
-              '-t': "$json_timeout$"
-              '-u':
-                required: true
-                value: "$json_url$"
-              '-w':
+                value: $json_attributes$
+              -b:
+                value: $json_bearer$
+              -c:
                 required: true
                 type: Function
-                body: "macro(\"$json_warn$\")"
-              '-x': "$json_xauth$"
+                body: macro("$json_crit$")
+              -d: $json_divisor$
+              -e: $json_expect$
+              -m: $json_metadata$
+              -o: $json_outputvars$
+              -p: $json_perfvars$
+              -t: $json_timeout$
+              -u:
+                required: true
+                value: $json_url$
+              -w:
+                required: true
+                type: Function
+                body: macro("$json_warn$")
+              -x: $json_xauth$
     # icinga_service_template
-    - name: "{{ ansible_task.service_template }}-{{ object_name }}"
-      include_role:
-        name: "{{ ansible_role }}"
-        tasks_from: "{{ ansible_task.service_template }}"
+    - name: "Icinga_service_template-{{ object_name }}"
+      ansible.builtin.include_role:
+        name: "ansible_icinga"
+        tasks_from: "icinga_service_template"
       vars:
         icinga_service_templates:
           - service_template_object:
-            - "domon-json"
+              - domon-json
             imports:
-            - "domon-non-agent-service"
+              - domon-non-agent-service
             check_command: "{{ object_name }}"
             check_interval: 5m
 
 # EXAMPLES
 ## used for service_apply
-#- name: "{{ ansible_task.service_apply }}_azure"
-#  include_role:
-#    name: "{{ ansible_role }}"
-#    tasks_from: "{{ ansible_task.service_apply }}"
-#  vars:
-#    icinga_service_applies:
-#    - service_apply_object:
-#      - "{{ object_name }}-service_apply"
-#      imports: "domon-json"
-#      display_name: "{{ object_name }}"
-#      assign_filter: "{{'host.name=\"azure\"'}}"
-#      vars:
-#        json_url: "https://api/xxx"
-#        json_attributes: '{state}'
-#        json_expect: Online
-#        json_ignoressl: true
-#        json_outputvars: '{state}'
+# - name: "Icinga_service_apply_azure"
+#   include_role:
+#     name: "ansible_icinga"
+#     tasks_from: "icinga_service_apply"
+#   vars:
+#     icinga_service_applies:
+#     - service_apply_object:
+#       - "{{ object_name }}-service_apply"
+#       imports: "domon-json"
+#       display_name: "{{ object_name }}"
+#       assign_filter: "{{'host.name=\"azure\"'}}"
+#       vars:
+#         json_url: "https://api/xxx"
+#         json_attributes: '{state}'
+#         json_expect: Online
+#         json_ignoressl: true
+#         json_outputvars: '{state}'
