@@ -59,7 +59,7 @@ Check out the 'Documentation' part for this collection [here](https://github.com
 |------------|-----------------------------------------------------------------------
 | azure_oauth_token.yml | get azure oauth token 
 | domon-check_gitlab_scheduler.yml | check gitlab scheduled pipelines
-| domon-https.yml | check https reacahbility and certificates
+| domon-https.yml | check https reachability and certificates
 | domon-json-azure_restapi_resourcehealth.yml | check state of azure resourcehealth
 | domon-json-azure-restapi.yml | do a json check against azure restapi (with oauth_token)
 | domon-json.yml | do a json check
