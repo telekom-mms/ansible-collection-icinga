@@ -12,7 +12,7 @@ This role installs and configures the icinga agent.
 | icinga_agent_ca_host_icinga_port | no | 5665 | Icinga agent port
 | icinga_agent_salt | no | | used to hash password
 | icinga_agent_custom_features_template_path | no | | define custom feature file (f.e. {{ playbook_dir }}/icinga_custom_templates/*)
-| icinga_agent_constants_conf | yes | const PluginDir = "/usr/lib64/nagios/plugins"<br> const PluginContribDir = "/usr/lib64/nagios/plugins"<br> const ManubulonPluginDir = "/usr/lib64/nagios/plugins"<br> const ZoneName = "{{ ansible_hostname }}"<br> const NodeName = "{{ ansible_hostname }}"<br> const TicketSalt = "" | define content for config file constants.conf |
+| icinga_agent_constants[RedHat, Debian] | yes | const PluginDir = "/usr/lib64/nagios/plugins"<br> const PluginContribDir = "/usr/lib64/nagios/plugins"<br> const ManubulonPluginDir = "/usr/lib64/nagios/plugins"<br> const ZoneName = "{{ ansible_hostname }}"<br> const NodeName = "{{ ansible_hostname }}"<br> const TicketSalt = "" | define content for config file constants.conf, depending on the OS family |
 | icinga_agent_api_conf | yes | accept_config = true<br>accept_commands = true | define content for feature file api.conf |
 | icinga_agent_endpoints | yes | | define icinga agent endpoint in zones.conf
 | icinga_agent_zones | yes | | define zones in zones.conf
