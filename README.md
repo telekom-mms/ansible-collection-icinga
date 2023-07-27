@@ -65,7 +65,6 @@ Check out the 'Documentation' part for this collection [here](https://github.com
 | icinga-json.yml | do a json check
 | icinga-template-empty-host.yml | create a host template for an empty host
 
-
 ## License
 
 GPLv3
