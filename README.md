@@ -58,12 +58,12 @@ Check out the 'Documentation' part for this collection [here](https://github.com
 | playbook| description
 |------------|-----------------------------------------------------------------------
 | azure_oauth_token.yml | get azure oauth token 
-| domon-check_gitlab_scheduler.yml | check gitlab scheduled pipelines
-| domon-https.yml | check https reacahbility and certificates
-| domon-json-azure_restapi_resourcehealth.yml | check state of azure resourcehealth
-| domon-json-azure-restapi.yml | do a json check against azure restapi (with oauth_token)
-| domon-json.yml | do a json check
-| domon-template-empty-host.yml | create a host template for an empty host
+| icinga-check_gitlab_scheduler.yml | check gitlab scheduled pipelines
+| icinga-https.yml | check https reachability and certificates
+| icinga-json-azure_restapi_resourcehealth.yml | check state of azure resourcehealth
+| icinga-json-azure-restapi.yml | do a json check against azure restapi (with oauth_token)
+| icinga-json.yml | do a json check
+| icinga-template-empty-host.yml | create a host template for an empty host
 
 
 ## License
