@@ -13,9 +13,24 @@
       vars:
         icinga_service_templates:
           - service_template_object:
+              - "domon-standard-service"
+            max_check_attempts: "3"
+            check_period: "24/7"
+            check_interval: "2m"
+            retry_interval: "1m"
+            enable_notifications: true
+            enable_active_checks: true
+            enable_passive_checks: false
+            enable_event_handler: false
+            enable_perfdata: true
+            volatile: false
+            command_endpoint: null
+            vars:
+              domon_enabled_notifications: [ "mail_24/7" ]
+          - service_template_object:
               - "{{ object_name }}"
             imports:
-              - domon-non-agent-service
+              - domon-standard-service
             check_command: http
             check_interval: 300
             vars:
@@ -29,5 +44,4 @@
               - "{{ object_name }}-certificate"
             imports:
               - "{{ object_name }}"
-            check_period: only_at_1000-1005
             check_timeout: 60
