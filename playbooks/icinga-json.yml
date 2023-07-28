@@ -63,7 +63,7 @@
             volatile: false
             command_endpoint: null
             vars:
-              domon_enabled_notifications: [ "mail_24/7" ]
+              domon_enabled_notifications: ["mail_24/7"]
           - service_template_object:
               - domon-json
             imports:
