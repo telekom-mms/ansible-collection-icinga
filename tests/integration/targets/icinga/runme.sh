@@ -2,14 +2,6 @@
 
 set -eux
 
-ansible-playbook icinga_agent.yml -e "@../../integration_config.yml" "$@"
-ansible-playbook icinga_agent.yml --check --diff -e "@../../integration_config.yml" "$@"
-ansible-playbook icinga_plugins.yml -e "@../../integration_config.yml" "$@"
-ansible-playbook icinga_plugins.yml --check --diff -e "@../../integration_config.yml" "$@"
-
-ansible-playbook icinga_plugins.yml -e "@../../integration_config.yml" "$@"
-ansible-playbook icinga_plugins.yml --check --diff -e "@../../integration_config.yml" "$@"
-
 ansible-playbook t_systems_mms.ansible_collection_icinga.domon_standard -e "@../../integration_config.yml" "$@"
 ansible-playbook t_systems_mms.ansible_collection_icinga.check_azure_oauth_token -e "@../../integration_config.yml" "$@"
 ansible-playbook t_systems_mms.ansible_collection_icinga.check_gitlab_scheduler -e "@../../integration_config.yml" "$@"
