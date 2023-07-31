@@ -1,0 +1,15 @@
+---
+- name: Create empty-host template
+  hosts: localhost
+  gather_facts: false
+  module_defaults:
+    group/telekom_mms.icinga_director.icinga:
+      url: "{{ icinga_url }}"
+      url_username: "{{ icinga_user }}"
+      url_password: "{{ icinga_pass }}"
+  tasks:
+    - name: Create a host in icinga
+      t_systems_mms.icinga_director.icinga_host:
+        state: present
+        object_name: domon-template-empty-host
+        check_command: dummy

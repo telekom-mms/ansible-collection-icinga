@@ -1,0 +1,80 @@
+---
+- name: Create service template and command for check_json
+  hosts: localhost
+  gather_facts: false
+  module_defaults:
+    group/telekom_mms.icinga_director.icinga:
+      url: "{{ icinga_url }}"
+      url_username: "{{ icinga_user }}"
+      url_password: "{{ icinga_pass }}"
+  tasks:
+    - name: Create service template for domon-standard-service
+      telekom_mms.icinga_director.icinga_service_template:
+        state: present
+        object_name: domon-standard-service
+        max_check_attempts: "3"
+        check_period: "24/7"
+        check_interval: "2m"
+        retry_interval: "1m"
+        enable_notifications: true
+        enable_active_checks: true
+        enable_passive_checks: false
+        enable_event_handler: false
+        enable_perfdata: true
+        volatile: false
+        command_endpoint: null
+        vars:
+          domon_enabled_notifications: ["mail_24/7"]
+
+    - name: Create Command check_json
+      telekom_mms.icinga_director.icinga_command:
+        state: present
+        object_name: check_json
+        command: "check_json.pl"
+        arguments:
+          --ignoressl:
+            set_if: $json_ignoressl$
+          -T: $json_contenttype$
+          -a:
+            required: true
+            value: $json_attributes$
+          -b:
+            value: $json_bearer$
+          -c:
+            required: true
+            type: Function
+            body: macro("$json_crit$")
+          -d: $json_divisor$
+          -e: $json_expect$
+          -m: $json_metadata$
+          -o: $json_outputvars$
+          -p: $json_perfvars$
+          -t: $json_timeout$
+          -u:
+            required: true
+            value: $json_url$
+          -w:
+            required: true
+            type: Function
+            body: macro("$json_warn$")
+          -x: $json_xauth$
+
+# EXAMPLES
+## used for service_apply
+# - name: "Icinga_service_apply_azure"
+#   include_role:
+#     name: "telekom_mms.icinga_director.ansible_icinga"
+#     tasks_from: "icinga_service_apply"
+#   vars:
+#     icinga_service_applies:
+#     - service_apply_object:
+#       - "{{ object_name }}-service_apply"
+#       imports: "domon-json"
+#       display_name: "{{ object_name }}"
+#       assign_filter: "{{'host.name=\"azure\"'}}"
+#       vars:
+#         json_url: "https://api/xxx"
+#         json_attributes: '{state}'
+#         json_expect: Online
+#         json_ignoressl: true
+#         json_outputvars: '{state}'

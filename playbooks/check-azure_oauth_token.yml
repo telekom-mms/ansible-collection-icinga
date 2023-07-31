@@ -1,0 +1,61 @@
+---
+- name: Create command and service template for Azure oauth token
+  hosts: localhost
+  gather_facts: false
+  module_defaults:
+    group/telekom_mms.icinga_director.icinga:
+      url: "{{ icinga_url }}"
+      url_username: "{{ icinga_user }}"
+      url_password: "{{ icinga_pass }}"
+  tasks:
+    - name: Create command Azure oauth token
+      telekom_mms.icinga_director.icinga_command:
+        state: present
+        object_name: azure_oauth_token
+        command: "azure_oauth_token.py"
+        arguments:
+          (no key):
+            order: 1
+            required: true
+            skip_key: true
+            value: $tenant_id$
+          (no key.1):
+            order: 2
+            required: true
+            skip_key: true
+            value: $client_id$
+          (no key.2):
+            order: 3
+            required: true
+            skip_key: true
+            value: $client_secret$
+          (no key.3):
+            order: 4
+            required: true
+            skip_key: true
+            value: $scope$
+    - name: Create service template for Azure oauth token
+      telekom_mms.icinga_director.icinga_service_template:
+        state: present
+        object_name: "azure_oauth_token"
+        check_command: "azure_oauth_token"
+        check_interval: 50m
+
+# EXAMPLES
+## used for service_apply
+# - name: "Icinga_service_apply_azure"
+#   include_role:
+#     name: "telekom_mms.icinga_director.ansible_icinga"
+#     tasks_from: "icinga_service_apply"
+#   vars:
+#     icinga_service_applies:
+#     - service_apply_object:
+#       - "azure_oauth_token-service_apply"
+#       imports: "azure_oauth_token"
+#       display_name: "azure_oauth_token"
+#       assign_filter: "{{'host.name=\"azure\"'}}"
+#       vars:
+#         tenant_id: "ID"
+#         client_id: "ID"
+#         client_secret: "secret"
+#         scope: "https://management.azure.com/.default"
