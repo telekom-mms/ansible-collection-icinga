@@ -57,13 +57,43 @@ Check out the 'Documentation' part for this collection [here](https://github.com
 
 | playbook| description
 |------------|-----------------------------------------------------------------------
-| azure_oauth_token.yml | get azure oauth token 
-| icinga-check_gitlab_scheduler.yml | check gitlab scheduled pipelines
-| icinga-https.yml | check https reachability and certificates
-| icinga-json-azure_restapi_resourcehealth.yml | check state of azure resourcehealth
-| icinga-json-azure-restapi.yml | do a json check against azure restapi (with oauth_token)
-| icinga-json.yml | do a json check
-| icinga-template-empty-host.yml | create a host template for an empty host
+| domon_standard.yml | create a timeperiod and service template to use for other checks
+| azure_oauth_token.yml | get azure oauth token to use in other checks
+| check_gitlab_scheduler.yml | check gitlab scheduled pipelines
+| check_https.yml | check https reachability and certificates
+| check_json_azure_restapi_resourcehealth.yml | check state of azure resourcehealth
+| check_json_azure_restapi.yml | do a json check against azure restapi (with oauth_token)
+| check_json.yml | do a json check
+| template_empty_host.yml | create a host template for an empty host
+
+You can use these playbooks in your playbook like this:
+
+```
+- name: Import domon standard playbook to create services that other checks depend on
+  import-playbook: t_systems_mms.ansible_collection_icinga.domon_standard
+
+- name: Import playbook to create azure oauth token check
+  import-playbook: t_systems_mms.ansible_collection_icinga.check_azure_oauth_token
+
+- name: Import playbook to create gitlab_scheduler check
+  import-playbook: t_systems_mms.ansible_collection_icinga.check_gitlab_scheduler
+
+- name: Import playbook to create check_https checks
+  import-playbook: t_systems_mms.ansible_collection_icinga.check_https
+
+```
+
+Or call them from the command line:
+```
+ansible-playbook t_systems_mms.ansible_collection_icinga.domon_standard
+ansible-playbook t_systems_mms.ansible_collection_icinga.check_azure_oauth_token
+ansible-playbook t_systems_mms.ansible_collection_icinga.check_gitlab_scheduler
+ansible-playbook t_systems_mms.ansible_collection_icinga.check_https
+ansible-playbook t_systems_mms.ansible_collection_icinga.check_json
+ansible-playbook t_systems_mms.ansible_collection_icinga.check_json_azure_restapi
+ansible-playbook t_systems_mms.ansible_collection_icinga.check_json_azure_restapi_resourcehealth
+ansible-playbook t_systems_mms.ansible_collection_icinga.template_empty_host
+```
 
 ## License
 
