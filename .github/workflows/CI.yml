@@ -79,9 +79,7 @@ jobs:
           pre-test-cmd: sed -i "s/127.0.0.1/icinga/g" tests/integration/integration_config.yml
           target-python-version: ${{ matrix.python }}
           testing-type: integration
-          # OPTIONAL If your integration tests require code
-          # from other collections, install them like this
-          # test-deps: ansible.netcommon
+          test-deps: telekom_mms.icinga_director
 
   linting:
     name: Ansible Lint
