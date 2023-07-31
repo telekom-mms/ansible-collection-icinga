@@ -1,1 +1,2 @@
-- telekom_mms.icinga_director
+collections:
+  - telekom_mms.icinga_director
