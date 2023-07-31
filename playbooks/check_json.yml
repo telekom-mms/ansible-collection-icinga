@@ -8,24 +8,6 @@
       url_username: "{{ icinga_user }}"
       url_password: "{{ icinga_pass }}"
   tasks:
-    - name: Create service template for domon-standard-service
-      telekom_mms.icinga_director.icinga_service_template:
-        state: present
-        object_name: domon-standard-service
-        max_check_attempts: "3"
-        check_period: "24/7"
-        check_interval: "2m"
-        retry_interval: "1m"
-        enable_notifications: true
-        enable_active_checks: true
-        enable_passive_checks: false
-        enable_event_handler: false
-        enable_perfdata: true
-        volatile: false
-        command_endpoint: null
-        vars:
-          domon_enabled_notifications: ["mail_24/7"]
-
     - name: Create Command check_json
       telekom_mms.icinga_director.icinga_command:
         state: present
