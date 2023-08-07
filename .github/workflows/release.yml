@@ -40,7 +40,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           push-branch: master
           commit-message: update changelog
-          force-add: "true"
+          force-add: true
           files: CHANGELOG.md
           name: T-Systems MMS
           email: frage@t-systems-mms.com
