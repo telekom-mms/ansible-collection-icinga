@@ -8,7 +8,7 @@
 
 - name: Create /etc/icinga2/repository.d
   ansible.builtin.file:
-    dest: "/etc/icinga2/repository.d"
+    dest: /etc/icinga2/repository.d
     mode: "0750"
     owner: "{{ icinga2_user[ansible_os_family] }}"
     group: "{{ icinga2_group[ansible_os_family] }}"
@@ -30,31 +30,31 @@
 - name: Copy icinga configuration files
   ansible.builtin.template:
     src: "{{ item }}"
-    dest: "/etc/icinga2/{{ item | basename | regex_replace('.j2', '') }}"
+    dest: /etc/icinga2/{{ item | basename | regex_replace('.j2', '') }}
     owner: "{{ icinga2_user[ansible_os_family] }}"
     group: "{{ icinga2_group[ansible_os_family] }}"
     mode: "0640"
   with_fileglob:
-    - "../templates/configuration/*"
+    - ../templates/configuration/*
   notify:
     - Restart icinga2-agent
 
 - name: Copy icinga feature files
   ansible.builtin.template:
     src: "{{ item }}"
-    dest: "/etc/icinga2/features-available/{{ item | basename | regex_replace('.j2', '') }}"
+    dest: /etc/icinga2/features-available/{{ item | basename | regex_replace('.j2', '') }}
     owner: "{{ icinga2_user[ansible_os_family] }}"
     group: "{{ icinga2_group[ansible_os_family] }}"
     mode: "0640"
   with_fileglob:
-    - "../templates/features/*"
+    - ../templates/features/*
   notify:
     - Restart icinga2-agent
 
 - name: Copy custom icinga feature files
   ansible.builtin.template:
     src: "{{ item }}"
-    dest: "/etc/icinga2/features-available/{{ item | basename | regex_replace('.j2', '') }}"
+    dest: /etc/icinga2/features-available/{{ item | basename | regex_replace('.j2', '') }}
     owner: "{{ icinga2_user[ansible_os_family] }}"
     group: "{{ icinga2_group[ansible_os_family] }}"
     mode: "0640"
@@ -68,8 +68,8 @@
 
 - name: Activate specified icinga features
   ansible.builtin.file:
-    src: "../features-available/{{ item }}"
-    dest: "/etc/icinga2/features-enabled/{{ item }}"
+    src: ../features-available/{{ item }}
+    dest: /etc/icinga2/features-enabled/{{ item }}
     state: link
   with_items:
     - "{{ icinga_agent_enable_features }}"
@@ -96,7 +96,7 @@
       ansible.builtin.command: >
         /usr/sbin/icinga2 pki ticket --cn {{ ansible_hostname }} --salt {{ icinga_agent_salt }}
       environment:
-        LD_LIBRARY_PATH: "/usr/lib64"
+        LD_LIBRARY_PATH: /usr/lib64
       register: ticket
       changed_when: false
       failed_when: ticket.rc != 0
@@ -107,7 +107,7 @@
         --key /var/lib/icinga2/certs/{{ ansible_hostname }}.key
         --cert /var/lib/icinga2/certs/{{ ansible_hostname }}.crt
       args:
-        creates: "/var/lib/icinga2/certs/{{ ansible_hostname }}.crt"
+        creates: /var/lib/icinga2/certs/{{ ansible_hostname }}.crt
 
     - name: Save the icinga master's certificate to the host
       ansible.builtin.command: >
@@ -116,7 +116,7 @@
         --trustedcert /var/lib/icinga2/certs/trusted-master.crt
         --host {{ icinga_agent_ca_host }}
       args:
-        creates: "/var/lib/icinga2/certs/trusted-master.crt"
+        creates: /var/lib/icinga2/certs/trusted-master.crt
 
     - name: Send a pki request to the icinga master
       ansible.builtin.command: >
@@ -126,7 +126,7 @@
         --cert /var/lib/icinga2/certs/{{ ansible_hostname }}.crt
         --trustedcert /var/lib/icinga2/certs/trusted-master.crt --ca /var/lib/icinga2/certs/ca.crt
       args:
-        creates: "/var/lib/icinga2/certs/ca.crt"
+        creates: /var/lib/icinga2/certs/ca.crt
       notify:
         - Restart icinga2-agent
 
