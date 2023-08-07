@@ -30,10 +30,10 @@
     - name: Validate plugin dir exists on system
       ansible.builtin.assert:
         that:
-          - "result_plugin_dir.state == 'directory'"
-          - "result_plugin_dir.mode == '0755'"
-          - "result_plugin_dir.owner == 'root'"
-          - "result_plugin_dir.group == 'root'"
+          - result_plugin_dir.state == 'directory'
+          - result_plugin_dir.mode == '0755'
+          - result_plugin_dir.owner == 'root'
+          - result_plugin_dir.group == 'root'
 
     - name: Search for all files in plugins directory
       ansible.builtin.find:
@@ -46,16 +46,16 @@
     - name: Validate plugins belongs to the right user for Redhat based systems
       ansible.builtin.assert:
         that:
-          - "item.pw_name == 'icinga'"
-          - "item.gr_name == 'icinga'"
+          - item.pw_name == 'icinga'
+          - item.gr_name == 'icinga'
       loop: "{{ files_in_plugins_dir.files }}"
       when: ansible_os_family == 'RedHat'
 
     - name: Validate plugins belongs to the right user for Debian based systems
       ansible.builtin.assert:
         that:
-          - "item.pw_name == 'nagios'"
-          - "item.gr_name == 'nagios'"
+          - item.pw_name == 'nagios'
+          - item.gr_name == 'nagios'
       loop: "{{ files_in_plugins_dir.files }}"
       when: ansible_os_family == 'Debian'
 
@@ -70,7 +70,7 @@
     - name: Validate package is installed
       ansible.builtin.assert:
         that:
-          - "result_installation is not changed"
+          - result_installation is not changed
       when:
         - icinga_install_plugins is defined
 
@@ -84,19 +84,19 @@
     - name: Validate that cloned check exists on Redhat based systems
       ansible.builtin.assert:
         that:
-          - "result_cloned_check.state == 'file'"
-          - "result_cloned_check.mode == '0755'"
-          - "result_cloned_check.owner == 'icinga'"
-          - "result_cloned_check.group == 'icinga'"
-          - "result_cloned_check.changed == false"
+          - result_cloned_check.state == 'file'
+          - result_cloned_check.mode == '0755'
+          - result_cloned_check.owner == 'icinga'
+          - result_cloned_check.group == 'icinga'
+          - result_cloned_check.changed == false
       when: ansible_os_family == 'RedHat'
 
     - name: Validate that cloned check exists on Debian based systems
       ansible.builtin.assert:
         that:
-          - "result_cloned_check.state == 'file'"
-          - "result_cloned_check.mode == '0755'"
-          - "result_cloned_check.owner == 'nagios'"
-          - "result_cloned_check.group == 'nagios'"
-          - "result_cloned_check.changed == false"
+          - result_cloned_check.state == 'file'
+          - result_cloned_check.mode == '0755'
+          - result_cloned_check.owner == 'nagios'
+          - result_cloned_check.group == 'nagios'
+          - result_cloned_check.changed == false
       when: ansible_os_family == 'Debian'
