@@ -1,5 +1,5 @@
 ---
-- name: "Delete icinga downtimes (host and service) from defined author"
+- name: Delete icinga downtimes (host and service) from defined author
   ansible.builtin.uri:
     url: "{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/remove-downtime?type=Downtime"
     user: "{{ icinga_api_user }}"
@@ -9,12 +9,9 @@
     status_code: 200
     return_content: true
     headers:
-      Accept: 'application/json'
+      Accept: application/json
     body_format: json
-    body: '{
-             "filter": "host.name==\"{{ item }}\" && downtime.author==\"{{ author }}\"",
-             "pretty": true
-           }'
+    body: '{ "filter": "host.name==\"{{ item }}\" && downtime.author==\"{{ author }}\"", "pretty": true }'
   delegate_to: localhost
   with_items:
     - "{{ icinga_host_filter }}"

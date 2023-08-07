@@ -1,5 +1,5 @@
 ---
-name: 'CI - Linting & Testing'
+name: CI - Linting & Testing
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
   # testing against latest version of ansible-test for each ansible-core
   # version
   schedule:
-    - cron: '0 6 * * 1'
+    - cron: "0 6 * * 1"
 
 concurrency:
   group: >-
@@ -117,12 +117,12 @@ jobs:
         run: molecule test
         working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_agent
         env:
-          PY_COLORS: '1'
-          ANSIBLE_FORCE_COLOR: '1'
+          PY_COLORS: "1"
+          ANSIBLE_FORCE_COLOR: "1"
 
       - name: Test role icinga_plugins with molecule
         run: molecule test
         working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_plugins
         env:
-          PY_COLORS: '1'
-          ANSIBLE_FORCE_COLOR: '1'
+          PY_COLORS: "1"
+          ANSIBLE_FORCE_COLOR: "1"

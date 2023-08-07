@@ -1,3 +1,4 @@
+---
 namespace: t_systems_mms
 name: ansible_collection_icinga
 version: 1.1.0
@@ -11,11 +12,11 @@ description: >-
   Additionally, this collection is used to install
   the Icinga agent and roll out custom checks for every agent.
 dependencies:
-  t_systems_mms.icinga_director: '*'
-  t_systems_mms.icinga_business_process: '*'
+  t_systems_mms.icinga_director: "*"
+  t_systems_mms.icinga_business_process: "*"
 license:
   - GPL-3.0-only
-license_file: ''
+license_file: ""
 tags:
   - icinga
   - monitoring
@@ -23,7 +24,7 @@ tags:
   - collection
   - director
   - plugins
-repository: 'https://github.com/T-Systems-MMS/ansible-collection-icinga'
-documentation: 'https://github.com/T-Systems-MMS/ansible-collection-icinga'
-homepage: 'https://github.com/T-Systems-MMS/ansible-collection-icinga'
-issues: 'https://github.com/T-Systems-MMS/ansible-collection-icinga/issues'
+repository: https://github.com/T-Systems-MMS/ansible-collection-icinga
+documentation: https://github.com/T-Systems-MMS/ansible-collection-icinga
+homepage: https://github.com/T-Systems-MMS/ansible-collection-icinga
+issues: https://github.com/T-Systems-MMS/ansible-collection-icinga/issues

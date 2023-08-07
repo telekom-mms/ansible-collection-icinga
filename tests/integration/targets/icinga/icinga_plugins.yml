@@ -1,10 +1,9 @@
+---
 - name: Install icinga2 plugins
   hosts: localhost
   gather_facts: true
-  collections:
-    - t_systems_mms.ansible_collection_icinga
   roles:
-    - icinga_plugins
+    - t_systems_mms.ansible_collection_icinga.icinga_plugins
   post_tasks:
     - name: Verify that icinga2 package is installed
       ansible.builtin.yum:
@@ -16,12 +15,12 @@
     - name: Validate that package icinga2 is installed
       ansible.builtin.assert:
         that:
-          - "redhat_package_check.changed == false"
+          - redhat_package_check.changed == false
       when: ansible_facts['os_family'] == "RedHat"
 
     - name: Verfiy that plugin files belong to icinga
       ansible.builtin.find:
-        paths: "/usr/lib64/nagios/plugins"
+        paths: /usr/lib64/nagios/plugins
         recurse: true
         file_type: any
       register: files_in_plugins_dir
@@ -29,5 +28,5 @@
     - name: Validate that plugin files belong to icinga
       ansible.builtin.assert:
         that:
-          - "files_in_plugins_dir.owner == 'icinga'"
-          - "files_in_plugins_dir.group == 'icinga'"
+          - files_in_plugins_dir.owner == 'icinga'
+          - files_in_plugins_dir.group == 'icinga'

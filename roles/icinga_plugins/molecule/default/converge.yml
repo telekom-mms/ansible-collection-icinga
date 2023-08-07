@@ -8,7 +8,6 @@
     icinga_plugins_git_repo_url: https://github.com/beechesII/icinga_plugins.git
 
   pre_tasks:
-
     - name: Set name of installation package based on distro
       ansible.builtin.set_fact:
         icinga_install_plugins:
