@@ -11,13 +11,19 @@
     headers:
       Accept: application/json
     body_format: json
-    body: '{ "filter": "host.name==\"{{ item }}\"", "author": "{{ author }}", "comment":
-      "{{ comment }}", "start_time": "{{ start_time_now }}", "end_time": "{{ end_time
-      }}", "pretty": true, "fixed": true, }'
+    body: '{
+             "filter": "host.name==\"{{ item }}\"",
+             "author": "{{ author }}",
+             "comment": "{{ comment }}",
+             "start_time": "{{ start_time_now }}",
+             "end_time": "{{ end_time }}",
+             "pretty": true,
+             "fixed": true,
+           }'
   with_items:
     - '{{ icinga_host_filter }}'
   when:
-    - host_downtime == 'true'
+    - host_downtime
 
 - name: Add icinga service downtimes
   ansible.builtin.uri:
@@ -31,14 +37,20 @@
     headers:
       Accept: application/json
     body_format: json
-    body: '{ "filter": "host.name==\"{{ item }}\"", "author": "{{ author }}", "comment":
-      "{{ comment }}", "start_time": {{ start_time_now }}, "end_time": {{ end_time
-      }}, "pretty": true, "fixed": true, }'
+    body: '{
+             "filter": "host.name==\"{{ item }}\"",
+             "author": "{{ author }}",
+             "comment": "{{ comment }}",
+             "start_time": {{ start_time_now }},
+             "end_time": {{ end_time }},
+             "pretty": true,
+             "fixed": true,
+           }'
   delegate_to: localhost
   with_items:
     - '{{ icinga_host_filter }}'
   when:
-    - service_downtime == 'true'
+    - service_downtime
     - service_filter == ''
 
 - name: Add icinga single service downtimes
@@ -53,13 +65,18 @@
     headers:
       Accept: application/json
     body_format: json
-    body: '{ "filter": "host.name==\"{{ item }}\" && match(\"*{{ service_filter
-      }}*\",service.name)", "author": "{{ author }}", "comment": "{{ comment }}",
-      "start_time": {{ start_time_now }}, "end_time": {{ end_time }}, "pretty":
-      true, "fixed": true, }'
+    body: '{
+             "filter": "host.name==\"{{ item }}\" && match(\"*{{ service_filter }}*\",service.name)",
+             "author": "{{ author }}",
+             "comment": "{{ comment }}",
+             "start_time": {{ start_time_now }},
+             "end_time": {{ end_time }},
+             "pretty": true,
+             "fixed": true,
+           }'
   delegate_to: localhost
   with_items:
     - '{{ icinga_host_filter }}'
   when:
-    - single_service_downtime == 'true'
+    - single_service_downtime
     - service_filter != ''

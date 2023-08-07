@@ -13,13 +13,13 @@
   ansible.builtin.set_fact:
     icinga_host_filter: "{{ target }}"
   when:
-    - single_host_downtime == "true"
+    - single_host_downtime
 
 - name: Define icinga_host_filter as group
   ansible.builtin.set_fact:
     icinga_host_filter: "{{ groups[target] | list | flatten }}"
   when:
-    - single_host_downtime == "false"
+    - not single_host_downtime
 
 - name: Include add_downtimes
   ansible.builtin.include_tasks: add_downtimes.yml
