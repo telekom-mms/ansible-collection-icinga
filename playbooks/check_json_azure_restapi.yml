@@ -1,5 +1,5 @@
 ---
-- name: Create service template for domon-standard-service and azure REST-API
+- name: Create service template for mms-standard-service and azure REST-API
   hosts: localhost
   gather_facts: false
   module_defaults:

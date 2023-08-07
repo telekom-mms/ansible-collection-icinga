@@ -11,9 +11,9 @@
     - name: Create service template for azure REST-API ResourceHealth
       telekom_mms.icinga_director.icinga_service_template:
         state: present
-        object_name: domon-json-azure_restapi_resourcehealth
+        object_name: mms-json-azure_restapi_resourcehealth
         imports:
-          - domon-standard-service
+          - mms-standard-service
         check_command: check_json_azure_restapi
         check_interval: 5m
         vars:

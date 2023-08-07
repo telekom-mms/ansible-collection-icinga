@@ -8,12 +8,12 @@
       url_username: "{{ icinga_user }}"
       url_password: "{{ icinga_pass }}"
   tasks:
-    - name: Create service template for domon-https
+    - name: Create service template for mms-https
       telekom_mms.icinga_director.icinga_service_template:
         state: present
-        object_name: domon-https
+        object_name: mms-https
         imports:
-          - domon-standard-service
+          - mms-standard-service
         check_command: http
         check_interval: 300
         vars:
@@ -24,10 +24,10 @@
           http_ssl: true
           http_timeout: 30
 
-    - name: Create service template for domon-https
+    - name: Create service template for mms-https
       telekom_mms.icinga_director.icinga_service_template:
         state: present
-        object_name: domon-https-certificate
+        object_name: mms-https-certificate
         imports:
-          - domon-https
+          - mms-https
         check_timeout: 60

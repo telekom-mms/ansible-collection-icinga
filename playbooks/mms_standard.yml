@@ -1,4 +1,4 @@
-- name: Create domon-standards
+- name: Create mms-standards
   hosts: localhost
   gather_facts: false
   module_defaults:
@@ -7,7 +7,7 @@
       url_username: "{{ icinga_user }}"
       url_password: "{{ icinga_pass }}"
   tasks:
-    - name: Create timeperiod for domon-standard-service
+    - name: Create timeperiod for mms-standard-service
       telekom_mms.icinga_director.icinga_timeperiod:
         state: present
         object_name: 24/7
@@ -20,10 +20,10 @@
           saturday: "00:00-24:00"
           sunday: "00:00-24:00"
 
-    - name: Create service template for domon-standard-service
+    - name: Create service template for mms-standard-service
       telekom_mms.icinga_director.icinga_service_template:
         state: present
-        object_name: domon-standard-service
+        object_name: mms-standard-service
         max_check_attempts: "3"
         check_period: "24/7"
         check_interval: "2m"

@@ -57,7 +57,7 @@ Check out the 'Documentation' part for this collection [here](https://github.com
 
 | playbook| description
 |------------|-----------------------------------------------------------------------
-| domon_standard.yml | create a timeperiod and service template to use for other checks
+| mms_standard.yml | create a timeperiod and service template to use for other checks
 | azure_oauth_token.yml | get azure oauth token to use in other checks
 | check_gitlab_scheduler.yml | check gitlab scheduled pipelines
 | check_https.yml | check https reachability and certificates
@@ -69,8 +69,8 @@ Check out the 'Documentation' part for this collection [here](https://github.com
 You can use these playbooks in your playbook like this:
 
 ```
-- name: Import domon standard playbook to create services that other checks depend on
-  import-playbook: t_systems_mms.ansible_collection_icinga.domon_standard
+- name: Import mms standard playbook to create services that other checks depend on
+  import-playbook: t_systems_mms.ansible_collection_icinga.mms_standard
 
 - name: Import playbook to create azure oauth token check
   import-playbook: t_systems_mms.ansible_collection_icinga.check_azure_oauth_token
@@ -85,7 +85,7 @@ You can use these playbooks in your playbook like this:
 
 Or call them from the command line:
 ```
-ansible-playbook t_systems_mms.ansible_collection_icinga.domon_standard
+ansible-playbook t_systems_mms.ansible_collection_icinga.mms_standard
 ansible-playbook t_systems_mms.ansible_collection_icinga.check_azure_oauth_token
 ansible-playbook t_systems_mms.ansible_collection_icinga.check_gitlab_scheduler
 ansible-playbook t_systems_mms.ansible_collection_icinga.check_https
