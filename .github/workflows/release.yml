@@ -1,7 +1,7 @@
 ---
 name: New release
 
-true:
+on:
   workflow_dispatch:
   push:
     branches:
