@@ -1,0 +1,26 @@
+---
+- name: Create service template for azure REST-API ResourceHealth
+  hosts: localhost
+  gather_facts: false
+  module_defaults:
+    group/telekom_mms.icinga_director.icinga:
+      url: "{{ icinga_url }}"
+      url_username: "{{ icinga_user }}"
+      url_password: "{{ icinga_pass }}"
+  tasks:
+    - name: Create service template for azure REST-API ResourceHealth
+      telekom_mms.icinga_director.icinga_service_template:
+        state: present
+        object_name: mms-json-azure_restapi_resourcehealth
+        imports:
+          - mms-standard-service
+        check_command: check_json_azure_restapi
+        check_interval: 5m
+        vars:
+          json_url:
+            "https://management.azure.com/subscriptions/$azure_subscription_id$/resourcegroups/$azure_resource_group$$azure_resource_uri$/\
+            providers/Microsoft.ResourceHealth/availabilityStatuses/current?api-version=2020-05-01-preview"
+          json_expect: Available
+          json_ignoressl: true
+          json_attributes: "{properties}->{availabilityState}"
+          json_outputvars: "{properties}->{availabilityState},{properties}->{summary},{properties}->{reasonType},{properties}->{occuredTime}"

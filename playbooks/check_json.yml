@@ -1,0 +1,42 @@
+---
+- name: Create service template and command for check_json
+  hosts: localhost
+  gather_facts: false
+  module_defaults:
+    group/telekom_mms.icinga_director.icinga:
+      url: "{{ icinga_url }}"
+      url_username: "{{ icinga_user }}"
+      url_password: "{{ icinga_pass }}"
+  tasks:
+    - name: Create Command check_json
+      telekom_mms.icinga_director.icinga_command:
+        state: present
+        object_name: check_json
+        command: "check_json.pl"
+        arguments:
+          --ignoressl:
+            set_if: $json_ignoressl$
+          -T: $json_contenttype$
+          -a:
+            required: true
+            value: $json_attributes$
+          -b:
+            value: $json_bearer$
+          -c:
+            required: true
+            type: Function
+            body: macro("$json_crit$")
+          -d: $json_divisor$
+          -e: $json_expect$
+          -m: $json_metadata$
+          -o: $json_outputvars$
+          -p: $json_perfvars$
+          -t: $json_timeout$
+          -u:
+            required: true
+            value: $json_url$
+          -w:
+            required: true
+            type: Function
+            body: macro("$json_warn$")
+          -x: $json_xauth$

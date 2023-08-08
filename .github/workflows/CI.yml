@@ -11,6 +11,13 @@ on:
   schedule:
     - cron: "0 6 * * 1"
 
+concurrency:
+  group: >-
+    ${{ github.workflow }}-${{
+      github.event.pull_request.number || github.sha
+    }}
+  cancel-in-progress: true
+
 jobs:
   ansible-sanity-tests:
     name: Sanity (Ⓐ${{ matrix.ansible }})
@@ -40,6 +47,40 @@ jobs:
         run: ansible-test sanity --docker -v --color
         working-directory: ./ansible_collections/t_systems_mms/ansible_collection_icinga
 
+  integration:
+    runs-on: ubuntu-20.04
+    name: I (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }})
+    strategy:
+      fail-fast: false
+      matrix:
+        ansible:
+          - stable-2.12
+          - stable-2.13
+          - stable-2.14
+          - devel
+        python:
+          - "3.8"
+          - "3.9"
+          - "3.10"
+    services:
+      icinga:
+        image: ghcr.io/telekom-mms/icinga2:director-1.8.1
+        ports:
+          - 80:80
+    steps:
+      - name: >-
+          Perform integration testing against
+          Ansible version ${{ matrix.ansible }}
+          under Python ${{ matrix.python }}
+        uses: ansible-community/ansible-test-gh-action@v1.14.1
+        with:
+          ansible-core-version: ${{ matrix.ansible }}
+          # OPTIONAL command to run before invoking `ansible-test integration`
+          pre-test-cmd: sed -i "s/127.0.0.1/icinga/g" tests/integration/integration_config.yml
+          target-python-version: ${{ matrix.python }}
+          testing-type: integration
+          test-deps: telekom_mms.icinga_director
+
   linting:
     name: Ansible Lint
     runs-on: ubuntu-latest
@@ -49,12 +90,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run Linting
-        uses: ansible/ansible-lint-action@v6
-        with:
-          targets: roles/
-          override-deps: |
-            rich>=9.5.1,<11.0.0
-          args: ""
+        uses: ansible/ansible-lint-action@v6.17.0
 
   molecule:
     name: Molecule
