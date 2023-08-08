@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.1.1](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.1.1) (2023-08-07)
+## [1.1.1](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.1.1) (2023-08-08)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.1.0...1.1.1)
 
@@ -11,6 +11,7 @@
 **Merged pull requests:**
 
 - Linting [\#54](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/54) ([rndmh3ro](https://github.com/rndmh3ro))
+- Playbooks for simplifying create checks [\#53](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/53) ([rndmh3ro](https://github.com/rndmh3ro))
 - Update description of the constant config varriable [\#51](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/51) ([kam193](https://github.com/kam193))
 - run CI-tests only once peer week [\#50](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/50) ([rndmh3ro](https://github.com/rndmh3ro))
 - Update actions/checkout action to v3.5.3 [\#49](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/49) ([renovate[bot]](https://github.com/apps/renovate))
