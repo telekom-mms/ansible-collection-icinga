@@ -6,6 +6,7 @@
       url: "{{ icinga_url }}"
       url_username: "{{ icinga_user }}"
       url_password: "{{ icinga_pass }}"
+      force_basic_auth: "{{ icinga_force_basic_auth | default(omit) }}"
   tasks:
     - name: Create timeperiod for mms-standard-service
       telekom_mms.icinga_director.icinga_timeperiod:
