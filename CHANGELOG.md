@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.2.0) (2023-08-23)
+
+[Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.1.1...1.2.0)
+
+**Implemented enhancements:**
+
+- add force\_basic\_auth to module defaults [\#56](https://github.com/T-Systems-MMS/ansible-collection-icinga/pull/56) ([sjedlick](https://github.com/sjedlick))
+
 ## [1.1.1](https://github.com/T-Systems-MMS/ansible-collection-icinga/tree/1.1.1) (2023-08-08)
 
 [Full Changelog](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/1.1.0...1.1.1)
