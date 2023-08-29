@@ -4,7 +4,7 @@ Thanks for your interest in contributing! Please read carefully through our guid
 
 ## Issue Tracking
 
-We use [GitHub Issues](https://github.com/T-Systems-MMS/ansible-collection-icinga/issues) to track all tasks related to this project.
+We use [GitHub Issues](https://github.com/telekom-mms/ansible-collection-icinga/issues) to track all tasks related to this project.
 
 ## Contribute your changes
 
@@ -28,7 +28,7 @@ A *clone* is a downloaded version of a repository. Cloning our fork lets you dow
 Use `git clone` to clone your fork
 
 ```
-$ git clone https://github.com/T-Systems-MMS/ansible-collection-icinga.git
+$ git clone https://github.com/telekom-mms/ansible-collection-icinga.git
 ```
 
 ### Add your changes
@@ -84,7 +84,7 @@ $ git push origin master
 
 ### Open a Pull Request
 
-1. Find the [Create Pull Request](https://github.com/T-Systems-MMS/ansible-collection-icinga/compare/) button
+1. Find the [Create Pull Request](https://github.com/telekom-mms/ansible-collection-icinga/compare/) button
 2. Select **compare across forks**
 3. Add your forked branch and select the right base repository
 3. Click **Create Pull Request**

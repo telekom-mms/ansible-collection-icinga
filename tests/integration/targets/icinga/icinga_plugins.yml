@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: true
   roles:
-    - t_systems_mms.ansible_collection_icinga.icinga_plugins
+    - telekom_mms.ansible_collection_icinga.icinga_plugins
   post_tasks:
     - name: Verify that icinga2 package is installed
       ansible.builtin.yum:

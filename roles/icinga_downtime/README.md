@@ -1,4 +1,4 @@
-# Ansible Role - t_systems_mms.ansible_collection_icinga.icinga_downtime
+# Ansible Role - telekom_mms.ansible_collection_icinga.icinga_downtime
 
 This role manages Icinga downtimes with Ansible via the REST API.
 You can add a downtime for a group or a single host, both included or excluded their running services.
@@ -43,7 +43,7 @@ Additionally current downtimes set by Ansible can be removed.
   connection: local
   gather_facts: false
   collections:
-    - t_systems_mms.ansible_collection_icinga
+    - telekom_mms.ansible_collection_icinga
   roles:
     - icinga_downtime
 ```

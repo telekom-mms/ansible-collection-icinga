@@ -1,4 +1,4 @@
-# Ansible Role - t_systems_mms.ansible_collection_icinga.icinga_agent
+# Ansible Role - telekom_mms.ansible_collection_icinga.icinga_agent
 
 This role installs and configures the icinga agent.
 ## Variables
@@ -83,7 +83,7 @@ icinga_agent_enable_features:
 - hosts: localhost
   gather_facts: true
   collections:
-    - t_systems_mms.ansible_collection_icinga
+    - telekom_mms.ansible_collection_icinga
   vars:
     icinga_agent_endpoints:
       - name: "icinga2-master1.localdomain"
@@ -108,7 +108,7 @@ icinga_agent_enable_features:
 - hosts: localhost
   gather_facts: true
   collections:
-    - t_systems_mms.ansible_collection_icinga
+    - telekom_mms.ansible_collection_icinga
   vars:
     icinga_agent_registration: true
     icinga_agent_endpoints:
