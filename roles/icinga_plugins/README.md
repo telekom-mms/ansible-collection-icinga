@@ -1,4 +1,4 @@
-# Ansible Role - t_systems_mms.ansible_collection_icinga.icinga_plugins
+# Ansible Role - telekom_mms.ansible_collection_icinga.icinga_plugins
 
 This role copies custom checks to the wished icinga-agent node.
 
@@ -36,7 +36,7 @@ dependency_packages:
 - hosts: localhost
   gather_facts: true
   collections:
-    - t_systems_mms.ansible_collection_icinga
+    - telekom_mms.ansible_collection_icinga
   vars:
     icinga_plugins_path: "{{ playbook_dir }}/../files"
   roles:
@@ -48,7 +48,7 @@ dependency_packages:
 - hosts: localhost
   gather_facts: true
   collections:
-    - t_systems_mms.ansible_collection_icinga
+    - telekom_mms.ansible_collection_icinga
   vars:
     icinga_plugins_git_repo_url: https://github.com/example/my-public-plugins.git
   roles:
@@ -60,7 +60,7 @@ dependency_packages:
 - hosts: localhost
   gather_facts: true
   collections:
-    - t_systems_mms.ansible_collection_icinga
+    - telekom_mms.ansible_collection_icinga
   vars:
     icinga_plugins_git_repo_url: https://<username>:<token>@github.com/example/my-private-plugins.git
   roles:

@@ -3,7 +3,7 @@
   hosts: localhost
   gather_facts: true
   roles:
-    - t_systems_mms.ansible_collection_icinga.icinga_agent
+    - telekom_mms.ansible_collection_icinga.icinga_agent
   vars:
     icinga_agent_endpoints:
       - name: icinga2-master1.localdomain

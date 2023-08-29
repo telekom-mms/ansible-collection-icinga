@@ -33,7 +33,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
         with:
-          path: ansible_collections/t_systems_mms/ansible_collection_icinga
+          path: ansible_collections/telekom_mms/ansible_collection_icinga
 
       - name: Set up Python ${{ matrix.ansible }}
         uses: actions/setup-python@v4
@@ -45,7 +45,7 @@ jobs:
 
       - name: Run sanity tests
         run: ansible-test sanity --docker -v --color
-        working-directory: ./ansible_collections/t_systems_mms/ansible_collection_icinga
+        working-directory: ./ansible_collections/telekom_mms/ansible_collection_icinga
 
   integration:
     runs-on: ubuntu-20.04
@@ -100,7 +100,7 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
         with:
-          path: ansible_collections/t_systems_mms/ansible_collection_icinga
+          path: ansible_collections/telekom_mms/ansible_collection_icinga
 
       - name: Set up Python 3.8
         uses: actions/setup-python@v4
@@ -111,18 +111,18 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install -r requirements.txt
-        working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga
+        working-directory: ansible_collections/telekom_mms/ansible_collection_icinga
 
       - name: Test role icinga_agent with molecule
         run: molecule test
-        working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_agent
+        working-directory: ansible_collections/telekom_mms/ansible_collection_icinga/roles/icinga_agent
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
 
       - name: Test role icinga_plugins with molecule
         run: molecule test
-        working-directory: ansible_collections/t_systems_mms/ansible_collection_icinga/roles/icinga_plugins
+        working-directory: ansible_collections/telekom_mms/ansible_collection_icinga/roles/icinga_plugins
         env:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"

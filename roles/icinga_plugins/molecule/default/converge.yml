@@ -2,7 +2,7 @@
 - name: Converge
   hosts: all
   collections:
-    - t_systems_mms.ansible_collection_icinga
+    - telekom_mms.ansible_collection_icinga
 
   vars:
     icinga_plugins_git_repo_url: https://github.com/beechesII/icinga_plugins.git

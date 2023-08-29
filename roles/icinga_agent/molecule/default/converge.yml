@@ -75,7 +75,7 @@
         - molecule-idempotence-notest
 
   collections:
-    - t_systems_mms.ansible_collection_icinga
+    - telekom_mms.ansible_collection_icinga
 
   roles:
     - icinga_agent
