@@ -48,7 +48,7 @@ jobs:
         working-directory: ./ansible_collections/telekom_mms/ansible_collection_icinga
 
   integration:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     name: I (Ⓐ${{ matrix.ansible }}+py${{ matrix.python }})
     strategy:
       fail-fast: false
