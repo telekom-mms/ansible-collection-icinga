@@ -1,8 +1,17 @@
 # Changelog
 
-## [1.2.0](https://github.com/telekom-mms/ansible-collection-icinga/tree/1.2.0) (2023-08-29)
+## [2.0.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.0.1) (2023-08-30)
 
-[Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/1.1.1...1.2.0)
+[Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.0.0...2.0.1)
+
+**Merged pull requests:**
+
+- Update actions/checkout action to v3.6.0 [\#57](https://github.com/telekom-mms/ansible-collection-icinga/pull/57) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency ubuntu to v22 [\#55](https://github.com/telekom-mms/ansible-collection-icinga/pull/55) ([renovate[bot]](https://github.com/apps/renovate))
+
+## [2.0.0](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.0.0) (2023-08-29)
+
+[Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/1.1.1...2.0.0)
 
 **Implemented enhancements:**
 
