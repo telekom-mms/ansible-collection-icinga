@@ -55,16 +55,16 @@ Check out the 'Documentation' part for this collection [here](https://github.com
 
 **icinga playbooks:**
 
-| playbook| description
-|------------|-----------------------------------------------------------------------
-| mms_standard.yml | create a timeperiod and service template to use for other checks
-| azure_oauth_token.yml | get azure oauth token to use in other checks
-| check_gitlab_scheduler.yml | check gitlab scheduled pipelines
-| check_https.yml | check https reachability and certificates
-| check_json_azure_restapi_resourcehealth.yml | check state of azure resourcehealth
-| check_json_azure_restapi.yml | do a json check against azure restapi (with oauth_token)
-| check_json.yml | do a json check
-| template_empty_host.yml | create a host template for an empty host
+| playbook| description | Requirements
+|------------|-----------------------------------------------------------------------|-------------
+| mms_standard.yml | create a timeperiod and service template to use for other checks | -
+| azure_oauth_token.yml | get azure oauth token to use in other checks | [azure_oauth_token.py](https://gist.github.com/rndmh3ro/e9abbca17a4d39597443176f99d585ae) needs to exist in the [PluginDir](https://icinga.com/docs/icinga-2/latest/doc/04-configuration/#constants-conf) on your Icinga Server or Agent
+| check_gitlab_scheduler.yml | check gitlab scheduled pipelines | [check_gitlab_scheduler](https://github.com/telekom-mms/check_gitlab_scheduler/) needs to exist in the [PluginDir](https://icinga.com/docs/icinga-2/latest/doc/04-configuration/#constants-conf) on your Icinga Server or Agent
+| check_https.yml | check https reachability and certificates | - 
+| check_json_azure_restapi_resourcehealth.yml | check state of azure resourcehealth | [check_json.pl](https://github.com/c-kr/check_json) needs to exist in the [PluginDir](https://icinga.com/docs/icinga-2/latest/doc/04-configuration/#constants-conf) on your Icinga Server or Agent
+| check_json_azure_restapi.yml | do a json check against azure restapi (with oauth_token) | [check_json.pl](https://github.com/c-kr/check_json) needs to exist in the [PluginDir](https://icinga.com/docs/icinga-2/latest/doc/04-configuration/#constants-conf) on your Icinga Server or Agent
+| check_json.yml | do a json check | [check_json.pl](https://github.com/c-kr/check_json) needs to exist in the [PluginDir](https://icinga.com/docs/icinga-2/latest/doc/04-configuration/#constants-conf) on your Icinga Server or Agent
+| template_empty_host.yml | create a host template for an empty host | - 
 
 You can use these playbooks in your playbook like this:
 
