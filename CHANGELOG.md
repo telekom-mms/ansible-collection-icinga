@@ -1,11 +1,12 @@
 # Changelog
 
-## [2.0.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.0.1) (2023-08-30)
+## [2.0.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.0.1) (2023-09-18)
 
 [Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.0.0...2.0.1)
 
 **Merged pull requests:**
 
+- add hints to playbooks [\#58](https://github.com/telekom-mms/ansible-collection-icinga/pull/58) ([rndmh3ro](https://github.com/rndmh3ro))
 - Update actions/checkout action to v3.6.0 [\#57](https://github.com/telekom-mms/ansible-collection-icinga/pull/57) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency ubuntu to v22 [\#55](https://github.com/telekom-mms/ansible-collection-icinga/pull/55) ([renovate[bot]](https://github.com/apps/renovate))
 
