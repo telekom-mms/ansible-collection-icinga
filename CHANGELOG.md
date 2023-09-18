@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- run linting and tests only, when ansible-files change [\#59](https://github.com/telekom-mms/ansible-collection-icinga/pull/59) ([rndmh3ro](https://github.com/rndmh3ro))
 - add hints to playbooks [\#58](https://github.com/telekom-mms/ansible-collection-icinga/pull/58) ([rndmh3ro](https://github.com/rndmh3ro))
 - Update actions/checkout action to v3.6.0 [\#57](https://github.com/telekom-mms/ansible-collection-icinga/pull/57) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency ubuntu to v22 [\#55](https://github.com/telekom-mms/ansible-collection-icinga/pull/55) ([renovate[bot]](https://github.com/apps/renovate))
