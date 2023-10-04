@@ -43,7 +43,7 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: ansible_collections/telekom_mms/ansible_collection_icinga
 
@@ -99,7 +99,7 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Run Linting
         uses: ansible/ansible-lint-action@v6.17.0
@@ -110,7 +110,7 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: ansible_collections/telekom_mms/ansible_collection_icinga
 
