@@ -6,6 +6,10 @@ exclude_paths:
   - molecule/
   - .github/
 
+# install collection dependencies
+offline: false
+
 warn_list:
   - fqcn[keyword]
   - var-naming[no-role-prefix]
+  - args[module]

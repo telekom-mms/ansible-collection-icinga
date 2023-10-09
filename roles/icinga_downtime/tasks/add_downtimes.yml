@@ -1,9 +1,9 @@
 ---
 - name: Add icinga host downtimes
   ansible.builtin.uri:
-    url: '{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/schedule-downtime?type=Host'
-    user: '{{ icinga_api_user }}'
-    password: '{{ icinga_api_password }}'
+    url: "{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/schedule-downtime?type=Host"
+    user: "{{ icinga_api_user }}"
+    password: "{{ icinga_api_password }}"
     validate_certs: true
     method: POST
     status_code: 200
@@ -21,15 +21,15 @@
              "fixed": true,
            }'
   with_items:
-    - '{{ icinga_host_filter }}'
+    - "{{ icinga_host_filter }}"
   when:
     - host_downtime
 
 - name: Add icinga service downtimes
   ansible.builtin.uri:
-    url: '{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/schedule-downtime?type=Service'
-    user: '{{ icinga_api_user }}'
-    password: '{{ icinga_api_password }}'
+    url: "{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/schedule-downtime?type=Service"
+    user: "{{ icinga_api_user }}"
+    password: "{{ icinga_api_password }}"
     validate_certs: true
     method: POST
     status_code: 200
@@ -48,16 +48,16 @@
            }'
   delegate_to: localhost
   with_items:
-    - '{{ icinga_host_filter }}'
+    - "{{ icinga_host_filter }}"
   when:
     - service_downtime
     - service_filter == ''
 
 - name: Add icinga single service downtimes
   ansible.builtin.uri:
-    url: '{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/schedule-downtime?type=Service'
-    user: '{{ icinga_api_user }}'
-    password: '{{ icinga_api_password }}'
+    url: "{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/schedule-downtime?type=Service"
+    user: "{{ icinga_api_user }}"
+    password: "{{ icinga_api_password }}"
     validate_certs: true
     method: POST
     status_code: 200
@@ -76,7 +76,7 @@
            }'
   delegate_to: localhost
   with_items:
-    - '{{ icinga_host_filter }}'
+    - "{{ icinga_host_filter }}"
   when:
     - single_service_downtime
     - service_filter != ''

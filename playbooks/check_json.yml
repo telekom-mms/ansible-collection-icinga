@@ -13,7 +13,7 @@
       telekom_mms.icinga_director.icinga_command:
         state: present
         object_name: check_json
-        command: "check_json.pl"
+        command: check_json.pl
         arguments:
           --ignoressl:
             set_if: $json_ignoressl$
