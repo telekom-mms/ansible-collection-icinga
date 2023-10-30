@@ -31,5 +31,5 @@
       telekom_mms.icinga_director.icinga_service_template:
         state: present
         object_name: check_gitlab_scheduler
-        check_command: "check_gitlab_scheduler"
+        check_command: check_gitlab_scheduler
         check_interval: 5m

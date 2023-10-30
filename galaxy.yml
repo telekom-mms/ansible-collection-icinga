@@ -7,7 +7,9 @@ authors:
   - Christopher Grau <c.grau@telekom.de>
   - Daniel Uhlmann <daniel.uhlmann@telekom.de>
 description: >-
-  This collection serves as a kind of 'meta collection' for roles and collections, which are used for the configuration and administration of individual components of Icinga. Additionally, this collection is used to install the Icinga agent and roll out custom checks for every agent.
+  This collection serves as a kind of 'meta collection' for roles and collections,
+  which are used for the configuration and administration of individual components
+  of Icinga. Additionally, this collection is used to install the Icinga agent and roll out custom checks for every agent.
 dependencies:
   telekom_mms.icinga_director: "*"
   telekom_mms.icinga_business_process: "*"
