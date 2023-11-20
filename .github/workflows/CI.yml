@@ -43,12 +43,12 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
         with:
           path: ansible_collections/telekom_mms/ansible_collection_icinga
 
       - name: Set up Python ${{ matrix.ansible }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@65d7f2d534ac1bc67fcd62888c5f4f3d2cb2b236 # v4
         with:
           python-version: 3.8
 
@@ -76,7 +76,7 @@ jobs:
           - "3.10"
     services:
       icinga:
-        image: ghcr.io/telekom-mms/icinga2:director-1.8.1
+        image: ghcr.io/telekom-mms/icinga2:director-1.8.1@sha256:bf9205d41607f1641146e870644af0529338d06a9b360737bdf56a3f951cc28b
         ports:
           - 80:80
     steps:
@@ -84,7 +84,7 @@ jobs:
           Perform integration testing against
           Ansible version ${{ matrix.ansible }}
           under Python ${{ matrix.python }}
-        uses: ansible-community/ansible-test-gh-action@v1.14.1
+        uses: ansible-community/ansible-test-gh-action@f4523b15a83b7d9eb65d859073ff49ad935a785a # v1.14.1
         with:
           ansible-core-version: ${{ matrix.ansible }}
           # OPTIONAL command to run before invoking `ansible-test integration`
@@ -99,10 +99,10 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
 
       - name: Run Linting
-        uses: ansible/ansible-lint-action@v6.17.0
+        uses: ansible/ansible-lint-action@cad5176ea6f24a38f909d688bd467ec8d942d7e1 # v6.17.0
 
   molecule:
     name: Molecule
@@ -110,12 +110,12 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
         with:
           path: ansible_collections/telekom_mms/ansible_collection_icinga
 
       - name: Set up Python 3.8
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@65d7f2d534ac1bc67fcd62888c5f4f3d2cb2b236 # v4
         with:
           python-version: 3.8
 
