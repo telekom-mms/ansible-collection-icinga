@@ -1,6 +1,6 @@
 # Changelog
 
-## [2.0.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.0.1) (2023-10-30)
+## [2.0.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.0.1) (2023-11-20)
 
 [Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.0.0...2.0.1)
 
