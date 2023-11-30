@@ -54,7 +54,7 @@
         - deb-src http://packages.icinga.com/debian icinga-bullseye main
       when:
         - ansible_facts['distribution'] == 'Debian'
-        - ansible_facts['ansible_distribution_version'] == 11
+        - ansible_facts['distribution_major_version'] == "11"
       tags:
         - molecule-idempotence-notest
 
@@ -68,7 +68,7 @@
         - deb-src http://packages.icinga.com/debian icinga-bookworm main
       when:
         - ansible_facts['distribution'] == 'Debian'
-        - ansible_facts['ansible_distribution_version'] == 12
+        - ansible_facts['distribution_major_version'] == "12"
       tags:
         - molecule-idempotence-notest
 
