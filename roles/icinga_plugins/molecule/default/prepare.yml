@@ -59,7 +59,7 @@
         - deb-src http://packages.icinga.com/debian icinga-bullseye main
       when:
         - ansible_facts['distribution'] == 'Debian'
-        - ansible_facts['distribution_major_version'] == 11
+        - ansible_facts['ansible_distribution_version'] == 11
 
     - name: Add icinga2 repository on debian 12
       ansible.builtin.apt_repository:
@@ -71,7 +71,7 @@
         - deb-src http://packages.icinga.com/debian icinga-bookworm main
       when:
         - ansible_facts['distribution'] == 'Debian'
-        - ansible_facts['distribution_major_version'] == 12
+        - ansible_facts['ansible_distribution_version'] == 12
 
     - name: Add icinga2 repository on ubuntu 2204
       ansible.builtin.apt_repository:
