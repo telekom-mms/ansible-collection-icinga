@@ -1,0 +1,84 @@
+---
+- name: Prepare
+  hosts: all
+  tasks:
+    - name: Install epel repo
+      ansible.builtin.yum:
+        name: epel-release
+        state: installed
+      when: ansible_os_family == 'RedHat'
+
+    - name: Import icinga2 key
+      ansible.builtin.rpm_key:
+        state: present
+        key: https://packages.icinga.com/icinga.key
+      when: ansible_os_family == 'RedHat'
+
+    - name: Install icinga2 repo
+      ansible.builtin.yum:
+        name: https://packages.icinga.com/epel/icinga-rpm-release-7-latest.noarch.rpm
+        state: present
+      when: ansible_os_family == 'RedHat'
+
+    - name: Install icinga2 basic packages
+      ansible.builtin.apt:
+        name: gnupg
+        state: present
+        update_cache: true
+      when: ansible_os_family == 'Debian'
+
+    - name: Add icinga2 repo key
+      ansible.builtin.apt_key:
+        url: http://packages.icinga.com/icinga.key
+        state: present
+      when: ansible_os_family == 'Debian'
+
+    - name: Add icinga2 repository on debian 11
+      ansible.builtin.apt_repository:
+        repo: "{{ item }}"
+        state: present
+        update_cache: true
+      with_items:
+        - deb http://packages.icinga.com/debian icinga-bullseye main
+        - deb-src http://packages.icinga.com/debian icinga-bullseye main
+      when:
+        - ansible_facts['distribution'] == 'Debian'
+        - ansible_facts['distribution_major_version'] == "11"
+
+    - name: Add icinga2 repository on debian 12
+      ansible.builtin.apt_repository:
+        repo: "{{ item }}"
+        state: present
+        update_cache: true
+      with_items:
+        - deb http://packages.icinga.com/debian icinga-bookworm main
+        - deb-src http://packages.icinga.com/debian icinga-bookworm main
+      when:
+        - ansible_facts['distribution'] == 'Debian'
+        - ansible_facts['distribution_major_version'] == "12"
+
+    - name: Add icinga2 repository on ubuntu 2204
+      ansible.builtin.apt_repository:
+        repo: "{{ item }}"
+        state: present
+        update_cache: true
+      with_items:
+        - deb http://packages.icinga.com/ubuntu icinga-jammy main
+        - deb-src http://packages.icinga.com/ubuntu icinga-jammy main
+      when:
+        - ansible_facts['distribution'] == "Ubuntu"
+        - ansible_facts['distribution_major_version'] == "22"
+
+    - name: Install icinga2 build dependencies
+      ansible.builtin.apt:
+        pkg: icinga2
+        state: build-dep
+        update_cache: true
+      when: ansible_os_family == 'Debian'
+
+    - name: Install icinga2 basic packages
+      ansible.builtin.apt:
+        name: icinga2
+        state: present
+        update_cache: true
+      when: ansible_os_family == 'Debian'

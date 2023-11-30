@@ -1,0 +1,104 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Verify that icinga2.conf exists
+      ansible.builtin.file:
+        path: /etc/icinga2/icinga2.conf
+        state: file
+      register: result_icinga2_conf
+
+    - name: Validate icinga2.conf results for RedHat based Distributions
+      ansible.builtin.assert:
+        that:
+          - result_icinga2_conf.state == 'file'
+          - result_icinga2_conf.mode == '0640'
+          - result_icinga2_conf.owner == 'icinga'
+          - result_icinga2_conf.group == 'icinga'
+      when: ansible_os_family == 'RedHat'
+
+    - name: Validate icinga2.conf results for Debian based Distributions
+      ansible.builtin.assert:
+        that:
+          - result_icinga2_conf.state == 'file'
+          - result_icinga2_conf.mode == '0640'
+          - result_icinga2_conf.owner == 'nagios'
+          - result_icinga2_conf.group == 'nagios'
+      when: ansible_os_family == 'Debian'
+
+    - name: Verify that constants.conf exists
+      ansible.builtin.file:
+        path: /etc/icinga2/constants.conf
+        state: file
+      register: result_constants_conf
+
+    - name: Validate constants.conf results for RedHat based Distributions
+      ansible.builtin.assert:
+        that:
+          - result_constants_conf.state == 'file'
+          - result_constants_conf.mode == '0640'
+          - result_constants_conf.owner == 'icinga'
+          - result_constants_conf.group == 'icinga'
+      when: ansible_os_family == 'RedHat'
+
+    - name: Validate constants.conf results for Debian based Distributions
+      ansible.builtin.assert:
+        that:
+          - result_constants_conf.state == 'file'
+          - result_constants_conf.mode == '0640'
+          - result_constants_conf.owner == 'nagios'
+          - result_constants_conf.group == 'nagios'
+      when: ansible_os_family == 'Debian'
+
+    - name: Verify that zones.conf exists
+      ansible.builtin.file:
+        path: /etc/icinga2/zones.conf
+        state: file
+      register: result_zones_conf
+
+    - name: Validate zones.conf results for RedHat based Distributions
+      ansible.builtin.assert:
+        that:
+          - result_zones_conf.state == 'file'
+          - result_zones_conf.mode == '0640'
+          - result_zones_conf.owner == 'icinga'
+          - result_zones_conf.group == 'icinga'
+      when: ansible_os_family == 'RedHat'
+
+    - name: Validate zones.conf results for Debian based Distributions
+      ansible.builtin.assert:
+        that:
+          - result_zones_conf.state == 'file'
+          - result_zones_conf.mode == '0640'
+          - result_zones_conf.owner == 'nagios'
+          - result_zones_conf.group == 'nagios'
+      when: ansible_os_family == 'Debian'
+
+    - name: Verify that api.conf exists
+      ansible.builtin.file:
+        path: /etc/icinga2/features-available/api.conf
+        state: file
+      register: result_api_conf
+
+    - name: Validate api.conf results for RedHat based Distributions
+      ansible.builtin.assert:
+        that:
+          - result_api_conf.state == 'file'
+          - result_api_conf.mode == '0640'
+          - result_api_conf.owner == 'icinga'
+          - result_api_conf.group == 'icinga'
+      when: ansible_os_family == 'RedHat'
+
+    - name: Validate api.conf results for Debian based Distributions
+      ansible.builtin.assert:
+        that:
+          - result_api_conf.state == 'file'
+          - result_api_conf.mode == '0640'
+          - result_api_conf.owner == 'nagios'
+          - result_api_conf.group == 'nagios'
+      when: ansible_os_family == 'Debian'
+
+    - name: Verify that icinga2 package is installed
+      ansible.builtin.package:
+        name: icinga2
+        state: present
