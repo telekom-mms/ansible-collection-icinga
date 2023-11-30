@@ -25,16 +25,16 @@
         name: https://packages.icinga.com/epel/icinga-rpm-release-7-latest.noarch.rpm
         state: present
       when:
-        - ansible_os_family == 'RedHat'
-        - ansible_facts.distribution_major_version | int is version('7', '=')
+        - ansible_facts['distribution'] == 'RedHat'
+        - ansible_facts['distribution_major_version'] == 7
 
     - name: Install icinga2 repo
       ansible.builtin.yum:
         name: https://packages.icinga.com/epel/icinga-rpm-release-7-latest.noarch.rpm
         state: present
       when:
-        - ansible_os_family == 'RedHat'
-        - ansible_facts.distribution_major_version | int is version('8', '=')
+        - ansible_facts['distribution'] == 'RedHat'
+        - ansible_facts['distribution_major_version'] == 8
 
     - name: Install icinga2 basic packages
       ansible.builtin.apt:
@@ -58,8 +58,32 @@
         - deb http://packages.icinga.com/debian icinga-bullseye main
         - deb-src http://packages.icinga.com/debian icinga-bullseye main
       when:
-        - ansible_os_family == 'Debian'
-        - ansible_facts.distribution_major_version | int is version('11', '=')
+        - ansible_facts['distribution'] == 'Debian'
+        - ansible_facts['distribution_major_version'] == 11
+
+    - name: Add icinga2 repository on debian 12
+      ansible.builtin.apt_repository:
+        repo: "{{ item }}"
+        state: present
+        update_cache: true
+      with_items:
+        - deb http://packages.icinga.com/debian icinga-bookworm main
+        - deb-src http://packages.icinga.com/debian icinga-bookworm main
+      when:
+        - ansible_facts['distribution'] == 'Debian'
+        - ansible_facts['distribution_major_version'] == 12
+
+    - name: Add icinga2 repository on ubuntu 2204
+      ansible.builtin.apt_repository:
+        repo: "{{ item }}"
+        state: present
+        update_cache: true
+      with_items:
+        - deb http://packages.icinga.com/ubuntu icinga-jammy main
+        - deb-src http://packages.icinga.com/ubuntu icinga-jammy main
+      when:
+        - ansible_facts['distribution'] == "Ubuntu"
+        - ansible_facts['distribution_major_version'] == "22"
 
     - name: Install icinga2 build dependencies
       ansible.builtin.apt:

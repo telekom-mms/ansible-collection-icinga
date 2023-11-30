@@ -44,7 +44,7 @@
       tags:
         - molecule-idempotence-notest
 
-    - name: Add icinga2 repository
+    - name: Add icinga2 repository on debian 11
       ansible.builtin.apt_repository:
         repo: "{{ item }}"
         state: present
@@ -52,7 +52,37 @@
       with_items:
         - deb http://packages.icinga.com/debian icinga-bullseye main
         - deb-src http://packages.icinga.com/debian icinga-bullseye main
-      when: ansible_os_family == 'Debian'
+      when:
+        - ansible_facts['distribution'] == 'Debian'
+        - ansible_facts['distribution_major_version'] == 11
+      tags:
+        - molecule-idempotence-notest
+
+    - name: Add icinga2 repository on debian 12
+      ansible.builtin.apt_repository:
+        repo: "{{ item }}"
+        state: present
+        update_cache: true
+      with_items:
+        - deb http://packages.icinga.com/debian icinga-bookworm main
+        - deb-src http://packages.icinga.com/debian icinga-bookworm main
+      when:
+        - ansible_facts['distribution'] == 'Debian'
+        - ansible_facts['distribution_major_version'] == 12
+      tags:
+        - molecule-idempotence-notest
+
+    - name: Add icinga2 repository on ubuntu 2204
+      ansible.builtin.apt_repository:
+        repo: "{{ item }}"
+        state: present
+        update_cache: true
+      with_items:
+        - deb http://packages.icinga.com/ubuntu icinga-jammy main
+        - deb-src http://packages.icinga.com/ubuntu icinga-jammy main
+      when:
+        - ansible_facts['distribution'] == "Ubuntu"
+        - ansible_facts['distribution_major_version'] == "22"
       tags:
         - molecule-idempotence-notest
 
