@@ -36,6 +36,13 @@
         - ansible_facts['distribution'] == 'RedHat'
         - ansible_facts['distribution_major_version'] == 8
 
+    - name: Install icinga2 basic packages
+      ansible.builtin.apt:
+        name: gnupg
+        state: present
+        update_cache: true
+      when: ansible_os_family == 'Debian'
+
     - name: Add icinga2 repo key
       ansible.builtin.apt_key:
         url: http://packages.icinga.com/icinga.key
@@ -87,10 +94,7 @@
 
     - name: Install icinga2 basic packages
       ansible.builtin.apt:
-        name: "{{ item }}"
+        name: icinga2
         state: present
         update_cache: true
-      loop:
-        - gnupg
-        - icinga2
       when: ansible_os_family == 'Debian'
