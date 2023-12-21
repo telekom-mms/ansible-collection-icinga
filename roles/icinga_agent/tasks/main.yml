@@ -8,7 +8,7 @@
 
 - name: Create /etc/icinga2/repository.d
   ansible.builtin.file:
-    dest: /etc/icinga2/repository.d
+    path: /etc/icinga2/repository.d
     mode: "0750"
     owner: "{{ icinga2_user[ansible_os_family] }}"
     group: "{{ icinga2_group[ansible_os_family] }}"
@@ -71,7 +71,7 @@
     src: ../features-available/{{ item }}
     dest: /etc/icinga2/features-enabled/{{ item }}
     state: link
-  with_items:
+  loop:
     - "{{ icinga_agent_enable_features }}"
   when:
     - icinga_agent_enable_features is defined

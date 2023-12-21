@@ -22,16 +22,19 @@
     - not single_host_downtime
 
 - name: Include add_downtimes
-  ansible.builtin.include_tasks: add_downtimes.yml
+  ansible.builtin.include_tasks:
+    file: add_downtimes.yml
   when:
     - icinga_action == "add_downtimes"
 
 - name: Include remove_downtimes
-  ansible.builtin.include_tasks: remove_downtimes.yml
+  ansible.builtin.include_tasks:
+    file: remove_downtimes.yml
   when:
     - icinga_action == "remove_downtimes"
 
 - name: Include remove_all_downtimes
-  ansible.builtin.include_tasks: remove_all_downtimes.yml
+  ansible.builtin.include_tasks:
+    file: remove_all_downtimes.yml
   when:
     - icinga_action == "remove_all_downtimes"
