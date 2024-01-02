@@ -10,6 +10,5 @@ exclude_paths:
 offline: false
 
 warn_list:
-  - fqcn[keyword]
   - var-naming[no-role-prefix]
   - args[module]

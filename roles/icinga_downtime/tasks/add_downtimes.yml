@@ -2,8 +2,8 @@
 - name: Add icinga host downtimes
   ansible.builtin.uri:
     url: "{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/schedule-downtime?type=Host"
-    user: "{{ icinga_api_user }}"
-    password: "{{ icinga_api_password }}"
+    url_username: "{{ icinga_api_user }}"
+    url_password: "{{ icinga_api_password }}"
     validate_certs: true
     method: POST
     status_code: 200
@@ -20,7 +20,7 @@
              "pretty": true,
              "fixed": true,
            }'
-  with_items:
+  loop:
     - "{{ icinga_host_filter }}"
   when:
     - host_downtime
@@ -28,8 +28,8 @@
 - name: Add icinga service downtimes
   ansible.builtin.uri:
     url: "{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/schedule-downtime?type=Service"
-    user: "{{ icinga_api_user }}"
-    password: "{{ icinga_api_password }}"
+    url_username: "{{ icinga_api_user }}"
+    url_password: "{{ icinga_api_password }}"
     validate_certs: true
     method: POST
     status_code: 200
@@ -47,7 +47,7 @@
              "fixed": true,
            }'
   delegate_to: localhost
-  with_items:
+  loop:
     - "{{ icinga_host_filter }}"
   when:
     - service_downtime
@@ -56,8 +56,8 @@
 - name: Add icinga single service downtimes
   ansible.builtin.uri:
     url: "{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/schedule-downtime?type=Service"
-    user: "{{ icinga_api_user }}"
-    password: "{{ icinga_api_password }}"
+    url_username: "{{ icinga_api_user }}"
+    url_password: "{{ icinga_api_password }}"
     validate_certs: true
     method: POST
     status_code: 200
@@ -75,7 +75,7 @@
              "fixed": true,
            }'
   delegate_to: localhost
-  with_items:
+  loop:
     - "{{ icinga_host_filter }}"
   when:
     - single_service_downtime

@@ -2,8 +2,8 @@
 - name: Delete all icinga downtimes (host and service)
   ansible.builtin.uri:
     url: "{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/remove-downtime?type=Downtime"
-    user: "{{ icinga_api_user }}"
-    password: "{{ icinga_api_password }}"
+    url_username: "{{ icinga_api_user }}"
+    url_password: "{{ icinga_api_password }}"
     validate_certs: true
     method: POST
     status_code: 200

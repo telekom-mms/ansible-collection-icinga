@@ -12,7 +12,7 @@
 
 # https://github.com/Icinga/icinga2/issues/7927
 - name: Install icinga and nagios plugins except for the mysql-plugins on el8
-  ansible.builtin.package:
+  ansible.builtin.yum:
     name: "{{ item }}"
     exclude:
       - nagios-plugins-all
