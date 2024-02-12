@@ -3,14 +3,14 @@ name: CI - Linting & Testing
 
 on:
   push:
-    branches: [master]
+    branches: [main]
     paths:
       - 'playbooks/**'
       - 'roles/**'
       - 'tests/**'
       - 'meta/**'
   pull_request:
-    branches: [master]
+    branches: [main]
     paths:
       - 'playbooks/**'
       - 'roles/**'
