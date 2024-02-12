@@ -79,7 +79,7 @@ $ git commit -m "improved feature X for ansible-icinga-collection"
 Use the `git push` command to add your local made changes to your remote fork
 
 ```
-$ git push origin master
+$ git push origin HEAD
 ```
 
 ### Open a Pull Request
