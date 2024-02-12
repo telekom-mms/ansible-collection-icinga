@@ -1,18 +1,13 @@
 # Changelog
 
-## [2.0.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.0.1) (2023-11-20)
+## [2.0.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.0.1) (2024-02-12)
 
 [Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.0.0...2.0.1)
 
-**Merged pull requests:**
+**Implemented enhancements:**
 
-- Update actions/checkout action to v4.1.1 [\#63](https://github.com/telekom-mms/ansible-collection-icinga/pull/63) ([renovate[bot]](https://github.com/apps/renovate))
-- fix linting [\#62](https://github.com/telekom-mms/ansible-collection-icinga/pull/62) ([rndmh3ro](https://github.com/rndmh3ro))
-- Update actions/checkout action to v4 [\#61](https://github.com/telekom-mms/ansible-collection-icinga/pull/61) ([renovate[bot]](https://github.com/apps/renovate))
-- run linting and tests only, when ansible-files change [\#59](https://github.com/telekom-mms/ansible-collection-icinga/pull/59) ([rndmh3ro](https://github.com/rndmh3ro))
-- add hints to playbooks [\#58](https://github.com/telekom-mms/ansible-collection-icinga/pull/58) ([rndmh3ro](https://github.com/rndmh3ro))
-- Update actions/checkout action to v3.6.0 [\#57](https://github.com/telekom-mms/ansible-collection-icinga/pull/57) ([renovate[bot]](https://github.com/apps/renovate))
-- Update dependency ubuntu to v22 [\#55](https://github.com/telekom-mms/ansible-collection-icinga/pull/55) ([renovate[bot]](https://github.com/apps/renovate))
+- Molecule Tests for role icinga\_plugins [\#17](https://github.com/telekom-mms/ansible-collection-icinga/issues/17)
+- Molecule Tests for role icinga\_agent [\#5](https://github.com/telekom-mms/ansible-collection-icinga/issues/5)
 
 ## [2.0.0](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.0.0) (2023-08-29)
 
