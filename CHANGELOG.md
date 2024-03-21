@@ -9,6 +9,26 @@
 - Molecule Tests for role icinga\_plugins [\#17](https://github.com/telekom-mms/ansible-collection-icinga/issues/17)
 - Molecule Tests for role icinga\_agent [\#5](https://github.com/telekom-mms/ansible-collection-icinga/issues/5)
 
+**Merged pull requests:**
+
+- Update galaxy.yml [\#73](https://github.com/telekom-mms/ansible-collection-icinga/pull/73) ([rndmh3ro](https://github.com/rndmh3ro))
+- Update dependency telekom\_mms.icinga\_director to v2.1.0 [\#72](https://github.com/telekom-mms/ansible-collection-icinga/pull/72) ([renovate[bot]](https://github.com/apps/renovate))
+- use shared workflow and switch to main [\#71](https://github.com/telekom-mms/ansible-collection-icinga/pull/71) ([rndmh3ro](https://github.com/rndmh3ro))
+- Update juliangruber/read-file-action digest to b549046 [\#70](https://github.com/telekom-mms/ansible-collection-icinga/pull/70) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency telekom\_mms.icinga\_director to v2 [\#69](https://github.com/telekom-mms/ansible-collection-icinga/pull/69) ([renovate[bot]](https://github.com/apps/renovate))
+- release only on releases, not pre-releases [\#68](https://github.com/telekom-mms/ansible-collection-icinga/pull/68) ([rndmh3ro](https://github.com/rndmh3ro))
+- lint complete collection [\#67](https://github.com/telekom-mms/ansible-collection-icinga/pull/67) ([beechesII](https://github.com/beechesII))
+- Update actions/setup-python action to v5 [\#66](https://github.com/telekom-mms/ansible-collection-icinga/pull/66) ([renovate[bot]](https://github.com/apps/renovate))
+- add more molecule tests [\#65](https://github.com/telekom-mms/ansible-collection-icinga/pull/65) ([beechesII](https://github.com/beechesII))
+- Pin dependencies [\#64](https://github.com/telekom-mms/ansible-collection-icinga/pull/64) ([renovate[bot]](https://github.com/apps/renovate))
+- Update actions/checkout action to v4.1.1 [\#63](https://github.com/telekom-mms/ansible-collection-icinga/pull/63) ([renovate[bot]](https://github.com/apps/renovate))
+- fix linting [\#62](https://github.com/telekom-mms/ansible-collection-icinga/pull/62) ([rndmh3ro](https://github.com/rndmh3ro))
+- Update actions/checkout action to v4 [\#61](https://github.com/telekom-mms/ansible-collection-icinga/pull/61) ([renovate[bot]](https://github.com/apps/renovate))
+- run linting and tests only, when ansible-files change [\#59](https://github.com/telekom-mms/ansible-collection-icinga/pull/59) ([rndmh3ro](https://github.com/rndmh3ro))
+- add hints to playbooks [\#58](https://github.com/telekom-mms/ansible-collection-icinga/pull/58) ([rndmh3ro](https://github.com/rndmh3ro))
+- Update actions/checkout action to v3.6.0 [\#57](https://github.com/telekom-mms/ansible-collection-icinga/pull/57) ([renovate[bot]](https://github.com/apps/renovate))
+- Update dependency ubuntu to v22 [\#55](https://github.com/telekom-mms/ansible-collection-icinga/pull/55) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [2.0.0](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.0.0) (2023-08-29)
 
 [Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/1.1.1...2.0.0)
