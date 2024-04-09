@@ -6,6 +6,51 @@ This role copies custom checks to the wished icinga-agent node.
 
 The users nagios (Debian) or icinga (Redhat) are not created by this Role you need to create these user by yourself or by the role icinga_agent.
 
+Unfortunately, we are currently unable to remove the exclude for the nagion-plugins installation under RHEL8 (or higher)
+
+```yaml
+- name: Install icinga and nagios plugins except for the mysql-plugins on el8
+  ansible.builtin.yum:
+    name: "{{ item }}"
+    exclude:
+      - nagios-plugins-all
+      - nagios-plugins-mysql
+      - nagios-plugins-2.3.3-3.el8.x86_64
+```
+for various reasons:
+
+- `nagios-plugins-all` needs the package `nagios-plugins-ssl_validity` as a dependency which is currently unavailable:
+
+  ```bash
+  Error:
+  Problem: package nagios-plugins-all-2.3.3-6.el8.x86_64 from epel requires nagios-plugins-ssl_validity, but none of the providers can be installed
+  - conflicting requests
+  - nothing provides perl(LWP::Simple) needed by nagios-plugins-ssl_validity-2.3.3-6.el8.x86_64 from epel
+  - nothing provides perl(Date::Parse) needed by nagios-plugins-ssl_validity-2.3.3-6.el8.x86_64 from epel
+  - nothing provides perl(Date::Format) needed by nagios-plugins-ssl_validity-2.3.3-6.el8.x86_64 from epel
+  - nothing provides perl(Text::Glob) needed by nagios-plugins-ssl_validity-2.3.3-6.el8.x86_64 from epel
+  ```
+- `nagios-plugins-mysql` needs the MariaDB repository to be present which is not in scope for this Ansible role
+
+You can however add a `pre-task` to your ansible-playbook which should configure the MariaDB repository. For example:
+
+```yaml
+  pre_tasks:
+    - name: Install MariaDB repository
+      ansible.builtin.yum_repository:
+        name: MariaDB
+        description: MariaDB
+        baseurl: https://mirror.mariadb.org/yum/11.4.1/rhel8-amd64/
+        gpgkey: https://mirror.mariadb.org/yum/RPM-GPG-KEY-MariaDB
+        gpgcheck: true
+        enabled: true
+
+    - name: Install nagios-plugins-mysql
+      ansible.builtin.package:
+        name: nagios-plugins-mysql
+        state: present
+```
+
 ## Dependencies
 
 Some checks might have dependencies, define `dependency_packages` as variable to install them.
