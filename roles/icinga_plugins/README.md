@@ -37,13 +37,18 @@ You can however add a `pre-task` to your ansible-playbook which should configure
 ```yaml
   pre_tasks:
     - name: Install MariaDB repository
-      yum_repository:
+      ansible.builtin.yum_repository:
         name: MariaDB
         description: MariaDB
         baseurl: https://mirror.mariadb.org/yum/11.4.1/rhel8-amd64/
         gpgkey: https://mirror.mariadb.org/yum/RPM-GPG-KEY-MariaDB
         gpgcheck: true
         enabled: true
+
+    - name: Install nagios-plugins-mysql
+      ansible.builtin.package:
+        name: nagios-plugins-mysql
+        state: present
 ```
 
 ## Dependencies
