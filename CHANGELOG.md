@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.3](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.0.3) (2024-04-09)
+
+[Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.0.2...2.0.3)
+
+**Merged pull requests:**
+
+- chore\(deps\): update ansible-community/ansible-test-gh-action action to v1.15.0 - autoclosed [\#77](https://github.com/telekom-mms/ansible-collection-icinga/pull/77) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update actions/setup-python digest to 82c7e63 [\#76](https://github.com/telekom-mms/ansible-collection-icinga/pull/76) ([renovate[bot]](https://github.com/apps/renovate))
+- Bug\(NOISSUE\): Fix ansible-lint error for galaxy.yml [\#75](https://github.com/telekom-mms/ansible-collection-icinga/pull/75) ([xFuture603](https://github.com/xFuture603))
+- fix: icinga\_agent\_enable\_features is wronly converted to a list in task [\#74](https://github.com/telekom-mms/ansible-collection-icinga/pull/74) ([neubi4](https://github.com/neubi4))
+
 ## [2.0.2](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.0.2) (2024-03-21)
 
 [Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.0.1...2.0.2)
