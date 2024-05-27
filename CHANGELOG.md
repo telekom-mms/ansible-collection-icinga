@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.1.0](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.0) (2024-05-27)
+
+[Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.0.3...2.1.0)
+
+**Merged pull requests:**
+
+- fix linting [\#82](https://github.com/telekom-mms/ansible-collection-icinga/pull/82) ([rndmh3ro](https://github.com/rndmh3ro))
+- Make hostname for Icinga agent configurable [\#81](https://github.com/telekom-mms/ansible-collection-icinga/pull/81) ([BenjaminBoehm](https://github.com/BenjaminBoehm))
+- Doc\(NOISSUE\): Added documentation for excludes on RHEL \>= 8 systems [\#78](https://github.com/telekom-mms/ansible-collection-icinga/pull/78) ([xFuture603](https://github.com/xFuture603))
+
 ## [2.0.3](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.0.3) (2024-04-09)
 
 [Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.0.2...2.0.3)
