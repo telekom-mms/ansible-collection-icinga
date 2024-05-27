@@ -2,20 +2,21 @@
 icinga_agent_package: icinga2
 icinga_agent_registration: false
 icinga_agent_ca_host_icinga_port: 5665
+icinga_agent_hostname: "{{ ansible_hostname }}"
 icinga_agent_constants:
   RedHat: |
     const PluginDir = "/usr/lib64/nagios/plugins"
     const PluginContribDir = "/usr/lib64/nagios/plugins"
     const ManubulonPluginDir = "/usr/lib64/nagios/plugins"
-    const ZoneName = "{{ ansible_hostname }}"
-    const NodeName = "{{ ansible_hostname }}"
+    const ZoneName = "{{ icinga_agent_hostname }}"
+    const NodeName = "{{ icinga_agent_hostname }}"
     const TicketSalt = ""
   Debian: |
     const PluginDir = "/usr/lib/nagios/plugins"
     const PluginContribDir = "/usr/lib/nagios/plugins"
     const ManubulonPluginDir = "/usr/lib/nagios/plugins"
-    const ZoneName = "{{ ansible_hostname }}"
-    const NodeName = "{{ ansible_hostname }}"
+    const ZoneName = "{{ icinga_agent_hostname }}"
+    const NodeName = "{{ icinga_agent_hostname }}"
     const TicketSalt = ""
 icinga_agent_api_conf: |
   accept_config = true
