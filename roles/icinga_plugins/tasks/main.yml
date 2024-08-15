@@ -46,6 +46,13 @@
     - icinga_plugins_path is defined
     - icinga_plugins_path | length > 0
 
+- name: Set icinga plugins directory as safe path
+  community.general.git_config:
+    name: safe.directory
+    scope: global
+    add_mode: add
+    value: "{{ icinga_plugins_git_repo_dest_path }}"
+
 - name: Copy icinga plugins to destination path from git repo
   ansible.builtin.git:
     repo: "{{ icinga_plugins_git_repo_url }}"
