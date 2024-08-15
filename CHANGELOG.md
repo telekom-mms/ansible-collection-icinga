@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.1) (2024-08-15)
+
+[Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.1.0...2.1.1)
+
+**Merged pull requests:**
+
+- add git config step to fix "dubious ownership" error in git step [\#84](https://github.com/telekom-mms/ansible-collection-icinga/pull/84) ([z-bsod](https://github.com/z-bsod))
+
 ## [2.1.0](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.0) (2024-05-27)
 
 [Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.0.3...2.1.0)
