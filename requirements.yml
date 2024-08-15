@@ -1,6 +1,6 @@
 ---
 collections:
   - name: telekom_mms.icinga_director
-    version: 2.1.0
+    version: 2.1.2
   - name: community.general
     version: 9.3.0
