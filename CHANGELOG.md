@@ -1,11 +1,13 @@
 # Changelog
 
-## [2.1.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.1) (2024-08-21)
+## [2.1.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.1) (2024-10-08)
 
 [Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.1.0...2.1.1)
 
 **Merged pull requests:**
 
+- chore\(deps\): update dependency ubuntu to v24 [\#88](https://github.com/telekom-mms/ansible-collection-icinga/pull/88) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update actions/setup-python digest to f677139 [\#85](https://github.com/telekom-mms/ansible-collection-icinga/pull/85) ([renovate[bot]](https://github.com/apps/renovate))
 - add git config step to fix "dubious ownership" error in git step [\#84](https://github.com/telekom-mms/ansible-collection-icinga/pull/84) ([z-bsod](https://github.com/z-bsod))
 - chore\(deps\): update actions/setup-python digest to 39cd149 [\#83](https://github.com/telekom-mms/ansible-collection-icinga/pull/83) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update actions/checkout digest to 692973e [\#80](https://github.com/telekom-mms/ansible-collection-icinga/pull/80) ([renovate[bot]](https://github.com/apps/renovate))
