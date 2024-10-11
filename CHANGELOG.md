@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- chore\(deps\): update actions/checkout digest to eef6144 [\#90](https://github.com/telekom-mms/ansible-collection-icinga/pull/90) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency ubuntu to v24 [\#88](https://github.com/telekom-mms/ansible-collection-icinga/pull/88) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible-community/ansible-test-gh-action action to v1.16.0 [\#87](https://github.com/telekom-mms/ansible-collection-icinga/pull/87) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update actions/setup-python digest to f677139 [\#85](https://github.com/telekom-mms/ansible-collection-icinga/pull/85) ([renovate[bot]](https://github.com/apps/renovate))
