@@ -10,6 +10,7 @@
 - chore\(deps\): update actions/checkout digest to eef6144 [\#90](https://github.com/telekom-mms/ansible-collection-icinga/pull/90) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency ubuntu to v24 [\#88](https://github.com/telekom-mms/ansible-collection-icinga/pull/88) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible-community/ansible-test-gh-action action to v1.16.0 [\#87](https://github.com/telekom-mms/ansible-collection-icinga/pull/87) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update dependency community.general to v9.5.0 [\#86](https://github.com/telekom-mms/ansible-collection-icinga/pull/86) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update actions/setup-python digest to f677139 [\#85](https://github.com/telekom-mms/ansible-collection-icinga/pull/85) ([renovate[bot]](https://github.com/apps/renovate))
 - add git config step to fix "dubious ownership" error in git step [\#84](https://github.com/telekom-mms/ansible-collection-icinga/pull/84) ([z-bsod](https://github.com/z-bsod))
 - chore\(deps\): update actions/setup-python digest to 39cd149 [\#83](https://github.com/telekom-mms/ansible-collection-icinga/pull/83) ([renovate[bot]](https://github.com/apps/renovate))
