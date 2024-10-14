@@ -1,11 +1,12 @@
 # Changelog
 
-## [2.1.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.1) (2024-10-11)
+## [2.1.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.1) (2024-10-14)
 
 [Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.1.0...2.1.1)
 
 **Merged pull requests:**
 
+- update ansible and python versions in testing [\#91](https://github.com/telekom-mms/ansible-collection-icinga/pull/91) ([rndmh3ro](https://github.com/rndmh3ro))
 - chore\(deps\): update actions/checkout digest to eef6144 [\#90](https://github.com/telekom-mms/ansible-collection-icinga/pull/90) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency ubuntu to v24 [\#88](https://github.com/telekom-mms/ansible-collection-icinga/pull/88) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible-community/ansible-test-gh-action action to v1.16.0 [\#87](https://github.com/telekom-mms/ansible-collection-icinga/pull/87) ([renovate[bot]](https://github.com/apps/renovate))
