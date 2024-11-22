@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- chore\(deps\): update actions/setup-python digest to 0b93645 [\#93](https://github.com/telekom-mms/ansible-collection-icinga/pull/93) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update actions/checkout digest to 11bd719 [\#92](https://github.com/telekom-mms/ansible-collection-icinga/pull/92) ([renovate[bot]](https://github.com/apps/renovate))
 - update ansible and python versions in testing [\#91](https://github.com/telekom-mms/ansible-collection-icinga/pull/91) ([rndmh3ro](https://github.com/rndmh3ro))
 - chore\(deps\): update actions/checkout digest to eef6144 [\#90](https://github.com/telekom-mms/ansible-collection-icinga/pull/90) ([renovate[bot]](https://github.com/apps/renovate))
