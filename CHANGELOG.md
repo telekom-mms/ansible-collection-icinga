@@ -1,12 +1,14 @@
 # Changelog
 
-## [2.1.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.1) (2024-11-22)
+## [2.1.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.1) (2024-12-09)
 
 [Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.1.0...2.1.1)
 
 **Merged pull requests:**
 
+- chore\(deps\): update dependency community.general to v10.1.0 [\#97](https://github.com/telekom-mms/ansible-collection-icinga/pull/97) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency community.general to v10 [\#95](https://github.com/telekom-mms/ansible-collection-icinga/pull/95) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update dependency telekom\_mms.icinga\_director to v2.2.1 [\#94](https://github.com/telekom-mms/ansible-collection-icinga/pull/94) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update actions/setup-python digest to 0b93645 [\#93](https://github.com/telekom-mms/ansible-collection-icinga/pull/93) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update actions/checkout digest to 11bd719 [\#92](https://github.com/telekom-mms/ansible-collection-icinga/pull/92) ([renovate[bot]](https://github.com/apps/renovate))
 - update ansible and python versions in testing [\#91](https://github.com/telekom-mms/ansible-collection-icinga/pull/91) ([rndmh3ro](https://github.com/rndmh3ro))
