@@ -1,12 +1,6 @@
 ---
 name: steampunk spotter
-on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
-  schedule:
-    - cron: "0 6 * * 2"
+on: [push]
 jobs:
   run:
     runs-on: ubuntu-latest
@@ -16,7 +10,8 @@ jobs:
 
       - name: scan ansible content with spotter
         uses: xlab-steampunk/spotter-action@3.3.0
-        env:
-          SPOTTER_ENDPOINT: ${{ secrets.SPOTTER_ENDPOINT }}
-          SPOTTER_TOKEN: ${{ secrets.SPOTTER_TOKEN }}
-          SPOTTER_PROJECT: HqNZew32TFuSmqbb4gnLpw
+        with:
+          endpoint: ${{ secrets.SPOTTER_ENDPOINT }}
+          api_token: ${{ secrets.SPOTTER_TOKEN }}
+          project_id: HqNZew32TFuSmqbb4gnLpw
+          debug: true
