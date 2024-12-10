@@ -1,0 +1,16 @@
+---
+name: steampunk spotter
+on: [push]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: scan ansible content with spotter
+        uses: xlab-steampunk/spotter-action@3.3.0
+        with:
+          endpoint: ${{ secrets.SPOTTER_ENDPOINT }}
+          api_token: ${{ secrets.SPOTTER_TOKEN }}
+          project_id: HqNZew32TFuSmqbb4gnLpw
