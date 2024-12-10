@@ -3,14 +3,8 @@ name: steampunk spotter
 on:
   push:
     branches: [master]
-    paths:
-      - 'playbooks/**'
-      - 'roles/**'
   pull_request:
     branches: [master]
-    paths:
-      - 'playbooks/**'
-      - 'roles/**'
   schedule:
     - cron: "0 6 * * 2"
 jobs:
