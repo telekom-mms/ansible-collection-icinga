@@ -11,9 +11,7 @@ on:
       - 'meta/**'
       - 'galaxy.yml'
   pull_request:
-    branches:
-      - main
-      - integration_spotter
+    branches: [main]
     paths:
       - 'playbooks/**'
       - 'roles/**'
