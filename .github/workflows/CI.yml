@@ -3,16 +3,6 @@ name: CI - Linting & Testing
 
 on:
   push:
-    branches:
-     - main
-     - integration_spotter
-    #paths:
-    #  - 'playbooks/**'
-    #  - 'roles/**'
-    #  - 'tests/**'
-    #  - 'meta/**'
-    #  - 'galaxy.yml'
-  pull_request:
     branches: [main]
     paths:
       - 'playbooks/**'
@@ -20,6 +10,14 @@ on:
       - 'tests/**'
       - 'meta/**'
       - 'galaxy.yml'
+  pull_request:
+    types: [opened, synchronize, reopened]
+    #paths:
+    #  - 'playbooks/**'
+    #  - 'roles/**'
+    #  - 'tests/**'
+    #  - 'meta/**'
+    #  - 'galaxy.yml'
   # Run CI once per week (at 06:00 UTC)
   # This ensures that even if there haven't been commits that we are still
   # testing against latest version of ansible-test for each ansible-core
