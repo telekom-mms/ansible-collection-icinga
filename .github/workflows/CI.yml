@@ -23,7 +23,7 @@ on:
   # testing against latest version of ansible-test for each ansible-core
   # version
   schedule:
-    - cron: "50 11 * * 3"
+    - cron: "55 10 * * 3"
     #- cron: "0 6 * * 1"
 
 concurrency:
