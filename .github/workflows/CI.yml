@@ -3,13 +3,15 @@ name: CI - Linting & Testing
 
 on:
   push:
-    branches: [main]
-    paths:
-      - 'playbooks/**'
-      - 'roles/**'
-      - 'tests/**'
-      - 'meta/**'
-      - 'galaxy.yml'
+    branches:
+     - main
+     - integration_spotter
+    #paths:
+    #  - 'playbooks/**'
+    #  - 'roles/**'
+    #  - 'tests/**'
+    #  - 'meta/**'
+    #  - 'galaxy.yml'
   pull_request:
     branches: [main]
     paths:
@@ -120,6 +122,7 @@ jobs:
                -F "ref=main" \
                -F "variables[GITHUB_REPOSITORY]=${{ github.repository }}" \
                -F "variables[SPOTTER_PROJECT]=HqNZew32TFuSmqbb4gnLpw" \
+               -F "variables[ISSUE_NUMBER]=${{ github.event.number }}"
                ${{ secrets.SPOTTER_GITLAB_TRIGGER_URL }} > /dev/null
 
   molecule:
