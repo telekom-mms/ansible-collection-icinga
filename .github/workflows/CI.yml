@@ -3,13 +3,15 @@ name: CI - Linting & Testing
 
 on:
   push:
-    branches: [main]
-    paths:
-      - 'playbooks/**'
-      - 'roles/**'
-      - 'tests/**'
-      - 'meta/**'
-      - 'galaxy.yml'
+    branches:
+      - main
+      - integration_spotter
+    #paths:
+    #  - 'playbooks/**'
+    #  - 'roles/**'
+    #  - 'tests/**'
+    #  - 'meta/**'
+    #  - 'galaxy.yml'
   pull_request:
     branches:
       - main
@@ -25,8 +27,8 @@ on:
   # testing against latest version of ansible-test for each ansible-core
   # version
   schedule:
-    - cron: "59 10 * * 3"
-    #- cron: "0 6 * * 1"
+    - cron: "0 6 * * 1"
+
 
 concurrency:
   group: >-
