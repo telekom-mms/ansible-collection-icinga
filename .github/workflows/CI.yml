@@ -11,7 +11,9 @@ on:
       - 'meta/**'
       - 'galaxy.yml'
   pull_request:
-    branches: [main]
+    branches:
+      - main
+      - integration_spotter
     paths:
       - 'playbooks/**'
       - 'roles/**'
@@ -23,7 +25,7 @@ on:
   # testing against latest version of ansible-test for each ansible-core
   # version
   schedule:
-    - cron: "55 10 * * 3"
+    - cron: "59 10 * * 3"
     #- cron: "0 6 * * 1"
 
 concurrency:
