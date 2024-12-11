@@ -122,7 +122,7 @@ jobs:
                -F "ref=main" \
                -F "variables[GITHUB_REPOSITORY]=${{ github.repository }}" \
                -F "variables[SPOTTER_PROJECT]=HqNZew32TFuSmqbb4gnLpw" \
-               -F "variables[PR_NUMBER]=${{ github.event.pull_request.number }}" \
+               -F "variables[PR_NUMBER]=${{ github.ref_name }}" \
                ${{ secrets.SPOTTER_GITLAB_TRIGGER_URL }} > /dev/null
 
   molecule:
