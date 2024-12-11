@@ -3,15 +3,13 @@ name: CI - Linting & Testing
 
 on:
   push:
-    branches:
-      - main
-      - integration_spotter
-    #paths:
-    #  - 'playbooks/**'
-    #  - 'roles/**'
-    #  - 'tests/**'
-    #  - 'meta/**'
-    #  - 'galaxy.yml'
+    branches: [main]
+    paths:
+      - 'playbooks/**'
+      - 'roles/**'
+      - 'tests/**'
+      - 'meta/**'
+      - 'galaxy.yml'
   pull_request:
     branches:
       - main
