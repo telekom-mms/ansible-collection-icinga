@@ -107,6 +107,21 @@ jobs:
       - name: Run Linting
         uses: ansible/ansible-lint-action@cad5176ea6f24a38f909d688bd467ec8d942d7e1 # v6.17.0
 
+  spotter:
+    name: Spotter Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: trigger scan
+        run: |
+          curl -X POST \
+               --fail \
+               -s \
+               -F token=${{ secrets.SPOTTER_GITLAB_TRIGGER_TOKEN }} \
+               -F "ref=main" \
+               -F "variables[GITHUB_REPOSITORY]=${{ GITHUB_REPOSITORY }}" \
+               -F "variables[SPOTTER_PROJECT]=HqNZew32TFuSmqbb4gnLpw" \
+               ${{ secrets.SPOTTER_GITLAB_TRIGGER_URL }} > /dev/null
+
   molecule:
     name: Molecule
     runs-on: ubuntu-latest
