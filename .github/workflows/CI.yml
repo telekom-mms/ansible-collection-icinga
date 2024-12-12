@@ -11,13 +11,13 @@ on:
       - 'meta/**'
       - 'galaxy.yml'
   pull_request:
-    types: [opened, synchronize, reopened]
-    #paths:
-    #  - 'playbooks/**'
-    #  - 'roles/**'
-    #  - 'tests/**'
-    #  - 'meta/**'
-    #  - 'galaxy.yml'
+    branches: [main]
+    paths:
+      - 'playbooks/**'
+      - 'roles/**'
+      - 'tests/**'
+      - 'meta/**'
+      - 'galaxy.yml'
   # Run CI once per week (at 06:00 UTC)
   # This ensures that even if there haven't been commits that we are still
   # testing against latest version of ansible-test for each ansible-core
@@ -110,6 +110,7 @@ jobs:
   spotter:
     name: Spotter Scan
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
     steps:
       - name: trigger scan
         run: |
