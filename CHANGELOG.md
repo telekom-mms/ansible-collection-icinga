@@ -1,11 +1,13 @@
 # Changelog
 
-## [2.1.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.1) (2024-12-09)
+## [2.1.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.1) (2025-01-08)
 
 [Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.1.0...2.1.1)
 
 **Merged pull requests:**
 
+- chore\(deps\): update dependency community.general to v10.2.0 [\#101](https://github.com/telekom-mms/ansible-collection-icinga/pull/101) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update dependency telekom\_mms.icinga\_director to v2.2.2 [\#100](https://github.com/telekom-mms/ansible-collection-icinga/pull/100) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency community.general to v10.1.0 [\#97](https://github.com/telekom-mms/ansible-collection-icinga/pull/97) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency community.general to v10 [\#95](https://github.com/telekom-mms/ansible-collection-icinga/pull/95) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency telekom\_mms.icinga\_director to v2.2.1 [\#94](https://github.com/telekom-mms/ansible-collection-icinga/pull/94) ([renovate[bot]](https://github.com/apps/renovate))
