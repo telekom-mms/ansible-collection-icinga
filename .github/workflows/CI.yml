@@ -50,7 +50,7 @@ jobs:
           path: ansible_collections/telekom_mms/ansible_collection_icinga
 
       - name: Set up Python ${{ matrix.ansible }}
-        uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5
+        uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5
         with:
           python-version: 3.8
 
@@ -118,7 +118,7 @@ jobs:
           path: ansible_collections/telekom_mms/ansible_collection_icinga
 
       - name: Set up Python 3.8
-        uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5
+        uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5
         with:
           python-version: 3.8
 
