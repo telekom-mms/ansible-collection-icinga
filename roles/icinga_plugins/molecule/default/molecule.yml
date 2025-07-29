@@ -4,8 +4,8 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: rockylinux9
-    image: eniocarboni/docker-rockylinux-systemd:9
+  - name: rockylinux8
+    image: eniocarboni/docker-rockylinux-systemd:8
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     cgroupns_mode: host
