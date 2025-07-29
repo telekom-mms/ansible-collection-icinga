@@ -15,9 +15,9 @@
       when: ansible_os_family == 'RedHat'
 
     - name: Install icinga2 repo
-      ansible.builtin.yum:
-        name: https://packages.icinga.com/epel/icinga-rpm-release-7-latest.noarch.rpm
-        state: present
+      ansible.builtin.get_url:
+        url: https://packages.icinga.com/centos/ICINGA-release.repo
+        dest: /etc/yum.repos.d/ICINGA-release.repo
       when: ansible_os_family == 'RedHat'
 
     - name: Install icinga2 basic packages

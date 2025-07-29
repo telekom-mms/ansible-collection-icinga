@@ -12,3 +12,5 @@ offline: false
 warn_list:
   - var-naming[no-role-prefix]
   - args[module]
+  - fqcn[action-core]
+  - meta-runtime[unsupported-version]
