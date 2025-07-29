@@ -4,16 +4,8 @@ dependency:
 driver:
   name: docker
 platforms:
-  - name: centos7
-    image: ebesson/docker-centos7-systemd:latest
-    volumes:
-      - /sys:/sys:rw
-    cgroupns_mode: host
-    privileged: true
-    pre_build_image: true
-    command: ""
-  - name: rockylinux8
-    image: eniocarboni/docker-rockylinux-systemd:8
+  - name: rockylinux9
+    image: eniocarboni/docker-rockylinux-systemd:9
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:rw
     cgroupns_mode: host
