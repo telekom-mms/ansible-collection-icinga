@@ -7,6 +7,7 @@
 **Merged pull requests:**
 
 - chore\(deps\): update ansible-community/ansible-test-gh-action action to v1.17.0 [\#109](https://github.com/telekom-mms/ansible-collection-icinga/pull/109) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update ansible/ansible-lint digest to 9765b87 [\#108](https://github.com/telekom-mms/ansible-collection-icinga/pull/108) ([renovate[bot]](https://github.com/apps/renovate))
 - Update versions in GitHub workflow [\#107](https://github.com/telekom-mms/ansible-collection-icinga/pull/107) ([schurzi](https://github.com/schurzi))
 - chore\(deps\): update actions/setup-python digest to a26af69 [\#103](https://github.com/telekom-mms/ansible-collection-icinga/pull/103) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency community.general to v10.3.0 [\#102](https://github.com/telekom-mms/ansible-collection-icinga/pull/102) ([renovate[bot]](https://github.com/apps/renovate))
