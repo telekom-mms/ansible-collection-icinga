@@ -1,11 +1,12 @@
 # Changelog
 
-## [2.1.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.1) (2025-08-15)
+## [2.1.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.1) (2025-08-23)
 
 [Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.1.0...2.1.1)
 
 **Merged pull requests:**
 
+- chore\(deps\): update ansible/ansible-lint digest to 50373ef [\#114](https://github.com/telekom-mms/ansible-collection-icinga/pull/114) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible/ansible-lint digest to 1080d91 [\#113](https://github.com/telekom-mms/ansible-collection-icinga/pull/113) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update actions/checkout digest to 08eba0b [\#112](https://github.com/telekom-mms/ansible-collection-icinga/pull/112) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible-community/ansible-test-gh-action action to v1.17.0 [\#109](https://github.com/telekom-mms/ansible-collection-icinga/pull/109) ([renovate[bot]](https://github.com/apps/renovate))
