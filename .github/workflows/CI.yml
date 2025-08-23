@@ -106,7 +106,7 @@ jobs:
         uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
 
       - name: Run Linting
-        uses: ansible/ansible-lint@1080d91d521d909ad79b868131e7ed7c6c708c77 # v25
+        uses: ansible/ansible-lint@50373efb440dd3b524956c075af715cd00eaf20b # v25
 
   molecule:
     name: Molecule
