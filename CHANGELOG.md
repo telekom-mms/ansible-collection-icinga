@@ -13,6 +13,8 @@
 - chore\(deps\): update ansible-community/ansible-test-gh-action action to v1.17.0 [\#109](https://github.com/telekom-mms/ansible-collection-icinga/pull/109) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible/ansible-lint digest to 9765b87 [\#108](https://github.com/telekom-mms/ansible-collection-icinga/pull/108) ([renovate[bot]](https://github.com/apps/renovate))
 - Update versions in GitHub workflow [\#107](https://github.com/telekom-mms/ansible-collection-icinga/pull/107) ([schurzi](https://github.com/schurzi))
+- chore\(deps\): update dependency community.general to v11 [\#106](https://github.com/telekom-mms/ansible-collection-icinga/pull/106) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update dependency telekom\_mms.icinga\_director to v2.4.0 [\#105](https://github.com/telekom-mms/ansible-collection-icinga/pull/105) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update actions/setup-python digest to a26af69 [\#103](https://github.com/telekom-mms/ansible-collection-icinga/pull/103) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency community.general to v10.3.0 [\#102](https://github.com/telekom-mms/ansible-collection-icinga/pull/102) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency community.general to v10.2.0 [\#101](https://github.com/telekom-mms/ansible-collection-icinga/pull/101) ([renovate[bot]](https://github.com/apps/renovate))
