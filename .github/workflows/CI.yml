@@ -48,7 +48,7 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
         with:
           path: ansible_collections/telekom_mms/ansible_collection_icinga
 
@@ -103,7 +103,7 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
 
       - name: Run Linting
         uses: ansible/ansible-lint@50373efb440dd3b524956c075af715cd00eaf20b # v25
@@ -114,7 +114,7 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
         with:
           path: ansible_collections/telekom_mms/ansible_collection_icinga
 
