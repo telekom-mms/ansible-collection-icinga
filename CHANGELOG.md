@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- chore\(deps\): update dependency community.general to v11.3.0 [\#116](https://github.com/telekom-mms/ansible-collection-icinga/pull/116) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update actions/setup-python action to v6 [\#115](https://github.com/telekom-mms/ansible-collection-icinga/pull/115) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible/ansible-lint digest to 50373ef [\#114](https://github.com/telekom-mms/ansible-collection-icinga/pull/114) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible/ansible-lint digest to 1080d91 [\#113](https://github.com/telekom-mms/ansible-collection-icinga/pull/113) ([renovate[bot]](https://github.com/apps/renovate))
