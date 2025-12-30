@@ -1,8 +1,8 @@
 ---
 - name: Set facts for start_time_now and end_time of the maintenance window
   ansible.builtin.set_fact:
-    start_time_now: "{{ ansible_date_time.epoch }}"
-    end_time: "{{ ((duration + duration_unit) | community.general.to_time_unit('seconds') | int) + ansible_date_time.epoch | int }}"
+    start_time_now: "{{ ansible_facts.date_time.epoch }}"
+    end_time: "{{ ((duration + duration_unit) | community.general.to_time_unit('seconds') | int) + ansible_facts.date_time.epoch | int }}"
   delegate_to: localhost
   run_once: true
   changed_when: false
@@ -13,13 +13,13 @@
   ansible.builtin.set_fact:
     icinga_host_filter: "{{ target }}"
   when:
-    - single_host_downtime
+    - single_host_downtime | bool
 
 - name: Define icinga_host_filter as group
   ansible.builtin.set_fact:
     icinga_host_filter: "{{ groups[target] | list | flatten }}"
   when:
-    - not single_host_downtime
+    - not (single_host_downtime | bool)
 
 - name: Include add_downtimes
   ansible.builtin.include_tasks:

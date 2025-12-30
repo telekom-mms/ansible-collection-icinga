@@ -23,7 +23,7 @@
   loop:
     - "{{ icinga_host_filter }}"
   when:
-    - host_downtime
+    - host_downtime | bool
 
 - name: Add icinga service downtimes
   ansible.builtin.uri:
@@ -50,7 +50,7 @@
   loop:
     - "{{ icinga_host_filter }}"
   when:
-    - service_downtime
+    - service_downtime | bool
     - service_filter == ''
 
 - name: Add icinga single service downtimes
@@ -78,5 +78,5 @@
   loop:
     - "{{ icinga_host_filter }}"
   when:
-    - single_service_downtime
+    - single_service_downtime | bool
     - service_filter != ''
