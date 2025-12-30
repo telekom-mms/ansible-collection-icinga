@@ -76,8 +76,8 @@
 - name: Set plugins ownership
   ansible.builtin.file:
     path: "{{ item.path }}"
-    owner: "{{ icinga2_user[ansible_os_family] }}"
-    group: "{{ icinga2_group[ansible_os_family] }}"
+    owner: "{{ icinga2_user[ansible_facts.os_family] }}"
+    group: "{{ icinga2_group[ansible_facts.os_family] }}"
     mode: "0755"
   loop: "{{ files_in_plugins_dir.files }}"
   loop_control:

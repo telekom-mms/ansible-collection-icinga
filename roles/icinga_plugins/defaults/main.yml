@@ -3,7 +3,7 @@ icinga2_plugins_basedir:
   Debian: /usr/lib/nagios
   RedHat: /usr/lib64/nagios
 
-icinga2_plugins_pluginsdir: "{{ icinga2_plugins_basedir[ansible_os_family] }}/plugins"
+icinga2_plugins_pluginsdir: "{{ icinga2_plugins_basedir[ansible_facts.os_family] }}/plugins"
 
 icinga2_user:
   Debian: nagios
