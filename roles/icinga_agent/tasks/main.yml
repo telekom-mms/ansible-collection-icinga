@@ -13,8 +13,6 @@
     owner: "{{ icinga2_user[ansible_facts.os_family] }}"
     group: "{{ icinga2_group[ansible_facts.os_family] }}"
     state: directory
-  when:
-    - icinga_agent_repositoryd_directory | bool
 
 - name: Create features-* folders in case it is missing
   ansible.builtin.file:
