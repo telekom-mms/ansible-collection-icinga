@@ -7,14 +7,14 @@
         icinga_install_plugins:
           - nagios-plugins-all
       when:
-        - ansible_os_family == 'RedHat'
+        - ansible_facts.os_family == 'RedHat'
         - ansible_facts.distribution_major_version | int is version('8', '<')
 
     - name: Set name of installation package based on distro
       ansible.builtin.set_fact:
         icinga_install_plugins:
           - monitoring-plugins
-      when: ansible_os_family == 'Debian'
+      when: ansible_facts.os_family == 'Debian'
 
     - name: Include default vars from icinga_plugins roles
       ansible.builtin.include_vars:
@@ -49,7 +49,7 @@
           - item.pw_name == 'icinga'
           - item.gr_name == 'icinga'
       loop: "{{ files_in_plugins_dir.files }}"
-      when: ansible_os_family == 'RedHat'
+      when: ansible_facts.os_family == 'RedHat'
 
     - name: Validate plugins belongs to the right user for Debian based systems
       ansible.builtin.assert:
@@ -57,7 +57,7 @@
           - item.pw_name == 'nagios'
           - item.gr_name == 'nagios'
       loop: "{{ files_in_plugins_dir.files }}"
-      when: ansible_os_family == 'Debian'
+      when: ansible_facts.os_family == 'Debian'
 
     - name: Verify that package is installed
       ansible.builtin.package:
@@ -89,7 +89,7 @@
           - result_cloned_check.owner == 'icinga'
           - result_cloned_check.group == 'icinga'
           - result_cloned_check.changed == false
-      when: ansible_os_family == 'RedHat'
+      when: ansible_facts.os_family == 'RedHat'
 
     - name: Validate that cloned check exists on Debian based systems
       ansible.builtin.assert:
@@ -99,4 +99,4 @@
           - result_cloned_check.owner == 'nagios'
           - result_cloned_check.group == 'nagios'
           - result_cloned_check.changed == false
-      when: ansible_os_family == 'Debian'
+      when: ansible_facts.os_family == 'Debian'

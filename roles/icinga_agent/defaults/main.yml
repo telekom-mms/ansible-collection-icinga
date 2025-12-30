@@ -2,7 +2,7 @@
 icinga_agent_package: icinga2
 icinga_agent_registration: false
 icinga_agent_ca_host_icinga_port: 5665
-icinga_agent_hostname: "{{ ansible_hostname }}"
+icinga_agent_hostname: "{{ ansible_facts.hostname }}"
 icinga_agent_constants:
   RedHat: |
     const PluginDir = "/usr/lib64/nagios/plugins"
@@ -21,8 +21,6 @@ icinga_agent_constants:
 icinga_agent_api_conf: |
   accept_config = true
   accept_commands = true
-
-icinga_agent_repositoryd_directory: false
 
 icinga2_user:
   Debian: nagios
