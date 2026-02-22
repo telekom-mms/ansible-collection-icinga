@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.2](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.2) (2026-02-22)
+
+[Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.1.1...2.1.2)
+
+**Merged pull requests:**
+
+- chore\(deps\): update actions/checkout digest to de0fac2 [\#136](https://github.com/telekom-mms/ansible-collection-icinga/pull/136) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [2.1.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.1) (2025-12-30)
 
 [Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.1.0...2.1.1)
