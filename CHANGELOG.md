@@ -1,6 +1,6 @@
 # Changelog
 
-## [2.1.2](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.2) (2026-02-22)
+## [2.1.2](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.2) (2026-02-23)
 
 [Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.1.1...2.1.2)
 
@@ -9,6 +9,8 @@
 - chore\(deps\): update actions/checkout digest to de0fac2 [\#136](https://github.com/telekom-mms/ansible-collection-icinga/pull/136) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update actions/setup-python digest to a309ff8 [\#135](https://github.com/telekom-mms/ansible-collection-icinga/pull/135) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible/ansible-lint action to v26 [\#134](https://github.com/telekom-mms/ansible-collection-icinga/pull/134) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update dependency telekom\_mms.icinga\_director to v2.5.1 [\#133](https://github.com/telekom-mms/ansible-collection-icinga/pull/133) ([renovate[bot]](https://github.com/apps/renovate))
+- chore\(deps\): update dependency community.general to v12.3.0 [\#132](https://github.com/telekom-mms/ansible-collection-icinga/pull/132) ([renovate[bot]](https://github.com/apps/renovate))
 
 ## [2.1.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.1) (2025-12-30)
 
