@@ -1,11 +1,12 @@
 # Changelog
 
-## [2.1.2](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.2) (2026-02-23)
+## [2.1.2](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.2) (2026-02-26)
 
 [Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.1.1...2.1.2)
 
 **Merged pull requests:**
 
+- chore\(deps\): update dependency community.general to v12.4.0 [\#137](https://github.com/telekom-mms/ansible-collection-icinga/pull/137) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update actions/checkout digest to de0fac2 [\#136](https://github.com/telekom-mms/ansible-collection-icinga/pull/136) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update actions/setup-python digest to a309ff8 [\#135](https://github.com/telekom-mms/ansible-collection-icinga/pull/135) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible/ansible-lint action to v26 [\#134](https://github.com/telekom-mms/ansible-collection-icinga/pull/134) ([renovate[bot]](https://github.com/apps/renovate))
