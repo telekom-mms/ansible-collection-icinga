@@ -12,6 +12,7 @@
 
 - fix: bug icinga debian11 repo key [\#143](https://github.com/telekom-mms/ansible-collection-icinga/pull/143) ([beechesII](https://github.com/beechesII))
 - fix: ansible-lint action [\#142](https://github.com/telekom-mms/ansible-collection-icinga/pull/142) ([beechesII](https://github.com/beechesII))
+- chore\(deps\): update dependency community.general to v13 [\#141](https://github.com/telekom-mms/ansible-collection-icinga/pull/141) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible/ansible-lint digest to 5fac056 [\#140](https://github.com/telekom-mms/ansible-collection-icinga/pull/140) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency community.general to v12.6.1 [\#139](https://github.com/telekom-mms/ansible-collection-icinga/pull/139) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible/ansible-lint digest to 8ba9595 [\#138](https://github.com/telekom-mms/ansible-collection-icinga/pull/138) ([renovate[bot]](https://github.com/apps/renovate))
