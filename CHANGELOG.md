@@ -1,8 +1,8 @@
 # Changelog
 
-## [2.1.2](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.1.2) (2026-05-19)
+## [2.2.0](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.2.0) (2026-05-19)
 
-[Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.1.1...2.1.2)
+[Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.1.1...2.2.0)
 
 **Fixed bugs:**
 
