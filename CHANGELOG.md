@@ -7,6 +7,7 @@
 **Merged pull requests:**
 
 - fix: ansible-lint action [\#142](https://github.com/telekom-mms/ansible-collection-icinga/pull/142) ([beechesII](https://github.com/beechesII))
+- chore\(deps\): update ansible/ansible-lint digest to 5fac056 [\#140](https://github.com/telekom-mms/ansible-collection-icinga/pull/140) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency community.general to v12.6.1 [\#139](https://github.com/telekom-mms/ansible-collection-icinga/pull/139) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update ansible/ansible-lint digest to 8ba9595 [\#138](https://github.com/telekom-mms/ansible-collection-icinga/pull/138) ([renovate[bot]](https://github.com/apps/renovate))
 - chore\(deps\): update dependency community.general to v12.4.0 [\#137](https://github.com/telekom-mms/ansible-collection-icinga/pull/137) ([renovate[bot]](https://github.com/apps/renovate))
