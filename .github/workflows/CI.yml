@@ -97,16 +97,9 @@ jobs:
           testing-type: integration
           test-deps: telekom_mms.icinga_director
 
-  linting:
+  call-linting:
     name: Ansible Lint
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Check out code
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
-
-      - name: Run Linting
-        uses: ansible/ansible-lint@8ba9595a4acd1b906eb75568b34f6ef592cd1528 # v26
+    uses: telekom-mms/.github/.github/workflows/ansible-lint.yml@main
 
   molecule:
     name: Molecule

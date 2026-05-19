@@ -3,18 +3,18 @@
   hosts: all
   tasks:
     - name: Set name of installation package based on distro
-      ansible.builtin.set_fact:
-        icinga_install_plugins:
-          - nagios-plugins-all
       when:
         - ansible_facts.os_family == 'RedHat'
         - ansible_facts.distribution_major_version | int is version('8', '<')
+      ansible.builtin.set_fact:
+        icinga_install_plugins:
+          - nagios-plugins-all
 
     - name: Set name of installation package based on distro
+      when: ansible_facts.os_family == 'Debian'
       ansible.builtin.set_fact:
         icinga_install_plugins:
           - monitoring-plugins
-      when: ansible_facts.os_family == 'Debian'
 
     - name: Include default vars from icinga_plugins roles
       ansible.builtin.include_vars:
@@ -44,35 +44,33 @@
       check_mode: false
 
     - name: Validate plugins belongs to the right user for Redhat based systems
+      when: ansible_facts.os_family == 'RedHat'
       ansible.builtin.assert:
         that:
           - item.pw_name == 'icinga'
           - item.gr_name == 'icinga'
       loop: "{{ files_in_plugins_dir.files }}"
-      when: ansible_facts.os_family == 'RedHat'
 
     - name: Validate plugins belongs to the right user for Debian based systems
+      when: ansible_facts.os_family == 'Debian'
       ansible.builtin.assert:
         that:
           - item.pw_name == 'nagios'
           - item.gr_name == 'nagios'
       loop: "{{ files_in_plugins_dir.files }}"
-      when: ansible_facts.os_family == 'Debian'
 
     - name: Verify that package is installed
+      when: icinga_install_plugins is defined
       ansible.builtin.package:
         name: "{{ icinga_install_plugins }}"
         state: present
       register: result_installation
-      when:
-        - icinga_install_plugins is defined
 
     - name: Validate package is installed
+      when: icinga_install_plugins is defined
       ansible.builtin.assert:
         that:
           - result_installation is not changed
-      when:
-        - icinga_install_plugins is defined
 
     - name: Verify cloned check exists
       ansible.builtin.file:
@@ -82,6 +80,7 @@
       register: result_cloned_check
 
     - name: Validate that cloned check exists on Redhat based systems
+      when: ansible_facts.os_family == 'RedHat'
       ansible.builtin.assert:
         that:
           - result_cloned_check.state == 'file'
@@ -89,9 +88,9 @@
           - result_cloned_check.owner == 'icinga'
           - result_cloned_check.group == 'icinga'
           - result_cloned_check.changed == false
-      when: ansible_facts.os_family == 'RedHat'
 
     - name: Validate that cloned check exists on Debian based systems
+      when: ansible_facts.os_family == 'Debian'
       ansible.builtin.assert:
         that:
           - result_cloned_check.state == 'file'
@@ -99,4 +98,3 @@
           - result_cloned_check.owner == 'nagios'
           - result_cloned_check.group == 'nagios'
           - result_cloned_check.changed == false
-      when: ansible_facts.os_family == 'Debian'
