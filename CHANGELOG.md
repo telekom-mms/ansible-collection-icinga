@@ -10,6 +10,7 @@
 
 **Merged pull requests:**
 
+- chore\(release\): bump version to 2.2.0 [\#144](https://github.com/telekom-mms/ansible-collection-icinga/pull/144) ([beechesII](https://github.com/beechesII))
 - fix: bug icinga debian11 repo key [\#143](https://github.com/telekom-mms/ansible-collection-icinga/pull/143) ([beechesII](https://github.com/beechesII))
 - fix: ansible-lint action [\#142](https://github.com/telekom-mms/ansible-collection-icinga/pull/142) ([beechesII](https://github.com/beechesII))
 - chore\(deps\): update dependency community.general to v13 [\#141](https://github.com/telekom-mms/ansible-collection-icinga/pull/141) ([renovate[bot]](https://github.com/apps/renovate))
