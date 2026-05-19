@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.2.2](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.2.2) (2026-05-19)
+
+[Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.2.1...2.2.2)
+
+**Merged pull requests:**
+
+- fix: ignore yaml line length [\#146](https://github.com/telekom-mms/ansible-collection-icinga/pull/146) ([beechesII](https://github.com/beechesII))
+
 ## [2.2.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.2.1) (2026-05-19)
 
 [Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.2.0...2.2.1)
