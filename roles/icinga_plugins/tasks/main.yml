@@ -12,7 +12,7 @@
 
 # https://github.com/Icinga/icinga2/issues/7927
 - name: Install icinga and nagios plugins except for the mysql-plugins on el8
-  ansible.builtin.yum:
+  ansible.builtin.package:
     name: "{{ item }}"
     exclude:
       - nagios-plugins-all
@@ -39,7 +39,7 @@
 - name: Copy icinga plugins to target node # noqa risky-file-permissions
   ansible.builtin.copy:
     src: "{{ item }}"
-    dest: "{{ icinga2_plugins_pluginsdir }}/"
+    dest: "{{ icinga_plugins_icinga2_plugins_pluginsdir }}/"
   with_fileglob:
     - "{{ icinga_plugins_path }}/*"
   when:
@@ -67,19 +67,19 @@
 
 - name: Search for all files in plugins directory
   ansible.builtin.find:
-    paths: "{{ icinga2_plugins_pluginsdir }}"
+    paths: "{{ icinga_plugins_icinga2_plugins_pluginsdir }}"
     recurse: true
     file_type: any
-  register: files_in_plugins_dir
+  register: icinga_plugins_files_in_plugins_dir
   check_mode: false
 
 - name: Set plugins ownership
   ansible.builtin.file:
     path: "{{ item.path }}"
-    owner: "{{ icinga2_user[ansible_facts.os_family] }}"
-    group: "{{ icinga2_group[ansible_facts.os_family] }}"
+    owner: "{{ icinga_plugins_icinga2_user[ansible_facts.os_family] }}"
+    group: "{{ icinga_plugins_icinga2_group[ansible_facts.os_family] }}"
     mode: "0755"
-  loop: "{{ files_in_plugins_dir.files }}"
+  loop: "{{ icinga_plugins_files_in_plugins_dir.files }}"
   loop_control:
     label: "{{ item.path }}"
   tags:

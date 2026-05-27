@@ -1,9 +1,10 @@
 ---
 - name: Add icinga host downtimes
+  when: icinga_downtime_host_downtime | bool
   ansible.builtin.uri:
-    url: "{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/schedule-downtime?type=Host"
-    url_username: "{{ icinga_api_user }}"
-    url_password: "{{ icinga_api_password }}"
+    url: "{{ icinga_downtime_icinga_api_uri }}:{{ icinga_downtime_icinga_api_port }}/v1/actions/schedule-downtime?type=Host"
+    url_username: "{{ icinga_downtime_icinga_api_user }}"
+    url_password: "{{ icinga_downtime_icinga_api_password }}"
     validate_certs: true
     method: POST
     status_code: 200
@@ -13,23 +14,24 @@
     body_format: json
     body: '{
              "filter": "host.name==\"{{ item }}\"",
-             "author": "{{ author }}",
-             "comment": "{{ comment }}",
-             "start_time": "{{ start_time_now }}",
-             "end_time": "{{ end_time }}",
+             "author": "{{ icinga_downtime_author }}",
+             "comment": "{{ icinga_downtime_comment }}",
+             "start_time": "{{ icinga_downtime_start_time_now }}",
+             "end_time": "{{ icinga_downtime_end_time }}",
              "pretty": true,
              "fixed": true,
            }'
   loop:
-    - "{{ icinga_host_filter }}"
-  when:
-    - host_downtime | bool
+    - "{{ icinga_downtime_host_filter }}"
 
 - name: Add icinga service downtimes
+  when:
+    - icinga_downtime_service_downtime | bool
+    - icinga_downtime_service_filter == ''
   ansible.builtin.uri:
-    url: "{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/schedule-downtime?type=Service"
-    url_username: "{{ icinga_api_user }}"
-    url_password: "{{ icinga_api_password }}"
+    url: "{{ icinga_downtime_icinga_api_uri }}:{{ icinga_downtime_icinga_api_port }}/v1/actions/schedule-downtime?type=Service"
+    url_username: "{{ icinga_downtime_icinga_api_user }}"
+    url_password: "{{ icinga_downtime_icinga_api_password }}"
     validate_certs: true
     method: POST
     status_code: 200
@@ -39,25 +41,25 @@
     body_format: json
     body: '{
              "filter": "host.name==\"{{ item }}\"",
-             "author": "{{ author }}",
-             "comment": "{{ comment }}",
-             "start_time": {{ start_time_now }},
-             "end_time": {{ end_time }},
+             "author": "{{ icinga_downtime_author }}",
+             "comment": "{{ icinga_downtime_comment }}",
+             "start_time": {{ icinga_downtime_start_time_now }},
+             "end_time": {{ icinga_downtime_end_time }},
              "pretty": true,
              "fixed": true,
            }'
   delegate_to: localhost
   loop:
-    - "{{ icinga_host_filter }}"
-  when:
-    - service_downtime | bool
-    - service_filter == ''
+    - "{{ icinga_downtime_host_filter }}"
 
 - name: Add icinga single service downtimes
+  when:
+    - icinga_downtime_single_service_downtime | bool
+    - icinga_downtime_service_filter != ''
   ansible.builtin.uri:
-    url: "{{ icinga_api_uri }}:{{ icinga_api_port }}/v1/actions/schedule-downtime?type=Service"
-    url_username: "{{ icinga_api_user }}"
-    url_password: "{{ icinga_api_password }}"
+    url: "{{ icinga_downtime_icinga_api_uri }}:{{ icinga_downtime_icinga_api_port }}/v1/actions/schedule-downtime?type=Service"
+    url_username: "{{ icinga_downtime_icinga_api_user }}"
+    url_password: "{{ icinga_downtime_icinga_api_password }}"
     validate_certs: true
     method: POST
     status_code: 200
@@ -66,17 +68,14 @@
       Accept: application/json
     body_format: json
     body: '{
-             "filter": "host.name==\"{{ item }}\" && match(\"*{{ service_filter }}*\",service.name)",
-             "author": "{{ author }}",
-             "comment": "{{ comment }}",
-             "start_time": {{ start_time_now }},
-             "end_time": {{ end_time }},
+             "filter": "host.name==\"{{ item }}\" && match("*{{ icinga_downtime_service_filter }}*",service.name)",
+             "author": "{{ icinga_downtime_author }}",
+             "comment": "{{ icinga_downtime_comment }}",
+             "start_time": {{ icinga_downtime_start_time_now }},
+             "end_time": {{ icinga_downtime_end_time }},
              "pretty": true,
              "fixed": true,
            }'
   delegate_to: localhost
   loop:
-    - "{{ icinga_host_filter }}"
-  when:
-    - single_service_downtime | bool
-    - service_filter != ''
+    - "{{ icinga_downtime_host_filter }}"

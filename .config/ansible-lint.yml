@@ -5,15 +5,11 @@ exclude_paths:
   - .yamllint
   - molecule/
   - .github/
+  - galaxy.yml
 
 # install collection dependencies
 offline: false
 
-skip_list:
-  - yaml[line-length]
-
 warn_list:
-  - var-naming[no-role-prefix]
   - args[module]
-  - fqcn[action-core]
   - meta-runtime[unsupported-version]

@@ -10,8 +10,8 @@
   ansible.builtin.file:
     path: /etc/icinga2/repository.d
     mode: "0750"
-    owner: "{{ icinga2_user[ansible_facts.os_family] }}"
-    group: "{{ icinga2_group[ansible_facts.os_family] }}"
+    owner: "{{ icinga_agent_icinga2_user[ansible_facts.os_family] }}"
+    group: "{{ icinga_agent_icinga2_group[ansible_facts.os_family] }}"
     state: directory
 
 - name: Create features-* folders in case it is missing
@@ -19,8 +19,8 @@
     path: "{{ item }}"
     state: directory
     mode: "0750"
-    owner: "{{ icinga2_user[ansible_facts.os_family] }}"
-    group: "{{ icinga2_group[ansible_facts.os_family] }}"
+    owner: "{{ icinga_agent_icinga2_user[ansible_facts.os_family] }}"
+    group: "{{ icinga_agent_icinga2_group[ansible_facts.os_family] }}"
   loop:
     - /etc/icinga2/features-available/
     - /etc/icinga2/features-enabled/
@@ -29,8 +29,8 @@
   ansible.builtin.template:
     src: "{{ item }}"
     dest: /etc/icinga2/{{ item | basename | regex_replace('.j2', '') }}
-    owner: "{{ icinga2_user[ansible_facts.os_family] }}"
-    group: "{{ icinga2_group[ansible_facts.os_family] }}"
+    owner: "{{ icinga_agent_icinga2_user[ansible_facts.os_family] }}"
+    group: "{{ icinga_agent_icinga2_group[ansible_facts.os_family] }}"
     mode: "0640"
   with_fileglob:
     - ../templates/configuration/*
@@ -41,8 +41,8 @@
   ansible.builtin.template:
     src: "{{ item }}"
     dest: /etc/icinga2/features-available/{{ item | basename | regex_replace('.j2', '') }}
-    owner: "{{ icinga2_user[ansible_facts.os_family] }}"
-    group: "{{ icinga2_group[ansible_facts.os_family] }}"
+    owner: "{{ icinga_agent_icinga2_user[ansible_facts.os_family] }}"
+    group: "{{ icinga_agent_icinga2_group[ansible_facts.os_family] }}"
     mode: "0640"
   with_fileglob:
     - ../templates/features/*
@@ -53,8 +53,8 @@
   ansible.builtin.template:
     src: "{{ item }}"
     dest: /etc/icinga2/features-available/{{ item | basename | regex_replace('.j2', '') }}
-    owner: "{{ icinga2_user[ansible_facts.os_family] }}"
-    group: "{{ icinga2_group[ansible_facts.os_family] }}"
+    owner: "{{ icinga_agent_icinga2_user[ansible_facts.os_family] }}"
+    group: "{{ icinga_agent_icinga2_group[ansible_facts.os_family] }}"
     mode: "0640"
   with_fileglob:
     - "{{ icinga_agent_custom_features_template_path }}"
@@ -86,17 +86,17 @@
         path: /var/lib/icinga2/certs/
         state: directory
         mode: "0750"
-        owner: "{{ icinga2_user[ansible_facts.os_family] }}"
-        group: "{{ icinga2_group[ansible_facts.os_family] }}"
+        owner: "{{ icinga_agent_icinga2_user[ansible_facts.os_family] }}"
+        group: "{{ icinga_agent_icinga2_group[ansible_facts.os_family] }}"
 
     - name: Generate ticket and save it as a variable
       ansible.builtin.command: >
         /usr/sbin/icinga2 pki ticket --cn {{ icinga_agent_hostname }} --salt {{ icinga_agent_salt }}
       environment:
         LD_LIBRARY_PATH: /usr/lib64
-      register: ticket
+      register: icinga_agent_ticket
       changed_when: false
-      failed_when: ticket.rc != 0
+      failed_when: icinga_agent_ticket.rc != 0
 
     - name: Create certificate
       ansible.builtin.command: >
@@ -119,7 +119,7 @@
       ansible.builtin.command: >
         /usr/sbin/icinga2 pki request --host {{ icinga_agent_ca_host }}
         --port {{ icinga_agent_ca_host_icinga_port }}
-        --ticket {{ ticket.stdout }} --key /var/lib/icinga2/certs/{{ icinga_agent_hostname }}.key
+        --ticket {{ icinga_agent_ticket.stdout }} --key /var/lib/icinga2/certs/{{ icinga_agent_hostname }}.key
         --cert /var/lib/icinga2/certs/{{ icinga_agent_hostname }}.crt
         --trustedcert /var/lib/icinga2/certs/trusted-master.crt --ca /var/lib/icinga2/certs/ca.crt
       args:

@@ -1,40 +1,39 @@
 ---
 - name: Set facts for start_time_now and end_time of the maintenance window
+  when: icinga_downtime_icinga_action == "add_downtimes"
   ansible.builtin.set_fact:
-    start_time_now: "{{ ansible_facts.date_time.epoch }}"
-    end_time: "{{ ((duration + duration_unit) | community.general.to_time_unit('seconds') | int) + ansible_facts.date_time.epoch | int }}"
+    icinga_downtime_start_time_now: "{{ ansible_facts.date_time.epoch }}"
+    icinga_downtime_end_time: >-
+      {{
+        ((icinga_downtime_duration + icinga_downtime_duration_unit)
+        | community.general.to_time_unit('seconds') | int)
+        + ansible_facts.date_time.epoch | int
+      }}
   delegate_to: localhost
   run_once: true
   changed_when: false
-  when:
-    - icinga_action == "add_downtimes"
 
 - name: Define icinga_host_filter as single host
+  when: icinga_downtime_single_host_downtime | bool
   ansible.builtin.set_fact:
-    icinga_host_filter: "{{ target }}"
-  when:
-    - single_host_downtime | bool
+    icinga_downtime_host_filter: "{{ icinga_downtime_target }}"
 
 - name: Define icinga_host_filter as group
+  when: not (icinga_downtime_single_host_downtime | bool)
   ansible.builtin.set_fact:
-    icinga_host_filter: "{{ groups[target] | list | flatten }}"
-  when:
-    - not (single_host_downtime | bool)
+    icinga_downtime_host_filter: "{{ groups[icinga_downtime_target] | list | flatten }}"
 
 - name: Include add_downtimes
+  when: icinga_downtime_icinga_action == "add_downtimes"
   ansible.builtin.include_tasks:
     file: add_downtimes.yml
-  when:
-    - icinga_action == "add_downtimes"
 
 - name: Include remove_downtimes
+  when: icinga_downtime_icinga_action == "remove_downtimes"
   ansible.builtin.include_tasks:
     file: remove_downtimes.yml
-  when:
-    - icinga_action == "remove_downtimes"
 
 - name: Include remove_all_downtimes
+  when: icinga_downtime_icinga_action == "remove_all_downtimes"
   ansible.builtin.include_tasks:
     file: remove_all_downtimes.yml
-  when:
-    - icinga_action == "remove_all_downtimes"
