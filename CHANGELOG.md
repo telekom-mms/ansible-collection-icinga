@@ -1,8 +1,16 @@
 # Changelog
 
-## [2.2.2](https://github.com/telekom-mms/ansible-collection-icinga/tree/2.2.2) (2026-05-19)
+## [3.0.0](https://github.com/telekom-mms/ansible-collection-icinga/tree/3.0.0) (2026-05-28)
 
-[Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.2.1...2.2.2)
+[Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.2.1...3.0.0)
+
+**Breaking changes:**
+
+- rename role variables to role-prefixed names for ansible-lint compliance [\#148](https://github.com/telekom-mms/ansible-collection-icinga/pull/148) ([beechesII](https://github.com/beechesII))
+
+**Closed issues:**
+
+- linting - var-naming\[no-role-prefix\] [\#48](https://github.com/telekom-mms/ansible-collection-icinga/issues/48)
 
 **Merged pull requests:**
 
