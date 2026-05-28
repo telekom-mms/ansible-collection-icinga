@@ -6,7 +6,7 @@
     - telekom_mms.ansible_collection_icinga.icinga_plugins
   post_tasks:
     - name: Verify that icinga2 package is installed
-      ansible.builtin.yum:
+      ansible.builtin.package:
         name: nagios-plugins-all
         state: installed
       register: redhat_package_check

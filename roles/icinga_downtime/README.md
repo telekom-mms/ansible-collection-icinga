@@ -5,35 +5,33 @@ You can add a downtime for a group or a single host, both included or excluded t
 Or you can set a downtime for a dedicated service of a group or single host.
 Additionally current downtimes set by Ansible can be removed.
 
-
 ## Requirements
 
-- The name of the ansible hosts inside the inventory has to be exactly the same as the icinga objects, due to using the ansible hostname as icinga target filter.
+- The name of the ansible hosts inside the inventory has to be exactly the same as the icinga objects, due to using the ansible hostname as icinga icinga_downtime_target filter.
 
 ## Role Variables
 
 | Variable                 | Required    | Default                        | Description
 |-|-|-|-|
-| target                   | mandatory   | ""                             | define icinga-host-objects as target (must be identically in ansibles inventory)
-| icinga_action            | mandatory   | ""                             | "add_downtimes" or "remove_downtimes"
-| icinga_api_uri           | mandatory   | ""                             | URL of the Icinga instance could be "https://<hostname>.<domain>
-| icinga_api_user          | mandatory   | ""                             | User with access to the REST-API
-| icinga_api_pwd           | mandatory   | ""                             | Password of the User, should be encrypted e.g. with ansible-vault
-| icinga_api_port          | optional    | "5665"                         | Icinga API port
-| duration                 | optional    | "2"                            | Duration of the downtime
-| duration_unit            | optional    | "hours"                        | Unit of the duration
-| author                   | optional    | "Ansible"                      | Author of the downtime
-| comment                  | optional    | "Downtime set by automation"   | Comment to be added to the downtime
-| host_downtime            | optional    | true                           | Also set a downtime for the host
-| service_downtime         | optional    | true                           | Also set a downtime for the services
-| single_service_downtime  | optional    | false                          | Only set a downtime for a single service
-| host_service_downtime    | optional    | false                          | Only set a downtime for a single host
-| service_filter           | optional    | ""                             | Add a service filter to the downtime
+| icinga_downtime_target                   | mandatory   | ""                             | define icinga-host-objects as target (must be identically in ansibles inventory)
+| icinga_downtime_icinga_action            | mandatory   | ""                             | "add_downtimes" or "remove_downtimes"
+| icinga_downtime_icinga_api_uri           | mandatory   | ""                             | URL of the Icinga instance could be "https://<hostname>.<domain>
+| icinga_downtime_icinga_api_user          | mandatory   | ""                             | User with access to the REST-API
+| icinga_downtime_icinga_api_password      | mandatory   | ""                             | Password of the User, should be encrypted e.g. with ansible-vault
+| icinga_downtime_icinga_api_port          | optional    | "5665"                         | Icinga API port
+| icinga_downtime_duration                 | optional    | "2"                            | Duration of the downtime
+| icinga_downtime_duration_unit            | optional    | "hours"                        | Unit of the duration
+| icinga_downtime_author                   | optional    | "Ansible"                      | Author of the downtime
+| icinga_downtime_comment                  | optional    | "Downtime set by automation"   | Comment to be added to the downtime
+| icinga_downtime_host_downtime            | optional    | true                           | Also set a downtime for the host
+| icinga_downtime_service_downtime         | optional    | true                           | Also set a downtime for the services
+| icinga_downtime_single_service_downtime  | optional    | false                          | Only set a downtime for a single service
+| icinga_downtime_host_service_downtime    | optional    | false                          | Only set a downtime for a single host
+| icinga_downtime_service_filter           | optional    | ""                             | Add a service filter to the downtime
 
 ## Dependencies
 
 - no dependencies
-
 
 ## Examples
 
@@ -50,19 +48,19 @@ Additionally current downtimes set by Ansible can be removed.
 
 ```
 # command template
-ansible-playbook <path_to_playbooks/playbook.yml> -i <path_to_inventory/hosts> -e target="<groupname>" -e icinga_action="<icinga_action>"
+ansible-playbook <path_to_playbooks/playbook.yml> -i <path_to_inventory/hosts> -e icinga_downtime_target="<groupname>" -e icinga_downtime_icinga_action="<icinga_downtime_icinga_action>"
 
 # add downtime for all hosts in group devhosts and all of its services
-ansible-playbook ./playbooks/playbook.yml -i inventories/inventory/hosts -e target="devhosts" -e icinga_action="add_downtimes"
+ansible-playbook ./playbooks/playbook.yml -i inventories/inventory/hosts -e icinga_downtime_target="devhosts" -e icinga_downtime_icinga_action="add_downtimes"
 
 # remove downtime for all hosts in group devhosts and all of its services
-ansible-playbook ./playbooks/playbook.yml -i inventories/inventory/hosts -e target="devhosts" -e icinga_action="remove_downtimes"
+ansible-playbook ./playbooks/playbook.yml -i inventories/inventory/hosts -e icinga_downtime_target="devhosts" -e icinga_downtime_icinga_action="remove_downtimes"
 
 # add downtime for load-check of all hosts in group devhosts
-ansible-playbook ./playbooks/playbook.yml -i inventories/inventory/hosts -e target="devhosts" -e icinga_action="add_downtimes" -e single_service_downtime="true" -e service_filter="load"
+ansible-playbook ./playbooks/playbook.yml -i inventories/inventory/hosts -e icinga_downtime_target="devhosts" -e icinga_downtime_icinga_action="add_downtimes" -e single_service_downtime="true" -e service_filter="load"
 
 # add downtime for single host "hostname1" and all its services
-ansible-playbook ./playbooks/playbook.yml -i inventories/inventory/hosts -e target="hostname1" -e icinga_action="add_downtimes" -e single_host_downtime="true"
+ansible-playbook ./playbooks/playbook.yml -i inventories/inventory/hosts -e icinga_downtime_target="hostname1" -e icinga_downtime_icinga_action="add_downtimes" -e single_host_downtime="true"
 ```
 
 ## Author Information

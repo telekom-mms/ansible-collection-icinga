@@ -22,7 +22,7 @@
 
     - name: Verify that plugin dir exists
       ansible.builtin.file:
-        path: "{{ icinga2_plugins_pluginsdir }}"
+        path: "{{ icinga_plugins_icinga2_plugins_pluginsdir }}"
         mode: "0755"
         state: directory
       register: result_plugin_dir
@@ -37,10 +37,10 @@
 
     - name: Search for all files in plugins directory
       ansible.builtin.find:
-        paths: "{{ icinga2_plugins_pluginsdir }}"
+        paths: "{{ icinga_plugins_icinga2_plugins_pluginsdir }}"
         recurse: true
         file_type: file
-      register: files_in_plugins_dir
+      register: icinga_plugins_files_in_plugins_dir
       check_mode: false
 
     - name: Validate plugins belongs to the right user for Redhat based systems
@@ -49,7 +49,7 @@
         that:
           - item.pw_name == 'icinga'
           - item.gr_name == 'icinga'
-      loop: "{{ files_in_plugins_dir.files }}"
+      loop: "{{ icinga_plugins_files_in_plugins_dir.files }}"
 
     - name: Validate plugins belongs to the right user for Debian based systems
       when: ansible_facts.os_family == 'Debian'
@@ -57,7 +57,7 @@
         that:
           - item.pw_name == 'nagios'
           - item.gr_name == 'nagios'
-      loop: "{{ files_in_plugins_dir.files }}"
+      loop: "{{ icinga_plugins_files_in_plugins_dir.files }}"
 
     - name: Verify that package is installed
       when: icinga_install_plugins is defined
