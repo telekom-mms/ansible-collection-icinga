@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/3.0.1) (2026-05-28)
+
+[Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/3.0.0...3.0.1)
+
+**Merged pull requests:**
+
+- Update dependency community.general to v13.0.1 [\#147](https://github.com/telekom-mms/ansible-collection-icinga/pull/147) ([renovate[bot]](https://github.com/apps/renovate))
+
 ## [3.0.0](https://github.com/telekom-mms/ansible-collection-icinga/tree/3.0.0) (2026-05-28)
 
 [Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/2.2.1...3.0.0)
