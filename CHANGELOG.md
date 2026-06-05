@@ -1,11 +1,12 @@
 # Changelog
 
-## [3.0.2](https://github.com/telekom-mms/ansible-collection-icinga/tree/3.0.2) (2026-06-04)
+## [3.0.2](https://github.com/telekom-mms/ansible-collection-icinga/tree/3.0.2) (2026-06-05)
 
 [Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/3.0.1...3.0.2)
 
 **Merged pull requests:**
 
+- Update actions/checkout digest to df4cb1c [\#150](https://github.com/telekom-mms/ansible-collection-icinga/pull/150) ([renovate[bot]](https://github.com/apps/renovate))
 - Pin dependencies [\#149](https://github.com/telekom-mms/ansible-collection-icinga/pull/149) ([renovate[bot]](https://github.com/apps/renovate))
 
 ## [3.0.1](https://github.com/telekom-mms/ansible-collection-icinga/tree/3.0.1) (2026-05-28)
