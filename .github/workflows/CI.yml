@@ -99,7 +99,7 @@ jobs:
 
   call-linting:
     name: Ansible Lint
-    uses: telekom-mms/.github/.github/workflows/ansible-lint.yml@b75c3f3f5e6bc29ecf07321fc7b01955060f5bcd # main
+    uses: telekom-mms/.github/.github/workflows/ansible-lint.yml@2c14b6e7b1a8d5cb5fe8f01bea363530391fbdd7 # main
 
   molecule:
     name: Molecule
