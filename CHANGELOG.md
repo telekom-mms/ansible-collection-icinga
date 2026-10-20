@@ -13,6 +13,7 @@
 - Update actions/setup-python action to v7 [\#155](https://github.com/telekom-mms/ansible-collection-icinga/pull/155) ([renovate[bot]](https://github.com/apps/renovate))
 - Update actions/setup-python digest to ece7cb0 [\#154](https://github.com/telekom-mms/ansible-collection-icinga/pull/154) ([renovate[bot]](https://github.com/apps/renovate))
 - Update ansible-community/ansible-test-gh-action action to v1.18.0 [\#153](https://github.com/telekom-mms/ansible-collection-icinga/pull/153) ([renovate[bot]](https://github.com/apps/renovate))
+- Update actions/checkout action to v7 [\#152](https://github.com/telekom-mms/ansible-collection-icinga/pull/152) ([renovate[bot]](https://github.com/apps/renovate))
 - Update actions/checkout digest to df4cb1c [\#150](https://github.com/telekom-mms/ansible-collection-icinga/pull/150) ([renovate[bot]](https://github.com/apps/renovate))
 - Pin dependencies [\#149](https://github.com/telekom-mms/ansible-collection-icinga/pull/149) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency python to 3.15 [\#111](https://github.com/telekom-mms/ansible-collection-icinga/pull/111) ([renovate[bot]](https://github.com/apps/renovate))
