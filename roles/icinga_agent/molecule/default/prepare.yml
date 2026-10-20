@@ -19,6 +19,7 @@
       ansible.builtin.get_url:
         url: https://packages.icinga.com/centos/ICINGA-release.repo
         dest: /etc/yum.repos.d/ICINGA-release.repo
+        mode: '0644'
 
     - name: Install icinga2 basic packages
       when: ansible_facts.os_family == 'Debian'
@@ -30,7 +31,8 @@
     - name: Add icinga2 repo key on debian
       when: ansible_facts.distribution == "Debian"
       ansible.builtin.apt:
-        deb: "https://packages.icinga.com/icinga-archive-keyring_latest+{{ ansible_facts.distribution | lower }}{{ ansible_facts.distribution_major_version }}.deb"
+        deb: >-
+          https://packages.icinga.com/icinga-archive-keyring_latest+{{ ansible_facts.distribution | lower }}{{ ansible_facts.distribution_major_version }}.deb
 
     - name: Add icinga2 repo key on ubuntu
       when: ansible_facts.distribution == "Ubuntu"
@@ -39,23 +41,29 @@
 
     - name: Add icinga2 repository on debian
       when: ansible_facts.distribution == "Debian"
-      ansible.builtin.apt_repository:
-        repo: "{{ item }}"
+      ansible.builtin.deb822_repository:
+        name: icinga-debian
+        types:
+          - deb
+          - deb-src
+        uris: https://packages.icinga.com/debian
+        suites: icinga-{{ ansible_facts.distribution_release }}
+        components: main
+        signed_by: /usr/share/keyrings/icinga-archive-keyring.gpg
         state: present
-        update_cache: true
-      with_items:
-        - deb [signed-by=/usr/share/keyrings/icinga-archive-keyring.gpg] https://packages.icinga.com/{{ ansible_facts.distribution | lower }} icinga-{{ ansible_facts.distribution_release }} main
-        - deb-src [signed-by=/usr/share/keyrings/icinga-archive-keyring.gpg] https://packages.icinga.com/{{ ansible_facts.distribution | lower }} icinga-{{ ansible_facts.distribution_release }} main
 
     - name: Add icinga2 repository on ubuntu
       when: ansible_facts.distribution == "Ubuntu"
-      ansible.builtin.apt_repository:
-        repo: "{{ item }}"
+      ansible.builtin.deb822_repository:
+        name: icinga-ubuntu
+        types:
+          - deb
+          - deb-src
+        uris: https://packages.icinga.com/ubuntu
+        suites: icinga-{{ ansible_facts.lsb.codename }}
+        components: main
+        signed_by: /usr/share/keyrings/icinga-archive-keyring.gpg
         state: present
-        update_cache: true
-      with_items:
-        - deb [signed-by=/usr/share/keyrings/icinga-archive-keyring.gpg] https://packages.icinga.com/{{ ansible_facts.distribution | lower }} icinga-{{ ansible_facts.lsb.codename }} main
-        - deb-src [signed-by=/usr/share/keyrings/icinga-archive-keyring.gpg] https://packages.icinga.com/{{ ansible_facts.distribution | lower }} icinga-{{ ansible_facts.lsb.codename }} main
 
     - name: Install icinga2 build dependencies
       when: ansible_facts.os_family == 'Debian'
