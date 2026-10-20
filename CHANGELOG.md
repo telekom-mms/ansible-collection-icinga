@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Update dependency ubuntu to v26 [\#159](https://github.com/telekom-mms/ansible-collection-icinga/pull/159) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency telekom\_mms.icinga\_director to v2.6.1 [\#158](https://github.com/telekom-mms/ansible-collection-icinga/pull/158) ([renovate[bot]](https://github.com/apps/renovate))
 - Update telekom-mms/.github digest to 9505ee0 [\#157](https://github.com/telekom-mms/ansible-collection-icinga/pull/157) ([renovate[bot]](https://github.com/apps/renovate))
 - Update actions/setup-python action to v7 [\#155](https://github.com/telekom-mms/ansible-collection-icinga/pull/155) ([renovate[bot]](https://github.com/apps/renovate))
