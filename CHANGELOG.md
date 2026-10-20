@@ -1,6 +1,6 @@
 # Changelog
 
-## [3.0.2](https://github.com/telekom-mms/ansible-collection-icinga/tree/3.0.2) (2026-10-19)
+## [3.0.2](https://github.com/telekom-mms/ansible-collection-icinga/tree/3.0.2) (2026-10-20)
 
 [Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/3.0.1...3.0.2)
 
@@ -8,6 +8,7 @@
 
 - Update dependency telekom\_mms.icinga\_director to v2.6.1 [\#158](https://github.com/telekom-mms/ansible-collection-icinga/pull/158) ([renovate[bot]](https://github.com/apps/renovate))
 - Update telekom-mms/.github digest to 9505ee0 [\#157](https://github.com/telekom-mms/ansible-collection-icinga/pull/157) ([renovate[bot]](https://github.com/apps/renovate))
+- Update ansible-community/ansible-test-gh-action action to v1.18.0 [\#153](https://github.com/telekom-mms/ansible-collection-icinga/pull/153) ([renovate[bot]](https://github.com/apps/renovate))
 - Update actions/checkout digest to df4cb1c [\#150](https://github.com/telekom-mms/ansible-collection-icinga/pull/150) ([renovate[bot]](https://github.com/apps/renovate))
 - Pin dependencies [\#149](https://github.com/telekom-mms/ansible-collection-icinga/pull/149) ([renovate[bot]](https://github.com/apps/renovate))
 
