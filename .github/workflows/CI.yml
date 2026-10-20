@@ -52,10 +52,10 @@ jobs:
         with:
           path: ansible_collections/telekom_mms/ansible_collection_icinga
 
-      - name: Set up Python ${{ matrix.ansible }}
+      - name: Set up Python for Ansible ${{ matrix.ansible }}
         uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
         with:
-          python-version: 3.12
+          python-version: ${{ matrix.ansible == 'devel' && '3.13' || '3.12' }}
 
       - name: Install ansible-base (${{ matrix.ansible }})
         run: python -m pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
@@ -78,6 +78,14 @@ jobs:
         python:
           - "3.11"
           - "3.12"
+        exclude:
+          - ansible: devel
+            python: "3.11"
+          - ansible: devel
+            python: "3.12"
+        include:
+          - ansible: devel
+            python: "3.13"
     services:
       icinga:
         image: ghcr.io/telekom-mms/icinga2:director-1.8.1@sha256:bf9205d41607f1641146e870644af0529338d06a9b360737bdf56a3f951cc28b
@@ -88,7 +96,7 @@ jobs:
           Perform integration testing against
           Ansible version ${{ matrix.ansible }}
           under Python ${{ matrix.python }}
-        uses: ansible-community/ansible-test-gh-action@d3a8ec7a59694e25e210fcd44738910149537f0e # v1.17.0
+        uses: ansible-community/ansible-test-gh-action@6ded727edb598e670ac056a8e680ca4050bac0a3 # v1.18.0
         with:
           ansible-core-version: ${{ matrix.ansible }}
           # OPTIONAL command to run before invoking `ansible-test integration`
