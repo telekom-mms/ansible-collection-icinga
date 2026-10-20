@@ -9,6 +9,7 @@
 - Update dependency ubuntu to v26 [\#159](https://github.com/telekom-mms/ansible-collection-icinga/pull/159) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency telekom\_mms.icinga\_director to v2.6.1 [\#158](https://github.com/telekom-mms/ansible-collection-icinga/pull/158) ([renovate[bot]](https://github.com/apps/renovate))
 - Update telekom-mms/.github digest to 9505ee0 [\#157](https://github.com/telekom-mms/ansible-collection-icinga/pull/157) ([renovate[bot]](https://github.com/apps/renovate))
+- Update actions/checkout digest to d23441a [\#156](https://github.com/telekom-mms/ansible-collection-icinga/pull/156) ([renovate[bot]](https://github.com/apps/renovate))
 - Update actions/setup-python action to v7 [\#155](https://github.com/telekom-mms/ansible-collection-icinga/pull/155) ([renovate[bot]](https://github.com/apps/renovate))
 - Update actions/setup-python digest to ece7cb0 [\#154](https://github.com/telekom-mms/ansible-collection-icinga/pull/154) ([renovate[bot]](https://github.com/apps/renovate))
 - Update ansible-community/ansible-test-gh-action action to v1.18.0 [\#153](https://github.com/telekom-mms/ansible-collection-icinga/pull/153) ([renovate[bot]](https://github.com/apps/renovate))
