@@ -1,11 +1,12 @@
 # Changelog
 
-## [3.0.2](https://github.com/telekom-mms/ansible-collection-icinga/tree/3.0.2) (2026-11-09)
+## [3.0.2](https://github.com/telekom-mms/ansible-collection-icinga/tree/3.0.2) (2026-11-11)
 
 [Full Changelog](https://github.com/telekom-mms/ansible-collection-icinga/compare/3.0.1...3.0.2)
 
 **Merged pull requests:**
 
+- Update dependency community.general to v14.0.1 [\#164](https://github.com/telekom-mms/ansible-collection-icinga/pull/164) ([renovate[bot]](https://github.com/apps/renovate))
 - Update dependency community.general to v14 [\#163](https://github.com/telekom-mms/ansible-collection-icinga/pull/163) ([renovate[bot]](https://github.com/apps/renovate))
 - Update actions/setup-python digest to 6d4fd22 [\#162](https://github.com/telekom-mms/ansible-collection-icinga/pull/162) ([renovate[bot]](https://github.com/apps/renovate))
 - update repository configuration for molecule to use deb822\_repository [\#161](https://github.com/telekom-mms/ansible-collection-icinga/pull/161) ([z-bsod](https://github.com/z-bsod))
